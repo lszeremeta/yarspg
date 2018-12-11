@@ -4,7 +4,7 @@ c:{value:"male",lang:"en",valid:false}
 d:{key:442.1333}
 e:{key44:[true,false,"some text", null, 11, 11.2231]}
 
-(a)-[aaa1a {key:"value", aab2bc:44.22}]->(c)
+(a)-[aaa1a {key:"value", aab2bc:[44.22,"en",22]}]->(c)
 (a)-[aaa2a]->(c)
 (b)-[bbb23b]-(e)
 (b)-[bbbb53b {bbbd32d:false, value:null}]-(e)
