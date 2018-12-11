@@ -37,10 +37,6 @@ declaration
     | relationship
     ;
 
-pname
-    : ':' ALNUM_PLUS ':'
-    ;
-
 vertexDeclaration
     : vertex_name ':' '{' pair (',' pair)* '}'
     ;
@@ -56,10 +52,6 @@ directed
 
 undirected
     : '(' vertex_name ')' '-' '[' label ']' '-' '(' vertex_name ')'
-    ;
-
-pn_local
-    : ALNUM_PLUS
     ;
 
 label
@@ -120,38 +112,12 @@ TRUE_FALSE
     | 'false'
     ;
 
-/* FROM TURTLE ANTLR GRAMMAR */
-
-BlankNode
-    : BLANK_NODE_LABEL
-    ;
-
-BLANK_NODE_LABEL
-    : '_:' (PN_CHARS_U | [0-9]) ((PN_CHARS | '.')* PN_CHARS)?
-    ;
-
-iri
-    : CONTEXT
-    ;
-
-literal
-    : rdfLiteral
-    ;
-
-rdfLiteral
-    : STRING_LITERAL_QUOTE
-    ;
-
 STRING_LITERAL_QUOTE
     : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
     ;
 
 ALNUM_PLUS
     : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
-    ;
-
-CONTEXT
-    : '<' (PN_CHARS | '.' | ':' | '/' | '\\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
     ;
 
 PN_CHARS
