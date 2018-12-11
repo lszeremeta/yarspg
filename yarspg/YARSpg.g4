@@ -75,10 +75,19 @@ key
     ;
 
 value
+    : single_key_value
+    | multiple_key_values
+    ;
+
+single_key_value
     : STRING
     | NUMBER
     | NULL
     | TRUE_FALSE
+    ;
+
+multiple_key_values
+    : '[' single_key_value (',' single_key_value)* ']'
     ;
 
 STRING
