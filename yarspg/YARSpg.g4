@@ -38,7 +38,7 @@ declaration
     ;
 
 vertexDeclaration
-    : vertex_name ':' '{' pair (',' pair)* '}'
+    : vertex_name ':' '{' property (',' property)* '}'
     ;
 
 relationship
@@ -47,11 +47,11 @@ relationship
     ;
 
 directed
-    : '(' vertex_name ')' '-' '[' label ']' '->' '(' vertex_name ')'
+    : '(' vertex_name ')' '-' '[' label ('{' property (',' property)* '}')* ']' '->' '(' vertex_name ')'
     ;
 
 undirected
-    : '(' vertex_name ')' '-' '[' label ']' '-' '(' vertex_name ')'
+    : '(' vertex_name ')' '-' '[' label ('{' property (',' property)* '}')* ']' '-' '(' vertex_name ')'
     ;
 
 label
@@ -62,7 +62,7 @@ vertex_name
     : ALNUM_PLUS
     ;
 
-pair
+property
     : key ':' value
     ;
 
