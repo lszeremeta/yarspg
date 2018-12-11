@@ -13,7 +13,7 @@ Run tests on files in ``yarspg/examples``:
 mvn clean test
 ```
 
-Grammar is currently under development. Therefore, ``yarspg/examples`` contain partial examples that do not show all structures YARS structures, but correspond to the current state of grammar. More extensive examples of YARS are available in ``yarspg/next-examples``.
+Grammar is currently under development. Therefore, ``yarspg/examples`` contain partial examples that do not show all structures YARSpg structures, but correspond to the current state of grammar. More extensive examples of YARSpg are available in ``yarspg/next-examples``.
 
 ## Contribution
 Would you like to improve this project? Great! We are waiting for your help and suggestions. If you are new in open source contributions, read [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/).
