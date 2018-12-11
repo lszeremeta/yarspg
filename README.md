@@ -1,5 +1,7 @@
 # YARSpg grammar for [ANTLR v4](https://github.com/antlr/antlr4)
 
+[![Build Status](https://travis-ci.com/lszeremeta/antlr-yarspg.svg?token=pTqbek1JAcq4ZAzTmmEy&branch=master)](https://travis-ci.com/lszeremeta/antlr-yarspg)
+
 The YARSpg serialization is a special version of [YARS](https://github.com/lszeremeta/antlr-yars) for property graphs.
 
 This project based on [ANTLR grammars-v4 project](https://github.com/antlr/grammars-v4).
