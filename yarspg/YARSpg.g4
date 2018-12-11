@@ -55,16 +55,7 @@ undirected
     ;
 
 label
-    : single_label
-    | multiple_label
-    ;
-
-single_label
     : ALNUM_PLUS
-    ;
-
-multiple_label
-    : single_label (',' single_label)*
     ;
     
 vertex_name

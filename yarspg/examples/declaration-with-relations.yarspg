@@ -4,5 +4,7 @@ c:{value:"male",lang:"en",valid:false}
 d:{key:442.1333}
 e:{key44:[true,false,"some text", null, 11, 11.2231]}
 
-(a)-[aaa1a,aaa2a]->(c)
-(b)-[bbb23b,bbbb53b]-(e)
+(a)-[aaa1a]->(c)
+(a)-[aaa2a]->(c)
+(b)-[bbb23b]-(e)
+(b)-[bbbb53b]-(e)
