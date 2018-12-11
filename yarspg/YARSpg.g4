@@ -1,8 +1,6 @@
 /*
  [The "BSD licence"]
  Copyright (c) 2018, Łukasz Szeremeta (@ University of Bialystok, http://www.uwb.edu.pl/)
- Copyright (c) 2018, Dominik Tomaszuk (@ University of Bialystok, http://www.uwb.edu.pl/)
- Copyright (c) 2018, Karol Litman
  All rights reserved.
 
  Based on YARS grammar
@@ -47,19 +45,34 @@ vertexDeclaration
     : vertex_name ':' '{' pair (',' pair)* '}'
     ;
 
-
 relationship
-    : '(' vertex_name ')' '-' '[' predicate ']' '->' '(' vertex_name ')'
+    : directed
+    | undirected
     ;
 
+directed
+    : '(' vertex_name ')' '-' '[' label ']' '->' '(' vertex_name ')'
+    ;
+
+undirected
+    : '(' vertex_name ')' '-' '[' label ']' '-' '(' vertex_name ')'
+    ;
 
 pn_local
     : ALNUM_PLUS
     ;
 
-predicate
-    : (pname pn_local)
-    //| (pn_local '{' pair_vocab_key '}')
+label
+    : single_label
+    | multiple_label
+    ;
+
+single_label
+    : ALNUM_PLUS
+    ;
+
+multiple_label
+    : single_label (',' single_label)*
     ;
     
 vertex_name
