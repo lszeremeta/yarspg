@@ -59,7 +59,7 @@ pn_local
 
 predicate
     : (pname pn_local)
-    | (pn_local '{' pair_vocab_key '}')
+    //| (pn_local '{' pair_vocab_key '}')
     ;
     
 vertex_name
@@ -67,32 +67,35 @@ vertex_name
     ;
 
 pair
-    : pair_value_key | pair_lang_key | pair_datatype_key | pair_any_key
+    : key ':' value
     ;
 
-pair_value_key
-    : 'value' ':' (BlankNode | iri | literal)
+key
+    : ALNUM_PLUS
     ;
 
-pair_lang_key
-    : 'lang' ':' literal
+value
+    : STRING
+    | NUMBER
+    | NULL
+    | TRUE_FALSE
     ;
 
-pair_vocab_key
-    : 'vocab' ':' iri
+STRING
+    : STRING_LITERAL_QUOTE
     ;
 
-pair_datatype_key
-    : 'datatype' ':' (iri | literal)
+NUMBER
+    : [0-9]+'.'?[0-9]*
     ;
 
-pair_any_key
-    : ALNUM_PLUS ':' (BlankNode | iri | literal)
+NULL
+    : 'null'
     ;
 
-pair_value
-    : CONTEXT
-    | ALNUM_PLUS
+TRUE_FALSE
+    : 'true'
+    | 'false'
     ;
 
 /* FROM TURTLE ANTLR GRAMMAR */
