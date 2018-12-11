@@ -1,0 +1,5 @@
+a:{value:<http://example.net/me#an>}
+b:{value:"Adam Nowak"}
+(a)-[name {vocab:<http://xmlns.com/foaf/0.1/>}]->(b)
+c:{value:"male",lang:"en"}
+(a)-[gender {vocab:<http://xmlns.com/foaf/0.1/>}]->(c)
