@@ -1,0 +1,13 @@
+Author01:{fname:"Dominik",lname:"Tomaszuk"}
+Author02:{fname:"Renzo",lname:"Angles"}
+Entry01:InProceedings01:{title:"Serialization for...",numpages:10,keyword:"Graph database"}
+Entry02:Article01:{title:"Property Graph...",numpages:10,keyword:["Query", "Graph"]}
+Proceedings01:{title:"BDAS",year:2018,month:"May"}
+Journal01:{title:"J. DB",year:2020,vol:30}
+
+(Entry01:InProceedings01)-[has_author {order:1}]->(Author01)
+(Entry01:InProceedings01)-[has_author {order:2}]->(Author02)
+(Entry02:Article01)-[has_author {order:1}]->(Author02)
+(Entry02:Article01)-[cites]->(Entry01:InProceedings01)
+(Entry01:InProceedings01)-[booktitle {pages:"111-121"}]->(Proceedings01)
+(Entry02:Article01)-[published_in {pages:"222-232"}]->(Journal01)
