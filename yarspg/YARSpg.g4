@@ -38,7 +38,7 @@ declaration
     ;
 
 nodeDeclaration
-    : node_name ':' '{' property (',' property)* '}'
+    : node_name ':' '{' prop (',' prop)* '}'
     ;
 
 relationship
@@ -47,11 +47,11 @@ relationship
     ;
 
 directed
-    : '(' node_name ')' '-' '[' label ('{' property (',' property)* '}')* ']' '->' '(' node_name ')'
+    : '(' node_name ')' '-' '[' label ('{' prop (',' prop)* '}')* ']' '->' '(' node_name ')'
     ;
 
 undirected
-    : '(' node_name ')' '-' '[' label ('{' property (',' property)* '}')* ']' '-' '(' node_name ')'
+    : '(' node_name ')' '-' '[' label ('{' prop (',' prop)* '}')* ']' '-' '(' node_name ')'
     ;
 
 label
@@ -62,7 +62,7 @@ node_name
     : ALNUM_PLUS
     ;
 
-property
+prop
     : key ':' value
     ;
 
