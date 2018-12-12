@@ -1,0 +1,10 @@
+a1d:x:{aa1a:true,a2aa:"text",aa3aa:null}
+b:{value:5}
+c:{value:"male",lang:"en",valid:false}
+d:{key:442.1333}
+e:y:v:{key44:[true,false,"some text", null, 11, 11.2231]}
+
+(a1d:x)-[aaa1a {key:"value", aab2bc:[44.22,"en",22]}]->(c)
+(a1d:x)-[aaa2a]->(c)
+(b)-[bbb23b]-(e:y:v)
+(b)-[bbbb53b {bbbd32d:false, value:null}]-(e:y:v)

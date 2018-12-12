@@ -38,7 +38,7 @@ declaration
     ;
 
 nodeDeclaration
-    : node_name ':' '{' prop (',' prop)* '}'
+    : node_label (':' node_label)* ':' '{' prop (',' prop)* '}'
     ;
 
 relationship
@@ -47,18 +47,18 @@ relationship
     ;
 
 directed
-    : '(' node_name ')' '-' '[' label ('{' prop (',' prop)* '}')* ']' '->' '(' node_name ')'
+    : '(' node_label (':' node_label)* ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '->' '(' node_label (':' node_label)* ')'
     ;
 
 undirected
-    : '(' node_name ')' '-' '[' label ('{' prop (',' prop)* '}')* ']' '-' '(' node_name ')'
+    : '(' node_label (':' node_label)* ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '-' '(' node_label (':' node_label)* ')'
     ;
 
-label
+relationship_label
     : ALNUM_PLUS
     ;
     
-node_name
+node_label
     : ALNUM_PLUS
     ;
 
