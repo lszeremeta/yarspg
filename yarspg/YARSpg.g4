@@ -1,6 +1,8 @@
 /*
  [The "BSD licence"]
  Copyright (c) 2018, Łukasz Szeremeta (@ University of Bialystok, http://www.uwb.edu.pl/)
+ Copyright (c) 2018, Dominik Tomaszuk (@ University of Bialystok, http://www.uwb.edu.pl/)
+ Copyright (c) 2018, Karol Litman (@ University of Bialystok, http://www.uwb.edu.pl/)
  All rights reserved.
 
  Based on YARS grammar
@@ -38,7 +40,7 @@ declaration
     ;
 
 nodeDeclaration
-    : node_label (':' node_label)* ':' '{' prop (',' prop)* '}'
+    : ido ('[' node_label (':' node_label)* ']')? ':' '{' prop (',' prop)* '}'
     ;
 
 relationship
@@ -47,17 +49,21 @@ relationship
     ;
 
 directed
-    : '(' node_label (':' node_label)* ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '->' '(' node_label (':' node_label)* ')'
+    : '(' ido ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '->' '(' ido ')'
     ;
 
 undirected
-    : '(' node_label (':' node_label)* ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '-' '(' node_label (':' node_label)* ')'
+    : '(' ido ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '-' '(' ido ')'
     ;
 
 relationship_label
     : ALNUM_PLUS
     ;
     
+ido
+    : ALNUM_PLUS
+    ;
+
 node_label
     : ALNUM_PLUS
     ;
@@ -102,6 +108,8 @@ TRUE_FALSE
     : 'true'
     | 'false'
     ;
+
+/* FROM TURTLE ANTLR GRAMMAR */
 
 STRING_LITERAL_QUOTE
     : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
