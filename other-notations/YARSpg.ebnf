@@ -1,0 +1,62 @@
+/* YARS-PG grammar in Extended Backus-Naur Form (EBNF) notation
+   Based on YARS-PG grammar in ANTLR4
+   
+   See more at:
+   https://github.com/lszeremeta/antlr-yarspg
+*/
+
+yarspg   ::= ( statement NL+ )*
+statement
+         ::= declaration
+declaration
+         ::= nodeDeclaration
+           | relationship
+nodeDeclaration
+         ::= ido ( '[' node_label ( ':' node_label )* ']' )? ':' '{' prop ( ',' prop )* '}'
+relationship
+         ::= directed
+           | undirected
+directed ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )* '}' )* ']' '->' '(' ido ')'
+undirected
+         ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )* '}' )* ']' '-' '(' ido ')'
+relationship_label
+         ::= ALNUM_PLUS
+ido      ::= ALNUM_PLUS
+node_label
+         ::= ALNUM_PLUS
+prop     ::= key ':' value
+key      ::= ALNUM_PLUS
+value    ::= single_key_value
+           | multiple_key_values
+single_key_value
+         ::= STRING
+           | NUMBER
+           | 'null'
+           | TRUE_FALSE
+multiple_key_values
+         ::= '[' single_key_value ( ',' single_key_value )* ']'
+_        ::= SP
+          /* ws: definition */
+
+<?TOKENS?>
+
+STRING   ::= STRING_LITERAL_QUOTE
+NUMBER   ::= [0-9]+ '.'? [0-9]*
+TRUE_FALSE
+         ::= 'true'
+           | 'false'
+STRING_LITERAL_QUOTE
+         ::= '"' ( [^"\#xd#xa] | "'" | '\"' )* '"'
+ALNUM_PLUS
+         ::= PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
+PN_CHARS ::= PN_CHARS_U
+           | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
+PN_CHARS_U
+         ::= PN_CHARS_BASE
+           | '_'
+UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
+PN_CHARS_BASE
+         ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
+HEX      ::= [0-9A-Fa-f]
+SP       ::= [ #x9]+
+NL       ::= [#xd#xa]
