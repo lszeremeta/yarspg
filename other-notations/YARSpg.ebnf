@@ -43,20 +43,17 @@ _        ::= SP
 STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= [0-9]+ '.'? [0-9]*
 TRUE_FALSE
-         ::= 'true'
-           | 'false'
+         ::= 'true' | 'false'
 STRING_LITERAL_QUOTE
-         ::= '"' ( [^"\#xd#xa] | "'" | '\"' )* '"'
+         ::= '"' ( [^#x22#x5C#xA#xD] | "'" | '\"' )* '"'  /* #x22=" #x5C=\ #xA=new line #xD=carriage return */
 ALNUM_PLUS
-         ::= PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
-PN_CHARS ::= PN_CHARS_U
-           | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
+         ::= PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
+PN_CHARS ::= PN_CHARS_U | '-' | [0-9] | #x00B7 | [#x0300-#x036F] | [#x203F-#x2040]
 PN_CHARS_U
-         ::= PN_CHARS_BASE
-           | '_'
-UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
+         ::= PN_CHARS_BASE | '_'
+UCHAR    ::= '\u' HEX HEX HEX HEX | '\U' HEX HEX HEX HEX HEX HEX HEX HEX
 PN_CHARS_BASE
-         ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
-HEX      ::= [0-9A-Fa-f]
-SP       ::= [ #x9]+
-NL       ::= [#xd#xa]
+         ::= [A-Z] | [a-z] | [0-9] | [#x00C0-#x00D6] | [#x00D8-#x00F6] | [#x00F8-#x02FF] | [#x0370-#x037D] | [#x037F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD]
+HEX      ::= [0-9] | [A-F] | [a-f]
+SP       ::= [ #x9]+            /* #x9=character tabulation */
+NL       ::= [#xD#xA]           /* #xD=carriage return #xA=new line */
