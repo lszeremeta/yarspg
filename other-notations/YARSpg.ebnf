@@ -12,13 +12,13 @@ declaration
          ::= nodeDeclaration
            | relationship
 nodeDeclaration
-         ::= ido ( '[' node_label ( ':' node_label )* ']' )? ':' '{' prop ( ',' prop )* '}'
+         ::= ido ( '[' node_label ( ':' node_label )+ ']' )? ':' '{' prop ( ',' prop )+ '}'
 relationship
          ::= directed
            | undirected
-directed ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )* '}' )* ']' '->' '(' ido ')'
+directed ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )+ '}' )+ ']' '->' '(' ido ')'
 undirected
-         ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )* '}' )* ']' '-' '(' ido ')'
+         ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )+ '}' )+ ']' '-' '(' ido ')'
 relationship_label
          ::= ALNUM_PLUS
 ido      ::= ALNUM_PLUS
@@ -34,7 +34,7 @@ single_key_value
            | 'null'
            | TRUE_FALSE
 multiple_key_values
-         ::= '[' single_key_value ( ',' single_key_value )* ']'
+         ::= '[' single_key_value ( ',' single_key_value )+ ']'
 _        ::= SP
           /* ws: definition */
 
@@ -45,7 +45,7 @@ NUMBER   ::= [0-9]+ '.'? [0-9]*
 TRUE_FALSE
          ::= 'true' | 'false'
 STRING_LITERAL_QUOTE
-         ::= '"' ( [^#x22#x5C#xA#xD] | "'" | '\"' )* '"'  /* #x22=" #x5C=\ #xA=new line #xD=carriage return */
+         ::= '"' ( [^#x0022#x005C#x000A#x000D] | "'" | '\"' )* '"'  /* #x0022=" #x005C=\ #x000A=new line #x000D=carriage return */
 ALNUM_PLUS
          ::= PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
 PN_CHARS ::= PN_CHARS_U | '-' | [0-9] | #x00B7 | [#x0300-#x036F] | [#x203F-#x2040]
@@ -53,7 +53,20 @@ PN_CHARS_U
          ::= PN_CHARS_BASE | '_'
 UCHAR    ::= '\u' HEX HEX HEX HEX | '\U' HEX HEX HEX HEX HEX HEX HEX HEX
 PN_CHARS_BASE
-         ::= [A-Z] | [a-z] | [0-9] | [#x00C0-#x00D6] | [#x00D8-#x00F6] | [#x00F8-#x02FF] | [#x0370-#x037D] | [#x037F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD]
+         ::= [A-Z]
+           | [a-z]
+           | [0-9]
+           | [#x00C0-#x00D6]
+           | [#x00D8-#x00F6]
+           | [#x00F8-#x02FF]
+           | [#x0370-#x037D]
+           | [#x037F-#x1FFF]
+           | [#x200C-#x200D]
+           | [#x2070-#x218F]
+           | [#x2C00-#x2FEF]
+           | [#x3001-#xD7FF]
+           | [#xF900-#xFDCF]
+           | [#xFDF0-#xFFFD]
 HEX      ::= [0-9] | [A-F] | [a-f]
-SP       ::= [ #x9]+            /* #x9=character tabulation */
-NL       ::= [#xD#xA]           /* #xD=carriage return #xA=new line */
+SP       ::= [#x0020#x0009]+    /* #x0020=space #x0009=character tabulation */
+NL       ::= #x000D #x000A      /* #x000D=carriage return #x000A=new line */
