@@ -84,7 +84,7 @@ value
 single_key_value
     : STRING
     | NUMBER
-    | NULL
+    | 'null'
     | TRUE_FALSE
     ;
 
@@ -98,10 +98,6 @@ STRING
 
 NUMBER
     : [0-9]+'.'?[0-9]*
-    ;
-
-NULL
-    : 'null'
     ;
 
 TRUE_FALSE
