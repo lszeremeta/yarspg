@@ -1,7 +1,7 @@
 Author01[Author]{fname:"John",lname:"Smith"}
 Author02[Author]{fname:"Alice",lname:"Brown"}
-EI01[Entry:InProc]{title:"Serialization for...", numpages:10,keyword:"Graph database"}
-EA01[Entry:Article]{title:"Property Graph...", numpages:10,keyword:["Query", "Graph"]}
+EI01[Entry,InProc]{title:"Serialization for...", numpages:10,keyword:"Graph database"}
+EA01[Entry,Article]{title:"Property Graph...", numpages:10,keyword:["Query", "Graph"]}
 Proc01[Proceedings]{title:"BDAS",year:2018,month:"May"}
 Jour01[Journal]{title:"J. DB",year:2020,vol:30}
 
