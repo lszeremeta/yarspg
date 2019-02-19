@@ -1,8 +1,8 @@
-a[a1d,x]{aa1a:true,a2aa:"text",aa3aa:null}
-b43b{value:5}
-c{value:"male",lang:"en",valid:false}
-d{key:442.1333}
-e[ef22,y,v]{key44:[true,false,"some text", null, 11, 11.2231]}
+a{a1d,x}[aa1a:true,a2aa:"text",aa3aa:null]
+b43b[value:5]
+c[value:"male",lang:"en",valid:false]
+d[key:442.1333]
+e{ef22,y,v}[key44:[true,false,"some text", null, 11, 11.2231]]
 
 (a)-[aaa1a {key:"value", aab2bc:[44.22,"en",22]}]->(c)
 (a)-[aaa2a]->(c)

@@ -40,7 +40,7 @@ declaration
     ;
 
 nodeDeclaration
-    : ido ('[' node_label (',' node_label)* ']')? '{' prop (',' prop)* '}'
+    : ido ('{' node_label (',' node_label)* '}')? '[' prop (',' prop)* ']'
     ;
 
 relationship
