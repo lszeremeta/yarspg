@@ -44,12 +44,12 @@ directed ::= '(' ido ')' '-' '{' relationship_label '}' ( '[' prop ( ',' prop )+
 undirected
          ::= '(' ido ')' '-' '{' relationship_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' ido ')'
 relationship_label
-         ::= ALNUM_PLUS
+         ::= STRING
 ido      ::= ALNUM_PLUS
 node_label
-         ::= ALNUM_PLUS
+         ::= STRING
 prop     ::= key ':' value
-key      ::= ALNUM_PLUS
+key      ::= STRING
 value    ::= single_key_value
            | multiple_key_values
 single_key_value

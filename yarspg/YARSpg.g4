@@ -57,7 +57,7 @@ undirected
     ;
 
 relationship_label
-    : ALNUM_PLUS
+    : STRING
     ;
     
 ido
@@ -65,7 +65,7 @@ ido
     ;
 
 node_label
-    : ALNUM_PLUS
+    : STRING
     ;
 
 prop
@@ -73,7 +73,7 @@ prop
     ;
 
 key
-    : ALNUM_PLUS
+    : STRING
     ;
 
 value
