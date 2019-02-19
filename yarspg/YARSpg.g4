@@ -49,14 +49,14 @@ relationship
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' relationship_id '>')? '{' relationship_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')'
+    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')'
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' relationship_id '>')? '{' relationship_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')'
+    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')'
     ;
 
-relationship_label
+rel_label
     : STRING
     ;
     
@@ -64,7 +64,7 @@ node_id
     : ALNUM_PLUS
     ;
 
-relationship_id
+rel_id
     : ALNUM_PLUS
     ;
 
