@@ -36,20 +36,23 @@ declaration
          ::= nodeDeclaration
            | relationship
 nodeDeclaration
-         ::= ido '{' node_label ( ',' node_label )+ '}' ( '[' prop ( ',' prop )+ ']' )?
+         ::= ido '{' node_label ( ',' node_label )+ '}' ( '[' node_prop ( ',' node_prop )+ ']' )?
 relationship
          ::= directed
            | undirected
-directed ::= '(' ido ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' ido ')'
+directed ::= '(' ido ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' ido ')'
 undirected
-         ::= '(' ido ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' ido ')'
-rel_label
-         ::= STRING
+         ::= '(' ido ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' ido ')'
 node_id  ::= ALNUM_PLUS
-rel_id   ::= ALNUM_PLUS
 node_label
          ::= STRING
-prop     ::= key ':' value
+node_prop
+         ::= key ':' value         
+rel_id   ::= ALNUM_PLUS
+rel_label
+         ::= STRING
+rel_prop
+         ::= key ':' value 
 key      ::= STRING
 value    ::= single_key_value
            | multiple_key_values

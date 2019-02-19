@@ -40,7 +40,7 @@ declaration
     ;
 
 nodeDeclaration
-    : node_id '{' node_label (',' node_label)* '}' ( '[' prop (',' prop)* ']' )?
+    : node_id '{' node_label (',' node_label)* '}' ( '[' node_prop (',' node_prop)* ']' )?
     ;
 
 relationship
@@ -49,22 +49,14 @@ relationship
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')'
+    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '->' '(' node_id ')'
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')'
+    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '-' '(' node_id ')'
     ;
 
-rel_label
-    : STRING
-    ;
-    
 node_id
-    : ALNUM_PLUS
-    ;
-
-rel_id
     : ALNUM_PLUS
     ;
 
@@ -72,7 +64,19 @@ node_label
     : STRING
     ;
 
-prop
+node_prop
+    : key ':' value
+    ;
+
+rel_id
+    : ALNUM_PLUS
+    ;
+
+rel_label
+    : STRING
+    ;
+
+rel_prop
     : key ':' value
     ;
 
