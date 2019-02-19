@@ -40,9 +40,9 @@ nodeDeclaration
 relationship
          ::= directed
            | undirected
-directed ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )+ '}' )+ ']' '->' '(' ido ')'
+directed ::= '(' ido ')' '-' '{' relationship_label '}' ( '[' prop ( ',' prop )+ ']' )+ '->' '(' ido ')'
 undirected
-         ::= '(' ido ')' '-' '[' relationship_label ( '{' prop ( ',' prop )+ '}' )+ ']' '-' '(' ido ')'
+         ::= '(' ido ')' '-' '{' relationship_label '}' ( '[' prop ( ',' prop )+ ']' )+ '-' '(' ido ')'
 relationship_label
          ::= ALNUM_PLUS
 ido      ::= ALNUM_PLUS

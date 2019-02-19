@@ -49,11 +49,11 @@ relationship
     ;
 
 directed
-    : '(' ido ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '->' '(' ido ')'
+    : '(' ido ')' '-' '{' relationship_label '}' ('[' prop (',' prop)* ']')* '->' '(' ido ')'
     ;
 
 undirected
-    : '(' ido ')' '-' '[' relationship_label ('{' prop (',' prop)* '}')* ']' '-' '(' ido ')'
+    : '(' ido ')' '-' '{' relationship_label '}' ('[' prop (',' prop)* ']')* '-' '(' ido ')'
     ;
 
 relationship_label
