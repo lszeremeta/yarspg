@@ -40,12 +40,14 @@ nodeDeclaration
 relationship
          ::= directed
            | undirected
-directed ::= '(' ido ')' '-' '{' relationship_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' ido ')'
+directed ::= '(' ido ')' '-' ('<' relationship_id '>')? '{' relationship_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' ido ')'
 undirected
-         ::= '(' ido ')' '-' '{' relationship_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' ido ')'
+         ::= '(' ido ')' '-' ('<' relationship_id '>')? '{' relationship_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' ido ')'
 relationship_label
          ::= STRING
-ido      ::= ALNUM_PLUS
+node_id  ::= ALNUM_PLUS
+relationship_id
+         ::= ALNUM_PLUS
 node_label
          ::= STRING
 prop     ::= key ':' value

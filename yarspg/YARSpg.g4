@@ -40,7 +40,7 @@ declaration
     ;
 
 nodeDeclaration
-    : ido '{' node_label (',' node_label)* '}' ( '[' prop (',' prop)* ']' )?
+    : node_id '{' node_label (',' node_label)* '}' ( '[' prop (',' prop)* ']' )?
     ;
 
 relationship
@@ -49,18 +49,22 @@ relationship
     ;
 
 directed
-    : '(' ido ')' '-' '{' relationship_label '}' ('[' prop (',' prop)* ']')? '->' '(' ido ')'
+    : '(' node_id ')' '-' ('<' relationship_id '>')? '{' relationship_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')'
     ;
 
 undirected
-    : '(' ido ')' '-' '{' relationship_label '}' ('[' prop (',' prop)* ']')? '-' '(' ido ')'
+    : '(' node_id ')' '-' ('<' relationship_id '>')? '{' relationship_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')'
     ;
 
 relationship_label
     : STRING
     ;
     
-ido
+node_id
+    : ALNUM_PLUS
+    ;
+
+relationship_id
     : ALNUM_PLUS
     ;
 
