@@ -36,13 +36,13 @@ declaration
          ::= nodeDeclaration
            | relationship
 nodeDeclaration
-         ::= ido '{' node_label ( ',' node_label )+ '}' ( '[' node_prop ( ',' node_prop )+ ']' )?
+         ::= node_id '{' node_label ( ',' node_label )+ '}' ( '[' node_prop ( ',' node_prop )+ ']' )?
 relationship
          ::= directed
            | undirected
-directed ::= '(' ido ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' ido ')'
+directed ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' node_id ')'
 undirected
-         ::= '(' ido ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' ido ')'
+         ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' node_id ')'
 node_id  ::= ALNUM_PLUS
 node_label
          ::= STRING
