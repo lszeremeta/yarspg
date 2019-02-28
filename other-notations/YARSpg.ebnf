@@ -36,19 +36,19 @@ declaration
          ::= nodeDeclaration
            | relationship
 nodeDeclaration
-         ::= node_id '{' node_label ( ',' node_label )+ '}' ( '[' node_prop ( ',' node_prop )+ ']' )?
+         ::= '<' node_id '>' '{' node_label ( ',' node_label )+ '}' ( '[' node_prop ( ',' node_prop )+ ']' )?
 relationship
          ::= directed
            | undirected
 directed ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' node_id ')'
 undirected
          ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' node_id ')'
-node_id  ::= ALNUM_PLUS
+node_id  ::= STRING
 node_label
          ::= STRING
 node_prop
          ::= key ':' value         
-rel_id   ::= ALNUM_PLUS
+rel_id   ::= STRING
 rel_label
          ::= STRING
 rel_prop
@@ -74,27 +74,5 @@ TRUE_FALSE
          ::= 'true' | 'false'
 STRING_LITERAL_QUOTE
          ::= '"' ( [^#x0022#x005C#x000A#x000D] | "'" | '\"' )* '"'  /* #x0022=" #x005C=\ #x000A=new line #x000D=carriage return */
-ALNUM_PLUS
-         ::= PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
-PN_CHARS ::= PN_CHARS_U | '-' | [0-9] | #x00B7 | [#x0300-#x036F] | [#x203F-#x2040]
-PN_CHARS_U
-         ::= PN_CHARS_BASE | '_'
-UCHAR    ::= '\u' HEX HEX HEX HEX | '\U' HEX HEX HEX HEX HEX HEX HEX HEX
-PN_CHARS_BASE
-         ::= [A-Z]
-           | [a-z]
-           | [0-9]
-           | [#x00C0-#x00D6]
-           | [#x00D8-#x00F6]
-           | [#x00F8-#x02FF]
-           | [#x0370-#x037D]
-           | [#x037F-#x1FFF]
-           | [#x200C-#x200D]
-           | [#x2070-#x218F]
-           | [#x2C00-#x2FEF]
-           | [#x3001-#xD7FF]
-           | [#xF900-#xFDCF]
-           | [#xFDF0-#xFFFD]
-HEX      ::= [0-9] | [A-F] | [a-f]
 SP       ::= [#x0020#x0009]+    /* #x0020=space #x0009=character tabulation */
 NL       ::= #x000D #x000A      /* #x000D=carriage return #x000A=new line */
