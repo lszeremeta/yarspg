@@ -27,7 +27,7 @@
 grammar YARSpg;
 
 yarspg
-    : (statement NL+) *
+    : (statement NL+)+
     ;
 
 statement
