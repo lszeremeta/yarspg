@@ -40,7 +40,7 @@ declaration
     ;
 
 nodeDeclaration
-    : node_id '{' node_label (',' node_label)* '}' ( '[' node_prop (',' node_prop)* ']' )?
+    : '<' node_id '>' '{' node_label (',' node_label)* '}' ( '[' node_prop (',' node_prop)* ']' )?
     ;
 
 relationship
