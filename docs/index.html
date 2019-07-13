@@ -80,12 +80,12 @@
     </section>
     <section id='nodes'>
         <h2>Nodes</h2>
-        <p>A <dfn>node declaration</dfn> begins with the node identifier, followed by a list of node labels and optional properties
-            of
-            the node.</p>
+        <p>A <dfn>node declaration</dfn> begins with the node identifier, followed by a list of node labels and optional
+            properties of the node.</p>
         <aside class="example" title='Node declaration'>
-            <p>The example presents node declaration for node "EI01". This node have two labels ("Entry" and "InProc")
-                and three properties ("title", "numpages" and "keyword").
+            <p>The example presents node declaration for node <code>EI01</code>. This node have two labels
+                (<code>Entry</code> and <code>InProc</code>)
+                and three properties (<code>title</code>, <code>numpages</code> and <code>keyword</code>).
             <pre>
 <"EI01">{"Entry","InProc"}["title":"Serialization for...", "numpages":10,"keyword":"Graph database"]
   </pre>
@@ -93,12 +93,14 @@
     </section>
     <section id='edges'>
         <h2>Edges</h2>
-        <p>A <dfn>relationship declaration</dfn> begins with the source node identifier, followed by relationship identifier
+        <p>A <dfn>relationship declaration</dfn> begins with the source node identifier, followed by relationship
+            identifier
             (optional), a set of labels, a set of properties (optional) and target node identifier. Relationships can be
-            directed (\texttt{->}) or undirected (\texttt{-}).</p>
+            directed (<code>-></code>) or undirected (<code>-</code>).</p>
         <aside class="example" title='Edge declaration'>
-            <p>The example presents edge declaration from source node "EI01" to target node "Author01". Relationship
-                have label "has_author" and one property ("order").
+            <p>The example presents edge declaration from source node <code>EI01</code> to target node
+                <code>Author01</code>. Relationship
+                have label <code>has_author</code> and one property (<code>order</code>).
             <pre>
 ("EI01")-{"has_author"}["order":1]->("Author01")
   </pre>
@@ -106,18 +108,66 @@
     </section>
     <section id='properties'>
         <h2>Properties</h2>
-        A <dfn>property</dfn> is represented as a pair p:v, where p is the property label and v the property value. A property
+        A <dfn>property</dfn> is represented as a pair p:v, where p is the property label and v the property value. A
+        property
         value could be atomic (e.g. string, integer, float, null, true, false) or complex (i.e. a list of atomic
         values).</p>
     </section>
 </section>
-<section id='examples'>
+<section class=informative id='examples'>
     <h2>Examples</h2>
 </section>
 <section id='yarspg-grammar'>
     <h2>YARS-PG Grammar</h2>
+    <pre>
+yarspg   ::= ( statement NL+ )+
+statement
+         ::= declaration
+declaration
+         ::= nodeDeclaration
+           | relationship
+nodeDeclaration
+         ::= '<' node_id '>' '{' node_label ( ',' node_label )+ '}' ( '[' node_prop ( ',' node_prop )+ ']' )?
+relationship
+         ::= directed
+           | undirected
+directed ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' node_id ')'
+undirected
+         ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' node_id ')'
+node_id  ::= STRING
+node_label
+         ::= STRING
+node_prop
+         ::= key ':' value
+rel_id   ::= STRING
+rel_label
+         ::= STRING
+rel_prop
+         ::= key ':' value
+key      ::= STRING
+value    ::= single_key_value
+           | multiple_key_values
+single_key_value
+         ::= STRING
+           | NUMBER
+           | 'null'
+           | TRUE_FALSE
+multiple_key_values
+         ::= '[' single_key_value ( ',' single_key_value )+ ']'
+_        ::= SP
+          /* ws: definition */
+
+        STRING   ::= STRING_LITERAL_QUOTE
+NUMBER   ::= [0-9]+ '.'? [0-9]*
+TRUE_FALSE
+         ::= 'true' | 'false'
+STRING_LITERAL_QUOTE
+         ::= '"' ( [^#x0022#x005C#x000A#x000D] | "'" | '\"' )* '"'
+SP       ::= [#x0020#x0009]+
+NL       ::= #x000D #x000A
+    </pre>
 </section>
-<section id='parsers'>
+<section class=informative id='parsers'>
     <h2>Parsers</h2>
 </section>
 </body>
