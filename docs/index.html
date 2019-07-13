@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <title>YARS-PG 0.5</title>
-    <script src='https://www.w3.org/Tools/respec/respec-w3c' async class='remove'></script>
+    <script async class='remove' src='https://www.w3.org/Tools/respec/respec-w3c'></script>
     <script class='remove'>
         var respecConfig = {
             specStatus: "unofficial",
@@ -37,41 +37,88 @@
 <body>
 <section id='abstract'>
     <p>
-        The YARS-PG serialization is a special version of YARS for property graphs. YARS-PG was designed to be simple,
-        extensible and platform independent, and to support all the features provided by the current database systems
-        based on the property graph data model.
+        The YARS-PG serialization was designed to be simple, extensible and platform independent, and to support all the
+        features provided by the current database systems based on the property graph data model.
     </p>
 </section>
 <section id='sotd'>
     <p>
-        This is very early draft of YARS-PG specification.
+        This is very early draft of YARS-PG specification based on YARS-PG 3.0.
     </p>
 </section>
-<section>
+<section id='introduction'>
     <h2>Introduction</h2>
+    <p>This document defines YARS-PG, a serialization for property graphs.</p>
+    <aside class="example" title='Bibliographic information'>
+        <p>The example presents a graphical representation of a property graph that contains bibliographic information.
+        <pre>
+<"Author01">{"Author"}["fname":"John","lname":"Smith"]
+<"Author02">{"Author"}["fname":"Alice","lname":"Brown"]
+<"EI01">{"Entry","InProc"}["title":"Serialization for...", "numpages":10,"keyword":"Graph database"]
+<"EA01">{"Entry","Article"}["title":"Property Graph...", "numpages":10,"keyword":["Query", "Graph"]]
+<"Proc01">{"Proceedings"}["title":"BDAS","year":2018,"month":"May"]
+<"Jour01">{"Journal"}["title":"J. DB","year":2020,"vol":30]
+
+("EI01")-{"has_author"}["order":1]->("Author01")
+("EI01")-{"has_author"}["order":2]->("Author02")
+("EA01")-{"has_author"}["order":1]->("Author02")
+("EA01")-{"cites"}->("EI01")
+("EI01")-{"booktitle"}["pages":"111-121"]->("Proc01")
+("EA01")-{"published_in"}["pages":"222-232"]->("Jour01")
+  </pre>
+    </aside>
+    <p>The YARS-PG serialization supports all the features allowed by the current database systems based on the property
+        graph data model, and can be adapted to work with various visualization software, database-driven systems and
+        other graph-oriented tools.</p>
 </section>
-<section>
+<section id='yarspg-language'>
     <h2>YARS-PG Language</h2>
-    <section>
+    <section id='directives'>
         <h2>Directives</h2>
+        <p>The YARS-PG serialization contains node declarations and relationship declaration (no order is required for
+            them).</p>
     </section>
-    <section>
+    <section id='nodes'>
         <h2>Nodes</h2>
+        <p>A node declaration begins with the node identifier, followed by a list of node labels and optional properties
+            of
+            the node.</p>
+        <aside class="example" title='Node declaration'>
+            <p>The example presents node declaration for node "EI01". This node have two labels ("Entry" and "InProc"(
+                and
+                three properties ("title", "numpages" and "keyword").
+            <pre>
+<"EI01">{"Entry","InProc"}["title":"Serialization for...", "numpages":10,"keyword":"Graph database"]
+  </pre>
+        </aside>
     </section>
-    <section>
+    <section id='edges'>
         <h2>Edges</h2>
+        <p>A relationship declaration begins with the source node identifier, followed by relationship identifier
+            (optional), a set of labels, a set of properties (optional) and target node identifier. Relationships can be
+            directed (\texttt{->}) or undirected (\texttt{-}).</p>
+        <aside class="example" title='Edge declaration'>
+            <p>The example presents edge declaration from source node "EI01" to target node "Author01". Relationship
+                have label "has_author" and one property ("order").
+            <pre>
+("EI01")-{"has_author"}["order":1]->("Author01")
+  </pre>
+        </aside>
     </section>
-    <section>
+    <section id='properties'>
         <h2>Properties</h2>
+        A property is represented as a pair p:v, where p is the property label and v the property value. A property
+        value could be atomic (e.g. string, integer, float, null, true, false) or complex (i.e. a list of atomic
+        values).</p>
     </section>
 </section>
-<section>
+<section id='examples'>
     <h2>Examples</h2>
 </section>
-<section>
+<section id='yarspg-grammar'>
     <h2>YARS-PG Grammar</h2>
 </section>
-<section>
+<section id='parsers'>
     <h2>Parsers</h2>
 </section>
 </body>
