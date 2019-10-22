@@ -85,19 +85,23 @@ key
     ;
 
 value
-    : single_key_value
-    | multiple_key_values
+    : base_type_value
+    | container_type_value
     ;
 
-single_key_value
+base_type_value
     : STRING
     | NUMBER
     | 'null'
-    | TRUE_FALSE
+    | BOOL
     ;
 
-multiple_key_values
-    : '[' single_key_value (',' single_key_value)* ']'
+container_type_value
+    : list
+    ;
+
+list
+    : '[' base_type_value (',' base_type_value)* ']'
     ;
 
 STRING
@@ -108,7 +112,7 @@ NUMBER
     : [0-9]+'.'?[0-9]*
     ;
 
-TRUE_FALSE
+BOOL
     : 'true'
     | 'false'
     ;
