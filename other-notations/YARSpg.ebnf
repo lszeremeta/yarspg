@@ -64,16 +64,17 @@ base_type_value
 container_type_value
          ::= list
 list     ::= '[' base_type_value ( ',' base_type_value )* ']'
-_        ::= SP
+_        ::= COMMENT
+           | WS
           /* ws: definition */
 
 <?TOKENS?>
 
+COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= [0-9]+ '.'? [0-9]*
 BOOL
          ::= 'true' | 'false'
 STRING_LITERAL_QUOTE
          ::= '"' ( [^#x0022#x005C#x000A#x000D] | "'" | '\"' )* '"'  /* #x0022=" #x005C=\ #x000A=new line #x000D=carriage return */
-SP       ::= [#x0020#x0009]+    /* #x0020=space #x0009=character tabulation */
-NL       ::= #x000D #x000A      /* #x000D=carriage return #x000A=new line */
+WS       ::= [ #x9#xa#xd]+

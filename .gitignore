@@ -1,8 +1,14 @@
 
-# Created by https://www.gitignore.io/api/maven,osx,kate,java,linux,windows,textmate,netbeans,intellij+all,notepadpp,jetbrains,sublimetext,eclipse,visualstudiocode
+# Created by https://www.gitignore.io/api/kate,java,linux,macos,maven,windows,eclipse,netbeans,textmate,notepadpp,jetbrains,sublimetext,intellij+all,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=kate,java,linux,macos,maven,windows,eclipse,netbeans,textmate,notepadpp,jetbrains,sublimetext,intellij+all,visualstudiocode
+
+### ANTLR ###
+.antlr
+*.interp
+*.tokens
+*.java
 
 ### Eclipse ###
-
 .metadata
 bin/
 tmp/
@@ -105,6 +111,8 @@ local.properties
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
+# *.iml
+# *.ipr
 
 # CMake
 cmake-build-*/
@@ -152,6 +160,9 @@ modules.xml
 .idea/misc.xml
 *.ipr
 
+# Sonarlint plugin
+.idea/sonarlint
+
 ### Java ###
 # Compiled class file
 *.class
@@ -196,6 +207,8 @@ hs_err_pid*
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
+# *.iml
+# *.ipr
 
 # CMake
 
@@ -226,7 +239,14 @@ hs_err_pid*
 # *.ipr
 
 # Sonarlint plugin
-.idea/sonarlint
+.idea/**/sonarlint/
+
+# SonarQube Plugin
+.idea/**/sonarIssues.xml
+
+# Markdown Navigator plugin
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator/
 
 ### Kate ###
 # Swap Files #
@@ -248,30 +268,7 @@ hs_err_pid*
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-### Maven ###
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
-
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-### NotepadPP ###
-# Notepad++ backups #
-
-### OSX ###
+### macOS ###
 # General
 .DS_Store
 .AppleDouble
@@ -298,6 +295,32 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+.flattened-pom.xml
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### NotepadPP ###
+# Notepad++ backups #
 
 ### SublimeText ###
 # Cache files for Sublime Text
@@ -343,12 +366,14 @@ tmtags
 !.vscode/launch.json
 !.vscode/extensions.json
 
-### ANTLR plugin for VisualStudioCode ###
-.antlr/
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
 
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
+Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
@@ -371,5 +396,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
-# End of https://www.gitignore.io/api/maven,osx,kate,java,linux,windows,textmate,netbeans,intellij+all,notepadpp,jetbrains,sublimetext,eclipse,visualstudiocode
+# End of https://www.gitignore.io/api/kate,java,linux,macos,maven,windows,eclipse,netbeans,textmate,notepadpp,jetbrains,sublimetext,intellij+all,visualstudiocode

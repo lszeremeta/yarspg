@@ -27,7 +27,11 @@
 grammar YARSpg;
 
 yarspg
-    : (statement NL+)+
+    : statement
+    ;
+
+COMMENT
+    : '#' ~[\r\n\f]* -> skip
     ;
 
 statement
@@ -125,10 +129,6 @@ STRING_LITERAL_QUOTE
 
 /* FROM TURTLE ANTLR GRAMMAR */
 
-SP
-    : (' ' | [\t] )+ -> skip
-    ;
-
-NL
-    : [\r\n]
+WS
+    : [ \t\n\r]+ -> skip
     ;
