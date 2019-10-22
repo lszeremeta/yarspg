@@ -54,15 +54,16 @@ rel_label
 rel_prop
          ::= key ':' value 
 key      ::= STRING
-value    ::= single_key_value
-           | multiple_key_values
-single_key_value
+value    ::= base_type_value
+           | container_type_value
+base_type_value
          ::= STRING
            | NUMBER
            | 'null'
-           | TRUE_FALSE
-multiple_key_values
-         ::= '[' single_key_value ( ',' single_key_value )+ ']'
+           | BOOL
+container_type_value
+         ::= list
+list     ::= '[' base_type_value ( ',' base_type_value )* ']'
 _        ::= SP
           /* ws: definition */
 
@@ -70,7 +71,7 @@ _        ::= SP
 
 STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= [0-9]+ '.'? [0-9]*
-TRUE_FALSE
+BOOL
          ::= 'true' | 'false'
 STRING_LITERAL_QUOTE
          ::= '"' ( [^#x0022#x005C#x000A#x000D] | "'" | '\"' )* '"'  /* #x0022=" #x005C=\ #x000A=new line #x000D=carriage return */
