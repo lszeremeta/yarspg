@@ -27,15 +27,11 @@
 grammar YARSpg;
 
 yarspg
-    : statement
+    : declaration+
     ;
 
 COMMENT
     : '#' ~[\r\n\f]* -> skip
-    ;
-
-statement
-    : declaration
     ;
 
 declaration

@@ -29,9 +29,7 @@
  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 */
 
-yarspg   ::= ( statement NL+ )+
-statement
-         ::= declaration
+yarspg   ::= declaration+
 declaration
          ::= nodeDeclaration
            | relationship
