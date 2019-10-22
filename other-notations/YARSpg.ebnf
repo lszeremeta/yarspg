@@ -52,16 +52,16 @@ rel_label
 rel_prop
          ::= key ':' value 
 key      ::= STRING
-value    ::= base_type_value
-           | container_type_value
-base_type_value
+value    ::= simple_datatype
+           | complex_datatype
+simple_datatype
          ::= STRING
            | NUMBER
            | 'null'
            | BOOL
-container_type_value
+complex_datatype
          ::= list
-list     ::= '[' base_type_value ( ',' base_type_value )* ']'
+list     ::= '[' simple_datatype ( ',' simple_datatype )* ']'
 _        ::= COMMENT
            | WS
           /* ws: definition */

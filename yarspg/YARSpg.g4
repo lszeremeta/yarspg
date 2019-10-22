@@ -85,23 +85,23 @@ key
     ;
 
 value
-    : base_type_value
-    | container_type_value
+    : simple_datatype
+    | complex_datatype
     ;
 
-base_type_value
+simple_datatype
     : STRING
     | NUMBER
     | 'null'
     | BOOL
     ;
 
-container_type_value
+complex_datatype
     : list
     ;
 
 list
-    : '[' base_type_value (',' base_type_value)* ']'
+    : '[' simple_datatype (',' simple_datatype)* ']'
     ;
 
 STRING
