@@ -61,7 +61,7 @@ simple_datatype
            | BOOL
 complex_datatype
          ::= list
-list     ::= '[' simple_datatype ( ',' simple_datatype )* ']'
+list     ::= '[' value ( ',' value )* ']'
 _        ::= COMMENT
            | WS
           /* ws: definition */

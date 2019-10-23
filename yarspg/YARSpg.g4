@@ -101,7 +101,7 @@ complex_datatype
     ;
 
 list
-    : '[' simple_datatype (',' simple_datatype)* ']'
+    : '[' value (',' value)* ']'
     ;
 
 STRING

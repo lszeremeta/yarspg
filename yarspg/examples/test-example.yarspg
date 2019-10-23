@@ -9,6 +9,8 @@
 <"d">{"label546"}["key":442.1333]
 <"e">{"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]]
 <"f">["node":"node without label"]
+<"g">{"df2","z","q"}["key664":[false,["another list", 52, 44.1]]]
+<"h">{"label"}["key664":[false,["another list2", ["another list3", 54, false, true] , 52, 44.1]]]
 
 ("a")-<"ferf">{"aaa1a"}["key":"value", "aab2bc":[44.22,"en",22]]->("c")
 ("a")-<"id341">{"aaa2a"}->("c")
