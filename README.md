@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/lszeremeta/antlr-yarspg.svg?token=pTqbek1JAcq4ZAzTmmEy&branch=master)](https://travis-ci.com/lszeremeta/antlr-yarspg)
 [![DOI](https://zenodo.org/badge/161351716.svg)](https://zenodo.org/badge/latestdoi/161351716)
 
-The YARS-PG serialization is a special version of [YARS](https://github.com/lszeremeta/antlr-yars) for property graphs.
+The YARS-PG serialization is a special version of [YARS](https://github.com/lszeremeta/yars) for property graphs.
 
 The YARS-PG grammar is written in [ANTLR4](https://github.com/antlr/antlr4). If you prefer [Extended Backus-Naur Form (EBNF)](https://www.w3.org/TR/REC-xml/#sec-notation) notation, you can also see preview version of [YARS-PG grammar in EBNF](https://github.com/lszeremeta/antlr-yarspg/blob/master/other-notations/YARSpg.ebnf).
 
