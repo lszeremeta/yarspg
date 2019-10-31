@@ -23,7 +23,7 @@
 <"g">{"df2","z","q"}["key664":[false,["another list", 52, 44.1]]]
 <"h">{"label"}["key664":[false,["another list2", ["another list3", 54, false, true] , 52, 44.1]]]
 
-("a")-<"ferf">{"aaa1a"}["key":"value", "aab2bc":[44.22,"en",22]]->("c")
+("a")-<"ferf">{"aaa1a"}["key":"value", "aab2bc":[44.22,"en",22]]->("c")?<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")
 ("b43b")-{"bbb23b"}-("e")
-("b43b")-{"bbbb53b"}["bbbd32d":false, "value":null]-("e")
+("b43b")-{"bbbb53b"}["bbbd32d":false, "value":null]-("e")?foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
