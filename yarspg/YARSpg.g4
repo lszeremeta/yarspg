@@ -62,8 +62,13 @@ metadata
     | '@' iri ':' (STRING | iri)
     ;
 
+annotation
+    : pn_local pname STRING
+    | iri ':' (STRING | iri)
+    ;
+
 node
-    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' node_prop (',' node_prop)* ']' )?
+    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' node_prop (',' node_prop)* ']' )? ( '?' annotation (',' annotation)* )?
     ;
 
 relationship
@@ -72,11 +77,11 @@ relationship
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '->' '(' node_id ')'
+    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '->' '(' node_id ')' ( '?' annotation (',' annotation)* )?
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '-' '(' node_id ')'
+    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '-' '(' node_id ')' ( '?' annotation (',' annotation)* )?
     ;
 
 node_id

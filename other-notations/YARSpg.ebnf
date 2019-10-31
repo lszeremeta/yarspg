@@ -41,14 +41,15 @@ iri      ::= CONTEXT
 pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS
 metadata ::= '@' ( pn_local pname STRING | iri ':' ( STRING | iri ) )
+annotation ::= ( pn_local pname STRING | iri ':' ( STRING | iri ) )
 node
-         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop ( ',' node_prop )+ ']' )?
+         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop ( ',' node_prop )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
 relationship
          ::= directed
            | undirected
-directed ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' node_id ')'
+directed ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
 undirected
-         ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' node_id ')'
+         ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
 node_id  ::= STRING
 node_label
          ::= STRING
