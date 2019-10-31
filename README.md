@@ -1,6 +1,6 @@
 # YARS-PG grammar
 
-[![Build Status](https://travis-ci.com/lszeremeta/antlr-yarspg.svg?token=pTqbek1JAcq4ZAzTmmEy&branch=master)](https://travis-ci.com/lszeremeta/antlr-yarspg)
+[![Build Status](https://travis-ci.com/lszeremeta/yarspg.svg?branch=master)](https://travis-ci.com/lszeremeta/yarspg)
 [![DOI](https://zenodo.org/badge/161351716.svg)](https://zenodo.org/badge/latestdoi/161351716)
 
 The YARS-PG serialization is a special version of [YARS](https://github.com/lszeremeta/yars) for property graphs.
