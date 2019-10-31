@@ -27,19 +27,42 @@
 grammar YARSpg;
 
 yarspg
-    : declaration+
+    : statement+
     ;
 
 COMMENT
     : '#' ~[\r\n\f]* -> skip
     ;
 
-declaration
-    : nodeDeclaration
+statement
+    : node
     | relationship
+    | prefixDirective
+    | metadata
     ;
 
-nodeDeclaration
+prefixDirective
+    : pname CONTEXT
+    ;
+
+iri
+    : CONTEXT
+    ;
+
+pname
+    : ':' ALNUM_PLUS ':'
+    ;
+
+pn_local
+    : ALNUM_PLUS
+    ;
+
+metadata
+    : '@' pn_local pname STRING
+    | '@' iri ':' (STRING | iri)
+    ;
+
+node
     : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' node_prop (',' node_prop)* ']' )?
     ;
 
@@ -85,11 +108,11 @@ key
     ;
 
 value
-    : simple_datatype
+    : primitive_datatype
     | complex_datatype
     ;
 
-simple_datatype
+primitive_datatype
     : STRING
     | NUMBER
     | 'null'
@@ -121,6 +144,28 @@ BOOL
 
 STRING_LITERAL_QUOTE
     : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
+    ;
+
+ALNUM_PLUS
+    : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
+    ;
+CONTEXT
+    : '<' (PN_CHARS | '.' | ':' | '/' | '\\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
+    ;
+PN_CHARS
+    : PN_CHARS_U | '-' | [0-9] | '\u00B7' | [\u0300-\u036F] | [\u203F-\u2040]
+    ;
+PN_CHARS_U
+    : PN_CHARS_BASE | '_'
+    ;
+UCHAR
+    : '\\u' HEX HEX HEX HEX | '\\U' HEX HEX HEX HEX HEX HEX HEX HEX
+    ;
+PN_CHARS_BASE
+    : 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '\u00C0' .. '\u00D6' | '\u00D8' .. '\u00F6' | '\u00F8' .. '\u02FF' | '\u0370' .. '\u037D' | '\u037F' .. '\u1FFF' | '\u200C' .. '\u200D' | '\u2070' .. '\u218F' | '\u2C00' .. '\u2FEF' | '\u3001' .. '\uD7FF' | '\uF900' .. '\uFDCF' | '\uFDF0' .. '\uFFFD'
+    ;
+HEX
+    : [0-9] | [A-F] | [a-f]
     ;
 
 /* FROM TURTLE ANTLR GRAMMAR */

@@ -29,11 +29,19 @@
  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 */
 
-yarspg   ::= declaration+
-declaration
-         ::= nodeDeclaration
+yarspg   ::= statement+
+statement
+         ::= node
            | relationship
-nodeDeclaration
+           | prefixDirective
+           | metadata
+prefixDirective
+         ::= pname CONTEXT
+iri      ::= CONTEXT
+pname    ::= ':' ALNUM_PLUS ':'
+pn_local ::= ALNUM_PLUS
+metadata ::= '@' ( pn_local pname STRING | iri ':' ( STRING | iri ) )
+node
          ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop ( ',' node_prop )+ ']' )?
 relationship
          ::= directed
@@ -52,9 +60,9 @@ rel_label
 rel_prop
          ::= key ':' value 
 key      ::= STRING
-value    ::= simple_datatype
+value    ::= primitive_datatype
            | complex_datatype
-simple_datatype
+primitive_datatype
          ::= STRING
            | NUMBER
            | 'null'
@@ -71,8 +79,20 @@ _        ::= COMMENT
 COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= [0-9]+ '.'? [0-9]*
-BOOL
-         ::= 'true' | 'false'
+BOOL     ::= 'true'
+           | 'false'
 STRING_LITERAL_QUOTE
-         ::= '"' ( [^#x0022#x005C#x000A#x000D] | "'" | '\"' )* '"'  /* #x0022=" #x005C=\ #x000A=new line #x000D=carriage return */
+         ::= '"' ( [^"\#xd#xa] | "'" | '\"' )* '"'
+ALNUM_PLUS
+         ::= PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
+CONTEXT  ::= '<' ( PN_CHARS | '.' | ':' | '/' | '\' | '#' | '@' | '%' | '&' | UCHAR )* '>'
+PN_CHARS ::= PN_CHARS_U
+           | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
+PN_CHARS_U
+         ::= PN_CHARS_BASE
+           | '_'
+UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
+PN_CHARS_BASE
+         ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
+HEX      ::= [0-9A-Fa-f]
 WS       ::= [ #x9#xa#xd]+

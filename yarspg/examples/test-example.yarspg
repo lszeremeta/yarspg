@@ -1,6 +1,16 @@
 # This is test example
 # Another comment
 
+# Prefix declaration
+:dc: <http://xmlns.com/dc/0.5/>
+:foaf: <http://xmlns.com/foaf/0.1/>
+
+# Metadata
+@foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
+@dc:test: "Test metadata"
+@<http://xmlns.com/foaf/0.1/maker>: "Łukasz Szeremeta and Dominik Tomaszuk"
+@<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/abc>
+
 # comment3#12
 
 <"a">{"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null]
