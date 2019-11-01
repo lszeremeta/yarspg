@@ -113,23 +113,33 @@ key
     ;
 
 value
-    : primitive_datatype
-    | complex_datatype
+    : primitive_value
+    | complex_value
     ;
 
-primitive_datatype
+primitive_value
     : STRING
     | NUMBER
     | 'null'
     | BOOL
     ;
 
-complex_datatype
-    : list
+complex_value
+    : multiset
+    | list
+    | dict
+    ;
+
+multiset
+    : '{' (primitive_value | multiset) (',' (primitive_value | multiset))* '}'
     ;
 
 list
-    : '[' value (',' value)* ']'
+    : '[' (primitive_value | list) (',' (primitive_value | list))* ']'
+    ;
+
+dict
+    : '{' key ':' (primitive_value | dict) (',' key ':' (primitive_value | dict))* '}'
     ;
 
 STRING

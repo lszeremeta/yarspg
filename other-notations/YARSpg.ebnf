@@ -61,16 +61,20 @@ rel_label
 rel_prop
          ::= key ':' value 
 key      ::= STRING
-value    ::= primitive_datatype
-           | complex_datatype
-primitive_datatype
+value    ::= primitive_value
+           | complex_value
+primitive_value
          ::= STRING
            | NUMBER
            | 'null'
            | BOOL
-complex_datatype
-         ::= list
-list     ::= '[' value ( ',' value )* ']'
+complex_value
+         ::= multiset
+           | list
+           | dict
+multiset ::= '{' ( primitive_value | multiset ) ( ',' ( primitive_value | multiset ) )* '}'
+list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
+dict     ::= '{' key ':' ( primitive_value | dict ) ( ',' key ':' ( primitive_value | dict ) )* '}'
 _        ::= COMMENT
            | WS
           /* ws: definition */
@@ -97,3 +101,4 @@ PN_CHARS_BASE
          ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
 HEX      ::= [0-9A-Fa-f]
 WS       ::= [ #x9#xa#xd]+
+EOF      ::= $
