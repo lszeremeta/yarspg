@@ -27,7 +27,7 @@
 grammar YARSpg;
 
 yarspg
-    : statement+
+    : statement+ EOF
     ;
 
 COMMENT
