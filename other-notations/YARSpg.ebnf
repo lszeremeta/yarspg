@@ -85,7 +85,7 @@ multiset ::= '{' ( primitive_value | multiset ) ( ',' ( primitive_value | multis
 list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
 dict     ::= '{' key ':' ( primitive_value | dict ) ( ',' key ':' ( primitive_value | dict ) )* '}'
 node_schema
-         ::= 'S' ( '{' node_label ( ',' node_label )* '}' )? ( '[' node_prop_schema ( ',' node_prop_schema )* ']' )? ( '?' annotation ( ',' annotation )* )?
+         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop_schema ( ',' node_prop_schema )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
 node_prop_schema
          ::= key ':' value_schema
 value_schema
