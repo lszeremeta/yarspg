@@ -58,12 +58,26 @@ pn_local
     ;
 
 metadata
-    : '@' pn_local pname STRING
+    : '@' pn_local pname (STRING | iri)
     | '@' iri ':' (STRING | iri)
     ;
 
 annotation
-    : pn_local pname STRING
+    : named_graph_annotation
+    | string_annotation
+    | rdf_annotation
+    ;
+
+named_graph_annotation
+    : '"graph"' ':' STRING
+    ;
+
+string_annotation
+    : STRING ':' STRING
+    ;
+
+rdf_annotation
+    : pn_local pname (STRING | iri)
     | iri ':' (STRING | iri)
     ;
 
