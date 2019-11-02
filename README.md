@@ -5,7 +5,7 @@
 
 The YARS-PG serialization is a special version of [YARS](https://github.com/lszeremeta/yars) for property graphs.
 
-The YARS-PG grammar is written in [ANTLR4](https://github.com/antlr/antlr4). If you prefer [Extended Backus-Naur Form (EBNF)](https://www.w3.org/TR/REC-xml/#sec-notation) notation, you can also see preview version of [YARS-PG grammar in EBNF](https://github.com/lszeremeta/antlr-yarspg/blob/master/other-notations/YARSpg.ebnf).
+The YARS-PG grammar is written in [ANTLR4](https://github.com/antlr/antlr4). If you prefer [Extended Backus-Naur Form (EBNF)](https://www.w3.org/TR/REC-xml/#sec-notation) notation, you can also see preview version of [YARS-PG grammar in EBNF](https://github.com/lszeremeta/antlr-yarspg/blob/master/other-notations/YARSpg.ebnf). See [YARS-PG specification](https://lszeremeta.github.io/yarspg/index.html) for more details (specification is now in early preview).
 
 This project based on [ANTLR grammars-v4 project](https://github.com/antlr/grammars-v4).
 
