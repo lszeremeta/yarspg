@@ -40,6 +40,7 @@ statement
     | prefixDirective
     | metadata
     | node_schema
+    | edge_schema
     ;
 
 prefixDirective
@@ -242,6 +243,23 @@ list_schema
 
 dict_schema
     : 'Dict' '(' (primitive_value_schema | dict_schema) ')'
+    ;
+
+edge_schema
+    : directed_schema
+    | undirected_schema
+    ;
+
+directed_schema
+    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' edge_prop_schema (',' edge_prop_schema)* ']')? '->' ('(' node_label (',' node_label)* ')')?
+    ;
+
+undirected_schema
+    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' edge_prop_schema (',' edge_prop_schema)* ']')? '-' ('(' node_label (',' node_label)* ')')?
+    ;
+
+edge_prop_schema
+    : key ':' value_schema
     ;
 
 /* YARS-PG SCHEMA */

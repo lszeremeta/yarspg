@@ -49,7 +49,10 @@ S{"ad3"}["list": List(List(String))]
 S{"ad32"}["list": List(List(String))]
 <"dsc">{"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]]
 
-("a")-<"ferf">{"aaa1a"}["key":"value", "aab2bc":[44.22,"en",22]]->("c")?<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
+S("a1d","x")-{"aaa1a"}["key": String, "aab2bc": List(Number)]->("label333","c")
+("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44.22, 22]]->("c")?<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")
+S("label1")-{"bbb23b"}-("ef22","y","v")
 ("b43b")-{"bbb23b"}-("e")
-("b43b")-{"bbbb53b"}["bbbd32d":false, "value":null]-("e")?foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
+S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22","y","v")
+("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")?foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
