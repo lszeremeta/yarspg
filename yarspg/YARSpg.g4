@@ -80,7 +80,7 @@ rdf_annotation
     ;
 
 node
-    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' node_prop (',' node_prop)* ']' )? ( '?' annotation (',' annotation)* )?
+    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' prop (',' prop)* ']' )? ( '?' annotation (',' annotation)* )?
     ;
 
 edge
@@ -89,11 +89,11 @@ edge
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' edge_prop (',' edge_prop)* ']')? '->' '(' node_id ')' ( '?' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')' ( '?' annotation (',' annotation)* )?
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' edge_prop (',' edge_prop)* ']')? '-' '(' node_id ')' ( '?' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')' ( '?' annotation (',' annotation)* )?
     ;
 
 node_id
@@ -104,7 +104,7 @@ node_label
     : STRING
     ;
 
-node_prop
+prop
     : key ':' value
     ;
 
@@ -114,10 +114,6 @@ edge_id
 
 edge_label
     : STRING
-    ;
-
-edge_prop
-    : key ':' value
     ;
 
 key
@@ -199,10 +195,10 @@ HEX
 
 /* YARS-PG SCHEMA */
 node_schema
-    : 'S' ('{' node_label (',' node_label)* '}')? ( '[' node_prop_schema (',' node_prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
+    : 'S' ('{' node_label (',' node_label)* '}')? ( '[' prop_schema (',' prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
     ;
 
-node_prop_schema
+prop_schema
     : key ':' value_schema
     ;
 
@@ -251,15 +247,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' edge_prop_schema (',' edge_prop_schema)* ']')? '->' ('(' node_label (',' node_label)* ')')?
+    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '->' ('(' node_label (',' node_label)* ')')?
     ;
 
 undirected_schema
-    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' edge_prop_schema (',' edge_prop_schema)* ']')? '-' ('(' node_label (',' node_label)* ')')?
-    ;
-
-edge_prop_schema
-    : key ':' value_schema
+    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' ('(' node_label (',' node_label)* ')')?
     ;
 
 /* YARS-PG SCHEMA */

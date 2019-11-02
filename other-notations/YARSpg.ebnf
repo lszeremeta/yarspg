@@ -53,23 +53,21 @@ string_annotation
 rdf_annotation
          ::= ( pn_local pname | IRI ':' ) ( STRING | IRI )
 node
-         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop ( ',' node_prop )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
+         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop ( ',' prop )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
 edge
          ::= directed
            | undirected
-directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' edge_prop ( ',' edge_prop )+ ']' )? '->' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
+directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
 undirected
-         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' edge_prop ( ',' edge_prop )+ ']' )? '-' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
+         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
 node_id  ::= STRING
 node_label
          ::= STRING
-node_prop
+prop
          ::= key ':' value         
 edge_id   ::= STRING
 edge_label
          ::= STRING
-edge_prop
-         ::= key ':' value 
 key      ::= STRING
 value    ::= primitive_value
            | complex_value
@@ -86,8 +84,8 @@ multiset ::= '{' ( primitive_value | multiset ) ( ',' ( primitive_value | multis
 list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
 dict     ::= '{' key ':' ( primitive_value | dict ) ( ',' key ':' ( primitive_value | dict ) )* '}'
 node_schema
-         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop_schema ( ',' node_prop_schema )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
-node_prop_schema
+         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop_schema ( ',' prop_schema )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
+prop_schema
          ::= key ':' value_schema
 value_schema
          ::= primitive_value_schema
@@ -116,10 +114,10 @@ edge_schema
          ::= directed_schema
            | undirected_schema
 directed_schema
-         ::= 'S' ( '(' node_label ( ',' node_label )+ ')' )? '-' '{' edge_label '}' ( '[' edge_prop_schema ( ',' edge_prop_schema )+ ']' )? '->' ( '(' node_label ( ',' node_label )* ')' )?
+         ::= 'S' ( '(' node_label ( ',' node_label )+ ')' )? '-' '{' edge_label '}' ( '[' prop_schema ( ',' prop_schema )+ ']' )? '->' ( '(' node_label ( ',' node_label )* ')' )?
 undirected_schema
-         ::= 'S' ( '(' node_label ( ',' node_label )+ ')' )? '-' '{' edge_label '}' ( '[' edge_prop_schema ( ',' edge_prop_schema )+ ']' )? '-' ( '(' node_label ( ',' node_label )* ')' )?
-edge_prop_schema
+         ::= 'S' ( '(' node_label ( ',' node_label )+ ')' )? '-' '{' edge_label '}' ( '[' prop_schema ( ',' prop_schema )+ ']' )? '-' ( '(' node_label ( ',' node_label )* ')' )?
+prop_schema
          ::= key ':' value_schema
 _        ::= COMMENT
            | WS
