@@ -32,7 +32,7 @@
 yarspg   ::= statement+ EOF
 statement
          ::= node
-           | relationship
+           | edge
            | prefixDirective
            | metadata
            | node_schema
@@ -53,21 +53,21 @@ rdf_annotation
          ::= ( pn_local pname | IRI ':' ) ( STRING | IRI )
 node
          ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop ( ',' node_prop )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
-relationship
+edge
          ::= directed
            | undirected
-directed ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '->' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
+directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' edge_prop ( ',' edge_prop )+ ']' )? '->' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
 undirected
-         ::= '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ( '[' rel_prop ( ',' rel_prop )+ ']' )? '-' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
+         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' edge_prop ( ',' edge_prop )+ ']' )? '-' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
 node_id  ::= STRING
 node_label
          ::= STRING
 node_prop
          ::= key ':' value         
-rel_id   ::= STRING
-rel_label
+edge_id   ::= STRING
+edge_label
          ::= STRING
-rel_prop
+edge_prop
          ::= key ':' value 
 key      ::= STRING
 value    ::= primitive_value

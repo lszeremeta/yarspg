@@ -36,7 +36,7 @@ COMMENT
 
 statement
     : node
-    | relationship
+    | edge
     | prefixDirective
     | metadata
     | node_schema
@@ -82,17 +82,17 @@ node
     : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' node_prop (',' node_prop)* ']' )? ( '?' annotation (',' annotation)* )?
     ;
 
-relationship
+edge
     : directed
     | undirected
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '->' '(' node_id ')' ( '?' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' edge_prop (',' edge_prop)* ']')? '->' '(' node_id ')' ( '?' annotation (',' annotation)* )?
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' rel_id '>')? '{' rel_label '}' ('[' rel_prop (',' rel_prop)* ']')? '-' '(' node_id ')' ( '?' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' edge_prop (',' edge_prop)* ']')? '-' '(' node_id ')' ( '?' annotation (',' annotation)* )?
     ;
 
 node_id
@@ -107,15 +107,15 @@ node_prop
     : key ':' value
     ;
 
-rel_id
+edge_id
     : STRING
     ;
 
-rel_label
+edge_label
     : STRING
     ;
 
-rel_prop
+edge_prop
     : key ':' value
     ;
 
