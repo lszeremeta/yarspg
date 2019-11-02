@@ -4,6 +4,13 @@
 # Metadata
 @foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 
+# Nodes schema
+S{"Author"}["fname": String, "lname": String]
+S{"Entry", "InProc"}["title": String, "numpages": Number, "keyword": String]
+S{"Entry", "Article"}["title": String, "numpages": Number, "keyword": List(String)]
+S{"Proceedings"}["title": String, "year": Number, "month": String]
+S{"Journal"}["title": String, "year": Number, "vol": Number]
+
 # Nodes
 <"Author01">{"Author"}["fname": "John", "lname": "Smith"] #Author01
 <"Author02">{"Author"}["fname": "Alice", "lname": "Brown"]

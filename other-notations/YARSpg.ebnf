@@ -35,12 +35,12 @@ statement
            | relationship
            | prefixDirective
            | metadata
+           | node_schema
 prefixDirective
-         ::= pname CONTEXT
-iri      ::= CONTEXT
+         ::= pname IRI
 pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS
-metadata ::= '@' ( pn_local pname STRING | iri ':' ( STRING | iri ) )
+metadata ::= '@' ( pn_local pname STRING | IRI ':' ( STRING | IRI ) )
 annotation
          ::= named_graph_annotation
            | string_annotation
@@ -50,7 +50,7 @@ named_graph_annotation
 string_annotation
          ::= STRING ':' STRING
 rdf_annotation
-         ::= ( pn_local pname | iri ':' ) ( STRING | iri )
+         ::= ( pn_local pname | IRI ':' ) ( STRING | IRI )
 node
          ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' node_prop ( ',' node_prop )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
 relationship
@@ -84,6 +84,33 @@ complex_value
 multiset ::= '{' ( primitive_value | multiset ) ( ',' ( primitive_value | multiset ) )* '}'
 list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
 dict     ::= '{' key ':' ( primitive_value | dict ) ( ',' key ':' ( primitive_value | dict ) )* '}'
+node_schema
+         ::= 'S' ( '{' node_label ( ',' node_label )* '}' )? ( '[' node_prop_schema ( ',' node_prop_schema )* ']' )? ( '?' annotation ( ',' annotation )* )?
+node_prop_schema
+         ::= key ':' value_schema
+value_schema
+         ::= primitive_value_schema
+           | complex_value_schema
+primitive_value_schema
+         ::= 'String'
+           | 'Number'
+           | 'Null'
+           | 'Bool'
+complex_value_schema
+         ::= multiset_schema
+           | list_schema
+           | dict_schema
+multiset_schema
+         ::= bag_schema
+           | set_schema
+bag_schema
+         ::= 'Bag' '(' ( primitive_value_schema | bag_schema ) ')'
+set_schema
+         ::= 'Set' '(' ( primitive_value_schema | set_schema ) ')'
+list_schema
+         ::= 'List' '(' ( primitive_value_schema | list_schema ) ')'
+dict_schema
+         ::= 'Dict' '(' ( primitive_value_schema | dict_schema ) ')'
 _        ::= COMMENT
            | WS
           /* ws: definition */
@@ -99,7 +126,7 @@ STRING_LITERAL_QUOTE
          ::= '"' ( [^"\#xd#xa] | "'" | '\"' )* '"'
 ALNUM_PLUS
          ::= PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
-CONTEXT  ::= '<' ( PN_CHARS | '.' | ':' | '/' | '\' | '#' | '@' | '%' | '&' | UCHAR )* '>'
+IRI  ::= '<' ( PN_CHARS | '.' | ':' | '/' | '\' | '#' | '@' | '%' | '&' | UCHAR )* '>'
 PN_CHARS ::= PN_CHARS_U
            | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
 PN_CHARS_U

@@ -39,14 +39,11 @@ statement
     | relationship
     | prefixDirective
     | metadata
+    | node_schema
     ;
 
 prefixDirective
-    : pname CONTEXT
-    ;
-
-iri
-    : CONTEXT
+    : pname IRI
     ;
 
 pname
@@ -58,8 +55,8 @@ pn_local
     ;
 
 metadata
-    : '@' pn_local pname (STRING | iri)
-    | '@' iri ':' (STRING | iri)
+    : '@' pn_local pname (STRING | IRI)
+    | '@' IRI ':' (STRING | IRI)
     ;
 
 annotation
@@ -77,8 +74,8 @@ string_annotation
     ;
 
 rdf_annotation
-    : pn_local pname (STRING | iri)
-    | iri ':' (STRING | iri)
+    : pn_local pname (STRING | IRI)
+    | IRI ':' (STRING | IRI)
     ;
 
 node
@@ -178,7 +175,7 @@ STRING_LITERAL_QUOTE
 ALNUM_PLUS
     : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
     ;
-CONTEXT
+IRI
     : '<' (PN_CHARS | '.' | ':' | '/' | '\\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
     ;
 PN_CHARS
@@ -198,6 +195,56 @@ HEX
     ;
 
 /* FROM TURTLE ANTLR GRAMMAR */
+
+/* YARS-PG SCHEMA */
+node_schema
+    : 'S' ('{' node_label (',' node_label)* '}')? ( '[' node_prop_schema (',' node_prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
+    ;
+
+node_prop_schema
+    : key ':' value_schema
+    ;
+
+value_schema
+    : primitive_value_schema
+    | complex_value_schema
+    ;
+
+primitive_value_schema
+    : 'String'
+    | 'Number'
+    | 'Null'
+    | 'Bool'
+    ;
+
+complex_value_schema
+    : multiset_schema
+    | list_schema
+    | dict_schema
+    ;
+
+multiset_schema
+    : bag_schema
+    | set_schema
+    ;
+
+bag_schema
+    : 'Bag' '(' (primitive_value_schema | bag_schema) ')'
+    ;
+
+set_schema
+    : 'Set' '(' (primitive_value_schema | set_schema) ')'
+    ;
+
+list_schema
+    : 'List' '(' (primitive_value_schema | list_schema) ')'
+    ;
+
+dict_schema
+    : 'Dict' '(' (primitive_value_schema | dict_schema) ')'
+    ;
+
+/* YARS-PG SCHEMA */
 
 WS
     : [ \t\n\r]+ -> skip
