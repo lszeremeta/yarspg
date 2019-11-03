@@ -33,11 +33,11 @@ yarspg   ::= statement+ EOF
 statement
          ::= node
            | edge
-           | prefixDirective
+           | prefix_directive
            | metadata
            | node_schema
            | edge_schema
-prefixDirective
+prefix_directive
          ::= pname IRI
 pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS

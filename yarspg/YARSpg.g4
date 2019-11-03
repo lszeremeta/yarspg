@@ -37,13 +37,13 @@ COMMENT
 statement
     : node
     | edge
-    | prefixDirective
+    | prefix_directive
     | metadata
     | node_schema
     | edge_schema
     ;
 
-prefixDirective
+prefix_directive
     : pname IRI
     ;
 
@@ -163,8 +163,6 @@ BOOL
     | 'false'
     ;
 
-/* FROM TURTLE ANTLR GRAMMAR */
-
 STRING_LITERAL_QUOTE
     : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
     ;
@@ -190,8 +188,6 @@ PN_CHARS_BASE
 HEX
     : [0-9] | [A-F] | [a-f]
     ;
-
-/* FROM TURTLE ANTLR GRAMMAR */
 
 /* YARS-PG SCHEMA */
 node_schema
