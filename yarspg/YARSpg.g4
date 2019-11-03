@@ -30,10 +30,6 @@ yarspg
     : statement+ EOF
     ;
 
-COMMENT
-    : '#' ~[\r\n\f]* -> skip
-    ;
-
 statement
     : node
     | edge
@@ -150,45 +146,6 @@ dict
     : '{' key ':' (primitive_value | dict) (',' key ':' (primitive_value | dict))* '}'
     ;
 
-STRING
-    : STRING_LITERAL_QUOTE
-    ;
-
-NUMBER
-    : [0-9]+'.'?[0-9]*
-    ;
-
-BOOL
-    : 'true'
-    | 'false'
-    ;
-
-STRING_LITERAL_QUOTE
-    : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
-    ;
-
-ALNUM_PLUS
-    : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
-    ;
-IRI
-    : '<' (PN_CHARS | '.' | ':' | '/' | '\\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
-    ;
-PN_CHARS
-    : PN_CHARS_U | '-' | [0-9] | '\u00B7' | [\u0300-\u036F] | [\u203F-\u2040]
-    ;
-PN_CHARS_U
-    : PN_CHARS_BASE | '_'
-    ;
-UCHAR
-    : '\\u' HEX HEX HEX HEX | '\\U' HEX HEX HEX HEX HEX HEX HEX HEX
-    ;
-PN_CHARS_BASE
-    : 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '\u00C0' .. '\u00D6' | '\u00D8' .. '\u00F6' | '\u00F8' .. '\u02FF' | '\u0370' .. '\u037D' | '\u037F' .. '\u1FFF' | '\u200C' .. '\u200D' | '\u2070' .. '\u218F' | '\u2C00' .. '\u2FEF' | '\u3001' .. '\uD7FF' | '\uF900' .. '\uFDCF' | '\uFDF0' .. '\uFFFD'
-    ;
-HEX
-    : [0-9] | [A-F] | [a-f]
-    ;
-
 /* YARS-PG SCHEMA */
 node_schema
     : 'S' ('{' node_label (',' node_label)* '}')? ( '[' prop_schema (',' prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
@@ -251,6 +208,49 @@ undirected_schema
     ;
 
 /* YARS-PG SCHEMA */
+
+COMMENT
+    : '#' ~[\r\n\f]* -> skip
+    ;
+
+STRING
+    : STRING_LITERAL_QUOTE
+    ;
+
+NUMBER
+    : [0-9]+'.'?[0-9]*
+    ;
+
+BOOL
+    : 'true'
+    | 'false'
+    ;
+
+STRING_LITERAL_QUOTE
+    : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
+    ;
+
+ALNUM_PLUS
+    : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
+    ;
+IRI
+    : '<' (PN_CHARS | '.' | ':' | '/' | '\\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
+    ;
+PN_CHARS
+    : PN_CHARS_U | '-' | [0-9] | '\u00B7' | [\u0300-\u036F] | [\u203F-\u2040]
+    ;
+PN_CHARS_U
+    : PN_CHARS_BASE | '_'
+    ;
+UCHAR
+    : '\\u' HEX HEX HEX HEX | '\\U' HEX HEX HEX HEX HEX HEX HEX HEX
+    ;
+PN_CHARS_BASE
+    : 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '\u00C0' .. '\u00D6' | '\u00D8' .. '\u00F6' | '\u00F8' .. '\u02FF' | '\u0370' .. '\u037D' | '\u037F' .. '\u1FFF' | '\u200C' .. '\u200D' | '\u2070' .. '\u218F' | '\u2C00' .. '\u2FEF' | '\u3001' .. '\uD7FF' | '\uF900' .. '\uFDCF' | '\uFDF0' .. '\uFFFD'
+    ;
+HEX
+    : [0-9] | [A-F] | [a-f]
+    ;
 
 WS
     : [ \t\n\r]+ -> skip
