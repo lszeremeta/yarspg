@@ -146,7 +146,6 @@ dict
     : '{' key ':' (primitive_value | dict) (',' key ':' (primitive_value | dict))* '}'
     ;
 
-/* YARS-PG SCHEMA */
 node_schema
     : 'S' ('{' node_label (',' node_label)* '}')? ( '[' prop_schema (',' prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
     ;
@@ -206,8 +205,6 @@ directed_schema
 undirected_schema
     : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' ('(' node_label (',' node_label)* ')')?
     ;
-
-/* YARS-PG SCHEMA */
 
 COMMENT
     : '#' ~[\r\n\f]* -> skip
