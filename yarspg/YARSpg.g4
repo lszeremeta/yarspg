@@ -133,13 +133,13 @@ primitive_value
     ;
 
 complex_value
-    : multiset
+    : set_bag
     | list
     | dict
     ;
 
-multiset
-    : '{' (primitive_value | multiset) (',' (primitive_value | multiset))* '}'
+set_bag
+    : '{' (primitive_value | set_bag) (',' (primitive_value | set_bag))* '}'
     ;
 
 list
@@ -215,12 +215,12 @@ primitive_value_schema
     ;
 
 complex_value_schema
-    : multiset_schema
+    : set_bag_schema
     | list_schema
     | dict_schema
     ;
 
-multiset_schema
+set_bag_schema
     : bag_schema
     | set_schema
     ;
