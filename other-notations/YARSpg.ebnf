@@ -41,7 +41,7 @@ prefix_directive
          ::= pname IRI
 pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS
-metadata ::= '@' ( pn_local pname STRING | IRI ':' ( STRING | IRI ) )
+metadata ::= '-' ( pn_local pname STRING | IRI ':' ( STRING | IRI ) )
 annotation
          ::= named_graph_annotation
            | string_annotation
@@ -53,13 +53,13 @@ string_annotation
 rdf_annotation
          ::= ( pn_local pname | IRI ':' ) ( STRING | IRI )
 node
-         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop ( ',' prop )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
+         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop ( ',' prop )+ ']' )? ( '+' annotation ( ',' annotation )+ )?
 edge
          ::= directed
            | undirected
-directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
+directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' node_id ')' ( '+' annotation ( ',' annotation )+ )?
 undirected
-         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' node_id ')' ( '?' annotation ( ',' annotation )+ )?
+         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' node_id ')' ( '+' annotation ( ',' annotation )+ )?
 node_id  ::= STRING
 node_label
          ::= STRING
@@ -84,7 +84,7 @@ set_bag ::= '{' ( primitive_value | set_bag ) ( ',' ( primitive_value | set_bag 
 list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
 struct     ::= '{' key ':' ( primitive_value | struct ) ( ',' key ':' ( primitive_value | struct ) )* '}'
 node_schema
-         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop_schema ( ',' prop_schema )+ ']' )? ( '?' annotation ( ',' annotation )+ )?
+         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop_schema ( ',' prop_schema )+ ']' )? ( '+' annotation ( ',' annotation )+ )?
 prop_schema
          ::= key ':' value_schema
 value_schema

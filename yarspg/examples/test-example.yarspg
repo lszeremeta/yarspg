@@ -6,38 +6,38 @@
 :foaf: <http://xmlns.com/foaf/0.1/>
 
 # Metadata
-@foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
-@foaf:maker: <http://example.com/me>
-@dc:test: "Test metadata"
-@<http://xmlns.com/foaf/0.1/maker>: "Łukasz Szeremeta and Dominik Tomaszuk"
-@<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/abc>
-@<http://xmlns.com/dc/0.5/zyz>: "Test"
+-foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
+-foaf:maker: <http://example.com/me>
+-dc:test: "Test metadata"
+-<http://xmlns.com/foaf/0.1/maker>: "Łukasz Szeremeta and Dominik Tomaszuk"
+-<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/abc>
+-<http://xmlns.com/dc/0.5/zyz>: "Test"
 
 # comment3#12
 
-<"a">{"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null]?foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
-<"b43b">{"label1"}["value":5]?foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk" #b43b
-S{"label333","c"}["value": String,"lang": String,"valid": Bool]?<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, "graph": "graph2", foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
-<"c">{"label333","c"}["value":"male","lang":"en","valid":false]?<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, "graph": "graph2", foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
+<"a">{"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
+<"b43b">{"label1"}["value":5]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk" #b43b
+S{"label333","c"}["value": String,"lang": String,"valid": Bool]+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, "graph": "graph2", foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
+<"c">{"label333","c"}["value":"male","lang":"en","valid":false]+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, "graph": "graph2", foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
 S{"label546"}["key": Number]
 <"d">{"label546"}["key":442.1333]
 <"e">{"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]]
-<"f">["node":"node without label"]?foaf:maker: <http://example.com/me>
-<"g">{"df2","z","q"}["key664":[false,["another list", 52, 44.1]]]?"abc": "value33"
+<"f">["node":"node without label"]+foaf:maker: <http://example.com/me>
+<"g">{"df2","z","q"}["key664":[false,["another list", 52, 44.1]]]+"abc": "value33"
 <"h">{"label"}["key664":[false,["another list2", ["another list3", 54, false, true] , 52, 44.1]]]
 S{"label"}["keyword": Dict(String)]
 <"i">{"label"}["keyword": {"name": "abc", "title": "xyz"}]
 S{"2label4"}["keyword2": Dict(Dict(String))]
 <"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}]
 <"i2">{"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}]
-S{"432f"}["multiset": Set(String)]?"graph": "graphname"
-<"z">{"432f"}["multiset": {"name", "title"}]?"graph": "graphname"
+S{"432f"}["multiset": Set(String)]+"graph": "graphname"
+<"z">{"432f"}["multiset": {"name", "title"}]+"graph": "graphname"
 S{"432f2"}["multiset": Set(Set(String))]
 <"z2">{"432f2"}["multiset": {{"multiset2", "title"}}]
 S{"3432f2"}["multiset": Set(Set(String))]
 <"3z2">{"3432f2"}["multiset": {{"multiset2", "title"}, {"multiset3", "title3"}}]
-S{"b432f"}["multiset": Bag(String)]?"graph": "graphname"
-<"z">{"b432f"}["multiset": {"name", "title"}]?"graph": "graphname"
+S{"b432f"}["multiset": Bag(String)]+"graph": "graphname"
+<"z">{"b432f"}["multiset": {"name", "title"}]+"graph": "graphname"
 S{"b432f2"}["multiset": Bag(Bag(String))]
 <"z2">{"b432f2"}["multiset": {{"multiset2", "title"}}]
 S{"3b432f2"}["multiset": Bag(Bag(String))]
@@ -50,9 +50,9 @@ S{"ad32"}["list": List(List(String))]
 <"dsc">{"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]]
 
 S("a1d","x")-{"aaa1a"}["key": String, "aab2bc": List(Number)]->("label333","c")
-("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44.22, 22]]->("c")?<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
+("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44.22, 22]]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")
 S("label1")-{"bbb23b"}-("ef22","y","v")
 ("b43b")-{"bbb23b"}-("e")
 S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22","y","v")
-("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")?foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
+("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"

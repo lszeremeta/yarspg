@@ -2,7 +2,7 @@
 :foaf: <http://xmlns.com/foaf/0.1/>
 
 # Metadata
-@foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
+-foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 
 # Node schema
 S{"Author"}["fname": String, "lname": String]

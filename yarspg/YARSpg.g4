@@ -52,8 +52,8 @@ pn_local
     ;
 
 metadata
-    : '@' pn_local pname (STRING | IRI)
-    | '@' IRI ':' (STRING | IRI)
+    : '-' pn_local pname (STRING | IRI)
+    | '-' IRI ':' (STRING | IRI)
     ;
 
 annotation
@@ -76,7 +76,7 @@ rdf_annotation
     ;
 
 node
-    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' prop (',' prop)* ']' )? ( '?' annotation (',' annotation)* )?
+    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' prop (',' prop)* ']' )? ( '+' annotation (',' annotation)* )?
     ;
 
 edge
@@ -85,11 +85,11 @@ edge
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')' ( '?' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')' ( '+' annotation (',' annotation)* )?
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')' ( '?' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')' ( '+' annotation (',' annotation)* )?
     ;
 
 node_id
@@ -147,7 +147,7 @@ struct
     ;
 
 node_schema
-    : 'S' '{' node_label (',' node_label)* '}' ( '[' prop_schema (',' prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
+    : 'S' '{' node_label (',' node_label)* '}' ( '[' prop_schema (',' prop_schema)* ']' )? ( '+' annotation (',' annotation)* )?
     ;
 
 prop_schema
