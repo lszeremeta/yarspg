@@ -131,7 +131,7 @@ primitive_value
 complex_value
     : set_bag
     | list
-    | dict
+    | struct
     ;
 
 set_bag
@@ -142,12 +142,12 @@ list
     : '[' (primitive_value | list) (',' (primitive_value | list))* ']'
     ;
 
-dict
-    : '{' key ':' (primitive_value | dict) (',' key ':' (primitive_value | dict))* '}'
+struct
+    : '{' key ':' (primitive_value | struct) (',' key ':' (primitive_value | struct))* '}'
     ;
 
 node_schema
-    : 'S' ('{' node_label (',' node_label)* '}')? ( '[' prop_schema (',' prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
+    : 'S' '{' node_label (',' node_label)* '}' ( '[' prop_schema (',' prop_schema)* ']' )? ( '?' annotation (',' annotation)* )?
     ;
 
 prop_schema
@@ -199,11 +199,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '->' ('(' node_label (',' node_label)* ')')?
+    : 'S' '(' node_label (',' node_label)* ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '->' '(' node_label (',' node_label)* ')'
     ;
 
 undirected_schema
-    : 'S' ('(' node_label (',' node_label)* ')')? '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' ('(' node_label (',' node_label)* ')')?
+    : 'S' '(' node_label (',' node_label)* ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' '(' node_label (',' node_label)* ')'
     ;
 
 COMMENT
