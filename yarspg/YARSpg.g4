@@ -199,11 +199,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_label (',' node_label)* ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '->' '(' node_label (',' node_label)* ')'
+    : 'S' '(' node_label ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '->' '(' node_label (',' node_label)* ')'
     ;
 
 undirected_schema
-    : 'S' '(' node_label (',' node_label)* ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' '(' node_label (',' node_label)* ')'
+    : 'S' '(' node_label ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' '(' node_label (',' node_label)* ')'
     ;
 
 COMMENT
