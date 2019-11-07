@@ -114,7 +114,7 @@
         <h2>Edges</h2>
         <p>A <dfn>relationship declaration</dfn> begins with the source node identifier, followed by relationship
             identifier
-            (optional), a set of labels, a set of properties (optional) and target node identifier. Relationships can be
+            (optional), a label, a set of properties (optional) and target node identifier. Relationships can be
             directed (<code>-></code>) or undirected (<code>-</code>).</p>
         <aside class="example" title='Edge declaration'>
             <p>The example presents edge declaration from source node <code>EI01</code> to target node
@@ -155,7 +155,7 @@
     <h2>YARS-PG Schema Language</h2>
     <section id='snodes'>
         <h2>Nodes</h2>
-        <p>A <dfn></dfn></p>
+        <p>A <dfn>node schema declaration</dfn> begins with list of node labels, followed by optional properties of the node.</p>
         <aside class="example" title="Node schema declaration">
             <p>The example presents node schema declaration.</p>
             <pre>
@@ -169,7 +169,9 @@ S{"Journal"}["title": String, "year": Number, "vol": Number]
     </section>
     <section id='sedges'>
         <h2>Edges</h2>
-        <p>A <dfn></dfn></p>
+        <p>A <dfn>relationship schema declaration</dfn> begins with the node label, followed by a label,
+            a set of properties (optional) and target node identifier. Relationships schema can be
+            directed (<code>-></code>) or undirected (<code>-</code>).</p>
         <aside class="example" title="Edge schema declaration">
             <p>The example presents edge schema declaration.</p>
             <pre>
