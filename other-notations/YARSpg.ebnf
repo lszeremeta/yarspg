@@ -79,8 +79,9 @@ value    ::= primitive_value
 primitive_value
          ::= STRING
            | NUMBER
-           | 'null'
+           | DATETYPE
            | BOOL
+           | 'null'
 complex_value
          ::= set
            | list
@@ -98,10 +99,19 @@ value_schema
          ::= primitive_value_schema
            | complex_value_schema
 primitive_value_schema
-         ::= 'String'
-           | 'Number'
-           | 'Null'
+         ::= 'Decimal'
+           | 'SmallInt'
+           | 'Integer'
+           | 'BigInt'
+           | 'Float'
+           | 'Real'
+           | 'DoublePrecision'
            | 'Bool'
+           | 'Null'
+           | 'String'
+           | 'Date'
+           | 'Time'
+           | 'Timestamp'
 complex_value_schema
          ::= set_schema
            | list_schema
@@ -134,7 +144,7 @@ SECTION_NAME
            | 'EDGES'
 COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= STRING_LITERAL_QUOTE
-NUMBER   ::= [0-9]+ '.'? [0-9]*
+NUMBER   ::= SIGN? [0-9]+ '.'? [0-9]*
 BOOL     ::= 'true'
            | 'false'
 STRING_LITERAL_QUOTE
@@ -147,6 +157,16 @@ PN_CHARS ::= PN_CHARS_U
 PN_CHARS_U
          ::= PN_CHARS_BASE
            | '_'
+DATETYPE ::= DATE
+           | TIME
+           | TIMESTAMP
+DATE     ::= [0-9] [0-9] [0-9] [0-9] '-' [0-9] [0-9] '-' [0-9] [0-9]
+TIME     ::= [0-9] [0-9] ':' [0-9] [0-9] ':' [0-9] [0-9] TIMEZONE?
+TIMEZONE ::= SIGN? [0-9] [0-9] ':' [0-9] [0-9]
+TIMESTAMP
+         ::= '"' DATE TIME '"'
+SIGN     ::= '+'
+           | '-'
 UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
 PN_CHARS_BASE
          ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]

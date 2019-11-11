@@ -46,6 +46,17 @@ S{"ad3"}["list": List(List(String))]
 S{"ad32"}["list": List(List(String))]
 <"dsc">{"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]]
 
+S{"ZYT"}["date": Date]
+S{"ZYT2"}["time": Time]
+S{"ZYT3"}["timezp": Time]
+S{"ZYT4"}["timezm": Time]
+S{"ZYT5"}["timestamp": Timestamp]
+<"ABC">{"ZYT"}["date": 1999-01-01]
+<"ABC2">{"ZYT2"}["time": 11:15:32]
+<"ABC3">{"ZYT3"}["timezp": 11:15:32+01:30]
+<"ABC4">{"ZYT4"}["timezm": 09:32:11-08:00]
+<"ABC5">{"ZYT5"}["timestamp": "1999-01-01 11:15:32"]
+
 % EDGES
 % EDGE SCHEMAS
 S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Integer)]->("label333")
@@ -55,3 +66,14 @@ S("label1")-{"bbb23b"}-("ef22")
 ("b43b")-{"bbb23b"}-("e")
 S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
 ("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
+
+S("A")-{"label"}["date": Date]->("Z")
+S("A2")-{"label"}["time": Time]->("Z2")
+S("A3")-{"label"}["timezp": Time]->("Z3")
+S("A4")-{"label"}["timezm": Time]->("Z4")
+S("A5")-{"label"}["timestamp": Timestamp]->("Z5")
+("ABC")-{"label"}["date": 1999-01-01]->("XYZ")
+("ABC2")-{"label2"}["time": 11:15:32]->("XYZ2")
+("ABC3")-{"label3"}["timezp": 11:15:32+01:30]->("XYZ3")
+("ABC4")-{"label4"}["timezm": 09:32:11-08:00]->("XYZ4")
+("ABC5")-{"label5"}["timestamp": "1999-01-01 11:15:32"]->("XYZ5")

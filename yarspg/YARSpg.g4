@@ -140,8 +140,9 @@ value
 primitive_value
     : STRING
     | NUMBER
-    | 'null'
+    | DATETYPE
     | BOOL
+    | 'null'
     ;
 
 complex_value
@@ -197,7 +198,6 @@ primitive_value_schema
     | 'Date'
     | 'Time'
     | 'Timestamp'
-    | 'Interval'
     ;
 
 complex_value_schema
