@@ -56,6 +56,8 @@ S{"ZYT5"}["timestamp": Timestamp]
 <"ABC3">{"ZYT3"}["timezp": 11:15:32+01:30]
 <"ABC4">{"ZYT4"}["timezm": 09:32:11-08:00]
 <"ABC5">{"ZYT5"}["timestamp": "1999-01-01 11:15:32"]
+<"ABC5">{"ZYT5"}["timestamptzp": 1999-01-01T11:15:32+01:30]
+<"ABC5">{"ZYT5"}["timestamptzm": 1999-01-01T11:15:32-08:00]
 
 % EDGES
 % EDGE SCHEMAS
@@ -72,8 +74,12 @@ S("A2")-{"label"}["time": Time]->("Z2")
 S("A3")-{"label"}["timezp": Time]->("Z3")
 S("A4")-{"label"}["timezm": Time]->("Z4")
 S("A5")-{"label"}["timestamp": Timestamp]->("Z5")
+S("A6")-{"label"}["timestamp": Timestamp]->("Z6")
+S("A7")-{"label"}["timestamp": Timestamp]->("Z7")
 ("ABC")-{"label"}["date": 1999-01-01]->("XYZ")
 ("ABC2")-{"label2"}["time": 11:15:32]->("XYZ2")
 ("ABC3")-{"label3"}["timezp": 11:15:32+01:30]->("XYZ3")
 ("ABC4")-{"label4"}["timezm": 09:32:11-08:00]->("XYZ4")
-("ABC5")-{"label5"}["timestamp": "1999-01-01 11:15:32"]->("XYZ5")
+("ABC5")-{"label5"}["timestamp": 1999-01-01T11:15:32]->("XYZ5")
+("ABC6")-{"label5"}["timestamptzp": 1999-01-01T11:15:32+01:30]->("XYZ6")
+("ABC7")-{"label5"}["timestamptzm": 1999-01-01T11:15:32-08:00]->("XYZ7")

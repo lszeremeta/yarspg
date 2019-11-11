@@ -164,7 +164,7 @@ DATE     ::= [0-9] [0-9] [0-9] [0-9] '-' [0-9] [0-9] '-' [0-9] [0-9]
 TIME     ::= [0-9] [0-9] ':' [0-9] [0-9] ':' [0-9] [0-9] TIMEZONE?
 TIMEZONE ::= SIGN? [0-9] [0-9] ':' [0-9] [0-9]
 TIMESTAMP
-         ::= '"' DATE TIME '"'
+         ::= DATE 'T' TIME
 SIGN     ::= '+'
            | '-'
 UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX

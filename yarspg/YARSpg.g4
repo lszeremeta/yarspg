@@ -279,7 +279,7 @@ SIGN
     ;
 
 TIMESTAMP
-    : '"' DATE TIME '"'
+    : DATE 'T' TIME
     ;
 
 STRING_LITERAL_QUOTE
