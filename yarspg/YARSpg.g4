@@ -37,6 +37,7 @@ statement
     | metadata
     | node_schema
     | edge_schema
+    | section
     ;
 
 prefix_directive
@@ -82,6 +83,10 @@ node
 edge
     : directed
     | undirected
+    ;
+
+section
+    : '%' SECTION_NAME
     ;
 
 directed
@@ -204,6 +209,15 @@ directed_schema
 
 undirected_schema
     : 'S' '(' node_label ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' '(' node_label (',' node_label)* ')'
+    ;
+
+SECTION_NAME
+    : 'PREFIXES'
+    | 'METADATA'
+    | 'NODE SCHEMA'
+    | 'EDGE SCHEMA'
+    | 'NODE'
+    | 'EDGE'
     ;
 
 COMMENT

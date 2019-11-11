@@ -2,10 +2,12 @@
 # Another comment
 
 # Prefix declaration
+% PREFIXES
 :dc: <http://xmlns.com/dc/0.5/>
 :foaf: <http://xmlns.com/foaf/0.1/>
 
 # Metadata
+% METADATA
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 -foaf:maker: <http://example.com/me>
 -dc:test: "Test metadata"
@@ -14,7 +16,8 @@
 -<http://xmlns.com/dc/0.5/zyz>: "Test"
 
 # comment3#12
-
+% NODE
+% NODE SCHEMA
 <"a">{"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
 <"b43b">{"label1"}["value":5]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk" #b43b
 S{"label333","c"}["value": String,"lang": String,"valid": Bool]+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, "graph": "graph2", foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
@@ -49,6 +52,8 @@ S{"ad3"}["list": List(List(String))]
 S{"ad32"}["list": List(List(String))]
 <"dsc">{"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]]
 
+% EDGE
+% EDGE SCHEMA
 S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Number)]->("label333","c")
 ("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44.22, 22]]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")

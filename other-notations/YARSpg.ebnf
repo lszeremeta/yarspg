@@ -37,6 +37,7 @@ statement
            | metadata
            | node_schema
            | edge_schema
+           | section
 prefix_directive
          ::= pname IRI
 pname    ::= ':' ALNUM_PLUS ':'
@@ -57,6 +58,7 @@ node
 edge
          ::= directed
            | undirected
+section  ::= '%' SECTION_NAME           
 directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' node_id ')' ( '+' annotation ( ',' annotation )+ )?
 undirected
          ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' node_id ')' ( '+' annotation ( ',' annotation )+ )?
@@ -125,6 +127,13 @@ _        ::= COMMENT
 
 <?TOKENS?>
 
+SECTION_NAME
+         ::= 'PREFIXES'
+           | 'METADATA'
+           | 'NODE SCHEMA'
+           | 'EDGE SCHEMA'
+           | 'NODE'
+           | 'EDGE'
 COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= [0-9]+ '.'? [0-9]*
