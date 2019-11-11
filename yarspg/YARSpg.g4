@@ -180,10 +180,24 @@ value_schema
     ;
 
 primitive_value_schema
-    : 'String'
-    | 'Number'
-    | 'Null'
+    // NUMBER
+    : 'Decimal'
+    | 'SmallInt'
+    | 'Integer'
+    | 'BigInt'
+    | 'Float'
+    | 'Real'
+    | 'DoublePrecision'
+    // BOOL
     | 'Bool'
+    | 'Null'
+    // STRING
+    | 'String'
+    // DATETYPE
+    | 'Date'
+    | 'Time'
+    | 'Timestamp'
+    | 'Interval'
     ;
 
 complex_value_schema
@@ -235,12 +249,37 @@ STRING
     ;
 
 NUMBER
-    : [0-9]+'.'?[0-9]*
+    : SIGN? [0-9]+'.'?[0-9]*
     ;
 
 BOOL
     : 'true'
     | 'false'
+    ;
+
+DATETYPE
+    : DATE | TIME | TIMESTAMP
+    ;
+
+DATE
+    : [0-9][0-9][0-9][0-9] '-' [0-9][0-9] '-' [0-9][0-9]
+    ;
+
+TIME
+    : [0-9][0-9] ':' [0-9][0-9] ':' [0-9][0-9] TIMEZONE?
+    ;
+
+TIMEZONE
+    : SIGN? [0-9][0-9] ':' [0-9][0-9]
+    ;
+
+SIGN
+    : '+'
+    | '-'
+    ;
+
+TIMESTAMP
+    : '"' DATE TIME '"'
     ;
 
 STRING_LITERAL_QUOTE

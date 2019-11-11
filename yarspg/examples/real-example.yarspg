@@ -6,10 +6,10 @@
 
 # Node schema
 S{"Author"}["fname": String, "lname": String]
-S{"Entry", "InProc"}["title": String, "numpages": Number, "keyword": String]
-S{"Entry", "Article"}["title": String, "numpages": Number, "keyword": List(String)]
-S{"Proceedings"}["title": String, "year": Number, "month": String]
-S{"Journal"}["title": String, "year": Number, "vol": Number]
+S{"Entry", "InProc"}["title": String, "numpages": Integer, "keyword": String]
+S{"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)]
+S{"Proceedings"}["title": String, "year": Integer, "month": String]
+S{"Journal"}["title": String, "year": Integer, "vol": Integer]
 
 # Nodes
 <"Author01">{"Author"}["fname": "John", "lname": "Smith"] #Author01
@@ -20,7 +20,7 @@ S{"Journal"}["title": String, "year": Number, "vol": Number]
 <"Jour01">{"Journal"}["title": "J. DB", "year": 2020, "vol": 30]
 
 # Edge schema
-S("Entry")-{"has_author"}["order": Number]->("Author")
+S("Entry")-{"has_author"}["order": Integer]->("Author")
 S("Entry")-{"cities"}->("Entry")
 S("InProc")-{"booktitle"}["pages": String]->("Proceedings")
 S("Article")-{"published_in"}["pages": String]->("Journal")

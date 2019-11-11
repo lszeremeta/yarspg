@@ -22,7 +22,7 @@
 <"b43b">{"label1"}["value":5]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk" #b43b
 S{"label333","c"}["value": String,"lang": String,"valid": Bool]/"graph2"/+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
 <"c">{"label333","c"}["value":"male","lang":"en","valid":false]/"graph2", "graph3"/+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
-S{"label546"}["key": Number]
+S{"label546"}["key": Float]
 <"d">{"label546"}["key":442.1333]
 <"e">{"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]]
 <"f">["node":"node without label"]+foaf:maker: <http://example.com/me>
@@ -48,8 +48,8 @@ S{"ad32"}["list": List(List(String))]
 
 % EDGES
 % EDGE SCHEMAS
-S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Number)]->("label333")
-("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44.22, 22]]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
+S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Integer)]->("label333")
+("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44, 22]]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")
 S("label1")-{"bbb23b"}-("ef22")
 ("b43b")-{"bbb23b"}-("e")
