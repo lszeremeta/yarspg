@@ -109,7 +109,7 @@ set_schema
 list_schema
          ::= 'List' '(' ( primitive_value_schema | list_schema ) ')'
 struct_schema
-         ::= 'struct' '(' ( primitive_value_schema | struct_schema ) ')'
+         ::= 'Struct' '(' ( primitive_value_schema | struct_schema ) ')'
 edge_schema
          ::= directed_schema
            | undirected_schema

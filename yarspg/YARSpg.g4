@@ -169,7 +169,7 @@ primitive_value_schema
 complex_value_schema
     : set_bag_schema
     | list_schema
-    | dict_schema
+    | struct_schema
     ;
 
 set_bag_schema
@@ -189,8 +189,8 @@ list_schema
     : 'List' '(' (primitive_value_schema | list_schema) ')'
     ;
 
-dict_schema
-    : 'Dict' '(' (primitive_value_schema | dict_schema) ')'
+struct_schema
+    : 'Struct' '(' (primitive_value_schema | struct_schema) ')'
     ;
 
 edge_schema
