@@ -188,7 +188,7 @@ primitive_value_schema
     | 'BigInt'
     | 'Float'
     | 'Real'
-    | 'DoublePrecision'
+    | 'Double'
     // BOOL
     | 'Bool'
     | 'Null'
