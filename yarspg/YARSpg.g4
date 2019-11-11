@@ -219,11 +219,11 @@ undirected_schema
 
 SECTION_NAME
     : 'PREFIXES'
-    | 'METADATA'
-    | 'NODE SCHEMA'
-    | 'EDGE SCHEMA'
-    | 'NODE'
-    | 'EDGE'
+    | 'METADATAS'
+    | 'NODE SCHEMAS'
+    | 'EDGE SCHEMAS'
+    | 'NODES'
+    | 'EDGES'
     ;
 
 COMMENT

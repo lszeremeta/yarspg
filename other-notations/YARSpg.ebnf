@@ -127,11 +127,11 @@ _        ::= COMMENT
 
 SECTION_NAME
          ::= 'PREFIXES'
-           | 'METADATA'
-           | 'NODE SCHEMA'
-           | 'EDGE SCHEMA'
-           | 'NODE'
-           | 'EDGE'
+           | 'METADATAS'
+           | 'NODE SCHEMAS'
+           | 'EDGE SCHEMAS'
+           | 'NODES'
+           | 'EDGES'
 COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= [0-9]+ '.'? [0-9]*
