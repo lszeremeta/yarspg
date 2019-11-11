@@ -39,12 +39,6 @@ S{"432f2"}["multiset": Set(Set(String))]
 <"z2">{"432f2"}["multiset": {{"multiset2", "title"}}]
 S{"3432f2"}["multiset": Set(Set(String))]
 <"3z2">{"3432f2"}["multiset": {{"multiset2", "title"}, {"multiset3", "title3"}}]
-S{"b432f"}["multiset": Bag(String)]+"graph": "graphname"
-<"z">{"b432f"}["multiset": {"name", "title"}]+"graph": "graphname"
-S{"b432f2"}["multiset": Bag(Bag(String))]
-<"z2">{"b432f2"}["multiset": {{"multiset2", "title"}}]
-S{"3b432f2"}["multiset": Bag(Bag(String))]
-<"3z2">{"3b432f2"}["multiset": {{"multiset2", "title"}, {"multiset32", "title2"}, {"multiset12", "title3"}}]
 S{"1ad32"}["list": List(String)]
 <"1dsc">{"1ad32"}["list": ["name55", "name3"]]
 S{"ad3"}["list": List(List(String))]

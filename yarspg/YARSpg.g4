@@ -134,13 +134,13 @@ primitive_value
     ;
 
 complex_value
-    : set_bag
+    : set
     | list
     | struct
     ;
 
-set_bag
-    : '{' (primitive_value | set_bag) (',' (primitive_value | set_bag))* '}'
+set
+    : '{' (primitive_value | set) (',' (primitive_value | set))* '}'
     ;
 
 list
@@ -172,18 +172,9 @@ primitive_value_schema
     ;
 
 complex_value_schema
-    : set_bag_schema
+    : set_schema
     | list_schema
     | struct_schema
-    ;
-
-set_bag_schema
-    : bag_schema
-    | set_schema
-    ;
-
-bag_schema
-    : 'Bag' '(' (primitive_value_schema | bag_schema) ')'
     ;
 
 set_schema
