@@ -57,14 +57,13 @@ metadata
     | '-' IRI ':' (STRING | IRI)
     ;
 
-annotation
-    : named_graph_annotation
-    | string_annotation
-    | rdf_annotation
+graph_name
+    : STRING
     ;
 
-named_graph_annotation
-    : '"graph"' ':' STRING
+annotation
+    : string_annotation
+    | rdf_annotation
     ;
 
 string_annotation
@@ -76,8 +75,20 @@ rdf_annotation
     | IRI ':' (STRING | IRI)
     ;
 
+annotations_list
+    : '+' annotation (',' annotation)*
+    ;
+
+prop_list
+    : '[' prop (',' prop)* ']'
+    ;
+
+graphs_list
+    : '/' graph_name (',' graph_name)* '/'
+    ;
+
 node
-    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? ( '[' prop (',' prop)* ']' )? ( '+' annotation (',' annotation)* )?
+    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? prop_list? graphs_list? annotations_list?
     ;
 
 edge
@@ -90,11 +101,11 @@ section
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '->' '(' node_id ')' ( '+' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' prop_list? '->' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ('[' prop (',' prop)* ']')? '-' '(' node_id ')' ( '+' annotation (',' annotation)* )?
+    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' prop_list? '-' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 node_id
@@ -152,7 +163,11 @@ struct
     ;
 
 node_schema
-    : 'S' '{' node_label (',' node_label)* '}' ( '[' prop_schema (',' prop_schema)* ']' )? ( '+' annotation (',' annotation)* )?
+    : 'S' '{' node_label (',' node_label)* '}' prop_list_schema? graphs_list? annotations_list?
+    ;
+
+prop_list_schema
+    : '[' prop_schema (',' prop_schema)* ']'
     ;
 
 prop_schema
@@ -195,11 +210,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_label ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '->' '(' node_label (',' node_label)* ')'
+    : 'S' '(' node_label ')' '-' '{' edge_label '}' prop_list_schema? '->' '(' node_label ')'
     ;
 
 undirected_schema
-    : 'S' '(' node_label ')' '-' '{' edge_label '}' ('[' prop_schema (',' prop_schema)* ']')? '-' '(' node_label (',' node_label)* ')'
+    : 'S' '(' node_label ')' '-' '{' edge_label '}' prop_list_schema? '-' '(' node_label ')'
     ;
 
 SECTION_NAME

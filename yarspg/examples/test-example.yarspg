@@ -20,8 +20,8 @@
 % NODE SCHEMA
 <"a">{"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
 <"b43b">{"label1"}["value":5]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk" #b43b
-S{"label333","c"}["value": String,"lang": String,"valid": Bool]+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, "graph": "graph2", foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
-<"c">{"label333","c"}["value":"male","lang":"en","valid":false]+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, "graph": "graph2", foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
+S{"label333","c"}["value": String,"lang": String,"valid": Bool]/"graph2"/+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
+<"c">{"label333","c"}["value":"male","lang":"en","valid":false]/"graph2", "graph3"/+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
 S{"label546"}["key": Number]
 <"d">{"label546"}["key":442.1333]
 <"e">{"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]]
@@ -33,8 +33,8 @@ S{"label"}["keyword": Struct(String)]
 S{"2label4"}["keyword2": Struct(Struct(String))]
 <"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}]
 <"i2">{"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}]
-S{"432f"}["multiset": Set(String)]+"graph": "graphname"
-<"z">{"432f"}["multiset": {"name", "title"}]+"graph": "graphname"
+S{"432f"}["multiset": Set(String)]/"graphname"/
+<"z">{"432f"}["multiset": {"name", "title"}]/"graphname"/
 S{"432f2"}["multiset": Set(Set(String))]
 <"z2">{"432f2"}["multiset": {{"multiset2", "title"}}]
 S{"3432f2"}["multiset": Set(Set(String))]
@@ -48,10 +48,10 @@ S{"ad32"}["list": List(List(String))]
 
 % EDGE
 % EDGE SCHEMA
-S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Number)]->("label333","c")
+S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Number)]->("label333")
 ("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44.22, 22]]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")
-S("label1")-{"bbb23b"}-("ef22","y","v")
+S("label1")-{"bbb23b"}-("ef22")
 ("b43b")-{"bbb23b"}-("e")
-S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22","y","v")
+S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
 ("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"

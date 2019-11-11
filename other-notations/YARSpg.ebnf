@@ -44,24 +44,27 @@ pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS
 metadata ::= '-' ( pn_local pname STRING | IRI ':' ( STRING | IRI ) )
 annotation
-         ::= named_graph_annotation
-           | string_annotation
+         ::= string_annotation
            | rdf_annotation
-named_graph_annotation
-         ::= '"graph"' ':' STRING
 string_annotation
          ::= STRING ':' STRING
 rdf_annotation
          ::= ( pn_local pname | IRI ':' ) ( STRING | IRI )
+annotations_list
+         ::= '+' annotation ( ',' annotation )+
+prop_list
+         ::= '[' prop ( ',' prop )+ ']'
+graphs_list
+         ::= '/' graph_name ( ',' graph_name )+ '/'
 node
-         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop ( ',' prop )+ ']' )? ( '+' annotation ( ',' annotation )+ )?
+         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? prop_list? graphs_list? annotations_list?
 edge
          ::= directed
            | undirected
 section  ::= '%' SECTION_NAME           
-directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '->' '(' node_id ')' ( '+' annotation ( ',' annotation )+ )?
+directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' prop_list? '->' '(' node_id ')' graphs_list? annotations_list?
 undirected
-         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' ( '[' prop ( ',' prop )+ ']' )? '-' '(' node_id ')' ( '+' annotation ( ',' annotation )+ )?
+         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' prop_list? '-' '(' node_id ')' graphs_list? annotations_list?
 node_id  ::= STRING
 node_label
          ::= STRING
@@ -86,7 +89,9 @@ set ::= '{' ( primitive_value | set ) ( ',' ( primitive_value | set ) )* '}'
 list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
 struct     ::= '{' key ':' ( primitive_value | struct ) ( ',' key ':' ( primitive_value | struct ) )* '}'
 node_schema
-         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? ( '[' prop_schema ( ',' prop_schema )+ ']' )? ( '+' annotation ( ',' annotation )+ )?
+         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? prop_list_schema? graphs_list? annotations_list?
+prop_list_schema
+         ::= '[' prop_schema ( ',' prop_schema )+ ']'
 prop_schema
          ::= key ':' value_schema
 value_schema
@@ -111,11 +116,9 @@ edge_schema
          ::= directed_schema
            | undirected_schema
 directed_schema
-         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' ( '[' prop_schema ( ',' prop_schema )+ ']' )? '->' ( '(' node_label ( ',' node_label )* ')' )?
+         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' prop_list_schema? '->' ( '(' node_label ')' )?
 undirected_schema
-         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' ( '[' prop_schema ( ',' prop_schema )+ ']' )? '-' ( '(' node_label ( ',' node_label )* ')' )?
-prop_schema
-         ::= key ':' value_schema
+         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' prop_list_schema? '-' ( '(' node_label ')' )?
 _        ::= COMMENT
            | WS
           /* ws: definition */
