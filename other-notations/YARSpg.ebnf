@@ -29,7 +29,7 @@
  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 */
 
-yarspg   ::= statement+ EOF
+yarspg   ::= statement+
 statement
          ::= node
            | edge
@@ -129,15 +129,9 @@ directed_schema
          ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '->' ( '(' node_label ')' )?
 undirected_schema
          ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '-' ( '(' node_label ')' )?
-_        ::= COMMENT
-           | WS
-          /* ws: definition */
-
-<?TOKENS?>
 
 SECTION_NAME
-         ::= 'PREFIXES'
-           | 'METADATA'
+         ::= 'METADATA'
            | 'NODE SCHEMAS'
            | 'EDGE SCHEMAS'
            | 'NODES'
@@ -171,5 +165,4 @@ UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
 PN_CHARS_BASE
          ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
 HEX      ::= [0-9A-Fa-f]
-WS       ::= [ #x9#xa#xd]+
-EOF      ::= $
+WS       ::= [ #x9#xa]+

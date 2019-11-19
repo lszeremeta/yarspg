@@ -2,7 +2,6 @@
 # Another comment
 
 # Prefix declaration
-% PREFIXES
 :dc: <http://xmlns.com/dc/0.5/>
 :foaf: <http://xmlns.com/foaf/0.1/>
 

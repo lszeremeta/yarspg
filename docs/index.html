@@ -57,7 +57,7 @@
                 information.
                 <pre>
 # Prefix declaration
-:foaf: <http://xmlns.com/foaf/0.1/>
+:foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
 
 # Metadata
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
@@ -298,8 +298,8 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
             <li>Cannot contain:
                 <ul>
                     <li>comments,</li>
-                    <li>blank lines,</li>
-                    <li>whitespaces between serialization elements (e.g. excluding <code>String</code> value),</li>
+                    <li>empty lines with only LF or CR,</li>
+                    <li>whitespaces (spaces <code>U+0020</code> or tabs <code>U+0009</code>) between serialization elements (e.g. excluding <code>String</code> value),</li>
                     <li>prefix declarations and prefixed version of IRI.</li>
                 </ul>
             </li>
@@ -311,16 +311,19 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
             <p>The example presents a graphical representation of a property graph that contains bibliographic
                 information in canonical form
                 <pre>
-%PREFIXES
-:foaf:<http://xmlns.com/foaf/0.1/>
 %METADATA
--foaf:maker:"Łukasz Szeremeta and Dominik Tomaszuk"
+-&lt;http://xmlns.com/foaf/0.1/maker&gt;:"Łukasz Szeremeta and Dominik Tomaszuk"
 %NODE SCHEMAS
 S{"Author"}["fname":String,"lname":String]
 S{"Entry","InProc"}["title":String,"numpages":Integer,"keyword":String]
 S{"Entry","Article"}["title":String,"numpages":Integer,"keyword":List(String)]
 S{"Proceedings"}["title":String,"year":Integer,"month":String]
 S{"Journal"}["title":String,"year":Integer,"vol":Integer]
+%EDGE SCHEMAS
+S("Entry")-{"has_author"}["order":Integer]->("Author")
+S("Entry")-{"cities"}->("Entry")
+S("InProc")-{"booktitle"}["pages":String]->("Proceedings")
+S("Article")-{"published_in"}["pages":String]->("Journal")
 %NODES
 <"Author01">{"Author"}["fname":"John","lname":"Smith"]#Author01
 <"Author02">{"Author"}["fname":"Alice","lname":"Brown"]
@@ -328,11 +331,6 @@ S{"Journal"}["title":String,"year":Integer,"vol":Integer]
 <"EA01">{"Entry","Article"}["title":"Property Graph...","numpages":10,"keyword":["Query","Graph"]]
 <"Proc01">{"Proceedings"}["title":"BDAS","year":2018,"month":"May"]
 <"Jour01">{"Journal"}["title":"J. DB","year":2020,"vol":30]
-%EDGE SCHEMAS
-S("Entry")-{"has_author"}["order":Integer]->("Author")
-S("Entry")-{"cities"}->("Entry")
-S("InProc")-{"booktitle"}["pages":String]->("Proceedings")
-S("Article")-{"published_in"}["pages":String]->("Journal")
 %EDGES
 ("EI01")-{"has_author"}["order":1]->("Author01")
 ("EI01")-{"has_author"}["order":2]->("Author02")
@@ -346,16 +344,13 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
         <section id='section'>
             <h2>Section declaration</h2>
             <p>A <dfn>section declaration</dfn> represents a name of the section of the YARS-PG document.</p>
-            <p>The following sections are distinguished: <code>PREFIXES</code>, <code>METADATA</code>,
+            <p>The following sections are distinguished: <code>METADATA</code>,
                 <code>NODE SCHEMAS</code>, <code>NODES</code>, <code>EDGE SCHEMAS</code> and <code>EDGES</code>.</p>
             <aside class="example" title="Section declaration">
-                <p>The example presents <code>PREFIXES</code> and <code>METADATA</code> sections declarations with
-                    prefix and metadata declarations.
+                <p>The example presents <code>METADATA</code> section declarations with metadata declaration.
                     <pre>
-        %PREFIXES
-        :foaf:<http://xmlns.com/foaf/0.1/>
         %METADATA
-        -foaf:maker:"Łukasz Szeremeta and Dominik Tomaszuk"
+        -&lt;http://xmlns.com/foaf/0.1/maker&gt;:"Łukasz Szeremeta and Dominik Tomaszuk"
               </pre>
             </aside>
         </section>
@@ -370,8 +365,8 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
                 <li>Roll up multi-line declarations into one line declarations</li>
                 <li>Reorder declarations for sections in that order: prefixes, metadata, node schemas, nodes, edge schemas, edges</li>
                 <li>Add section declaration for each section</li>
-                <li>Remove all blank lines</li>
-                <li>Remove all whitespaces between serialization elements</li>
+                <li>Remove all empty lines with only LF or CR</li>
+                <li>Remove all whitespaces (spaces <code>U+0020</code> or tabs <code>U+0009</code>) between serialization elements</li>
             </ol>
         </section>
     </section>
@@ -382,305 +377,9 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
             [[EBNF-NOTATION]].
         </p>
 
-        <section id='yarspg-grammar-antlr4'>
-            <p>An YARS-PG grammar in [[ANTLR4]] is presented below.</p>
-            <pre>
-grammar YARSpg;
-
-yarspg
-    : statement+ EOF
-    ;
-
-statement
-    : node
-    | edge
-    | prefix_directive
-    | metadata
-    | node_schema
-    | edge_schema
-    | section
-    ;
-
-prefix_directive
-    : pname IRI
-    ;
-
-pname
-    : ':' ALNUM_PLUS ':'
-    ;
-
-pn_local
-    : ALNUM_PLUS
-    ;
-
-metadata
-    : '-' pn_local pname (STRING | IRI)
-    | '-' IRI ':' (STRING | IRI)
-    ;
-
-graph_name
-    : STRING
-    ;
-
-annotation
-    : string_annotation
-    | rdf_annotation
-    ;
-
-string_annotation
-    : STRING ':' STRING
-    ;
-
-rdf_annotation
-    : pn_local pname (STRING | IRI)
-    | IRI ':' (STRING | IRI)
-    ;
-
-annotations_list
-    : '+' annotation (',' annotation)*
-    ;
-
-props_list
-    : '[' prop (',' prop)* ']'
-    ;
-
-graphs_list
-    : '/' graph_name (',' graph_name)* '/'
-    ;
-
-node
-    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? props_list? graphs_list? annotations_list?
-    ;
-
-edge
-    : directed
-    | undirected
-    ;
-
-section
-    : '%' SECTION_NAME
-    ;
-
-directed
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' props_list? '->' '(' node_id ')' graphs_list? annotations_list?
-    ;
-
-undirected
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' props_list? '-' '(' node_id ')' graphs_list? annotations_list?
-    ;
-
-node_id
-    : STRING
-    ;
-
-node_label
-    : STRING
-    ;
-
-prop
-    : key ':' value
-    ;
-
-edge_id
-    : STRING
-    ;
-
-edge_label
-    : STRING
-    ;
-
-key
-    : STRING
-    ;
-
-value
-    : primitive_value
-    | complex_value
-    ;
-
-primitive_value
-    : STRING
-    | NUMBER
-    | DATETYPE
-    | BOOL
-    | 'null'
-    ;
-
-complex_value
-    : set
-    | list
-    | struct
-    ;
-
-set
-    : '{' (primitive_value | set) (',' (primitive_value | set))* '}'
-    ;
-
-list
-    : '[' (primitive_value | list) (',' (primitive_value | list))* ']'
-    ;
-
-struct
-    : '{' key ':' (primitive_value | struct) (',' key ':' (primitive_value | struct))* '}'
-    ;
-
-node_schema
-    : 'S' '{' node_label (',' node_label)* '}' prop_list_schema? graphs_list? annotations_list?
-    ;
-
-prop_list_schema
-    : '[' prop_schema (',' prop_schema)* ']'
-    ;
-
-prop_schema
-    : key ':' value_schema
-    ;
-
-value_schema
-    : primitive_value_schema
-    | complex_value_schema
-    ;
-
-primitive_value_schema
-    // NUMBER
-    : 'Decimal'
-    | 'SmallInt'
-    | 'Integer'
-    | 'BigInt'
-    | 'Float'
-    | 'Real'
-    | 'Double'
-    // BOOL
-    | 'Bool'
-    | 'Null'
-    // STRING
-    | 'String'
-    // DATETYPE
-    | 'Date'
-    | 'Time'
-    | 'Timestamp'
-    ;
-
-complex_value_schema
-    : set_schema
-    | list_schema
-    | struct_schema
-    ;
-
-set_schema
-    : 'Set' '(' (primitive_value_schema | set_schema) ')'
-    ;
-
-list_schema
-    : 'List' '(' (primitive_value_schema | list_schema) ')'
-    ;
-
-struct_schema
-    : 'Struct' '(' (primitive_value_schema | struct_schema) ')'
-    ;
-
-edge_schema
-    : directed_schema
-    | undirected_schema
-    ;
-
-directed_schema
-    : 'S' '(' node_label ')' '-' '{' edge_label '}' prop_list_schema? '->' '(' node_label ')'
-    ;
-
-undirected_schema
-    : 'S' '(' node_label ')' '-' '{' edge_label '}' prop_list_schema? '-' '(' node_label ')'
-    ;
-
-SECTION_NAME
-    : 'PREFIXES'
-    | 'METADATA'
-    | 'NODE SCHEMAS'
-    | 'EDGE SCHEMAS'
-    | 'NODES'
-    | 'EDGES'
-    ;
-
-COMMENT
-    : '#' ~[\r\n\f]* -> skip
-    ;
-
-STRING
-    : STRING_LITERAL_QUOTE
-    ;
-
-NUMBER
-    : SIGN? [0-9]+'.'?[0-9]*
-    ;
-
-BOOL
-    : 'true'
-    | 'false'
-    ;
-
-DATETYPE
-    : DATE | TIME | TIMESTAMP
-    ;
-
-DATE
-    : [0-9][0-9][0-9][0-9] '-' [0-9][0-9] '-' [0-9][0-9]
-    ;
-
-TIME
-    : [0-9][0-9] ':' [0-9][0-9] ':' [0-9][0-9] TIMEZONE?
-    ;
-
-TIMEZONE
-    : SIGN? [0-9][0-9] ':' [0-9][0-9]
-    ;
-
-SIGN
-    : '+'
-    | '-'
-    ;
-
-TIMESTAMP
-    : DATE 'T' TIME
-    ;
-
-STRING_LITERAL_QUOTE
-    : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
-    ;
-
-ALNUM_PLUS
-    : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
-    ;
-IRI
-    : '<' (PN_CHARS | '.' | ':' | '/' | '\\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
-    ;
-PN_CHARS
-    : PN_CHARS_U | '-' | [0-9] | '\u00B7' | [\u0300-\u036F] | [\u203F-\u2040]
-    ;
-PN_CHARS_U
-    : PN_CHARS_BASE | '_'
-    ;
-UCHAR
-    : '\\u' HEX HEX HEX HEX | '\\U' HEX HEX HEX HEX HEX HEX HEX HEX
-    ;
-PN_CHARS_BASE
-    : 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '\u00C0' .. '\u00D6' | '\u00D8' .. '\u00F6' | '\u00F8' .. '\u02FF' | '\u0370' .. '\u037D' | '\u037F' .. '\u1FFF' | '\u200C' .. '\u200D' | '\u2070' .. '\u218F' | '\u2C00' .. '\u2FEF' | '\u3001' .. '\uD7FF' | '\uF900' .. '\uFDCF' | '\uFDF0' .. '\uFFFD'
-    ;
-HEX
-    : [0-9] | [A-F] | [a-f]
-    ;
-
-WS
-    : [ \t\n\r]+ -> skip
-    ;
-        </pre>
-
-        </section>
-        <section id=yarspg-grammar-ebnf>
-
             <p>A preview version of YARS-PG grammar in [[EBNF-NOTATION]] is presented below.</p>
-
             <pre>
-yarspg   ::= statement+ EOF
+yarspg   ::= statement+
 statement
          ::= node
            | edge
@@ -729,7 +428,7 @@ value    ::= primitive_value
            | complex_value
 primitive_value
          ::= STRING
-           | Integer
+           | NUMBER
            | DATETYPE
            | BOOL
            | 'null'
@@ -780,22 +479,16 @@ directed_schema
          ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '->' ( '(' node_label ')' )?
 undirected_schema
          ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '-' ( '(' node_label ')' )?
-_        ::= COMMENT
-           | WS
-          /* ws: definition */
-
-<?TOKENS?>
 
 SECTION_NAME
-         ::= 'PREFIXES'
-           | 'METADATA'
+         ::= 'METADATA'
            | 'NODE SCHEMAS'
            | 'EDGE SCHEMAS'
            | 'NODES'
            | 'EDGES'
 COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= STRING_LITERAL_QUOTE
-Integer   ::= SIGN? [0-9]+ '.'? [0-9]*
+NUMBER   ::= SIGN? [0-9]+ '.'? [0-9]*
 BOOL     ::= 'true'
            | 'false'
 STRING_LITERAL_QUOTE
@@ -822,11 +515,8 @@ UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
 PN_CHARS_BASE
          ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
 HEX      ::= [0-9A-Fa-f]
-WS       ::= [ #x9#xa#xd]+
-EOF      ::= $
+WS       ::= [ #x9#xa]+
     </pre>
-
-        </section>
     </section>
     <section class="informative" id='parsers'>
         <h2>Parsers</h2>

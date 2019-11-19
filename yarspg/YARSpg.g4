@@ -232,8 +232,7 @@ undirected_schema
     ;
 
 SECTION_NAME
-    : 'PREFIXES'
-    | 'METADATA'
+    : 'METADATA'
     | 'NODE SCHEMAS'
     | 'EDGE SCHEMAS'
     | 'NODES'
@@ -309,5 +308,5 @@ HEX
     ;
 
 WS
-    : [ \t\n\r]+ -> skip
+    : [ \t\n]+ -> skip
     ;
