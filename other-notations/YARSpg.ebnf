@@ -137,7 +137,7 @@ _        ::= COMMENT
 
 SECTION_NAME
          ::= 'PREFIXES'
-           | 'METADATAS'
+           | 'METADATA'
            | 'NODE SCHEMAS'
            | 'EDGE SCHEMAS'
            | 'NODES'

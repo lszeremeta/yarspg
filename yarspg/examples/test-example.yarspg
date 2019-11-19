@@ -7,7 +7,7 @@
 :foaf: <http://xmlns.com/foaf/0.1/>
 
 # Metadata
-% METADATAS
+% METADATA
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 -foaf:maker: <http://example.com/me>
 -dc:test: "Test metadata"

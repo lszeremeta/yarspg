@@ -233,7 +233,7 @@ undirected_schema
 
 SECTION_NAME
     : 'PREFIXES'
-    | 'METADATAS'
+    | 'METADATA'
     | 'NODE SCHEMAS'
     | 'EDGE SCHEMAS'
     | 'NODES'
