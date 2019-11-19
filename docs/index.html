@@ -127,9 +127,10 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
             <h2>Metadata</h2>
             <p>A <dfn>metadata declaration</dfn> represents a collection of metadata for the document.</p>
             <aside class="example" title="Metadata declaration">
-                <p>The example presents metadata declaration with <code>foaf:maker</code>.
+                <p>The example presents metadata declaration with <code>foaf</code> prefix and the same metadata declaration with full IRI below.
                     <pre>
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
+-&lt;http://xmlns.com/foaf/0.1/maker&gt;: "Łukasz Szeremeta and Dominik Tomaszuk"
   </pre>
             </aside>
         </section>
@@ -179,11 +180,13 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
         <section id='annotation'>
             <h2>Annotation</h2>
             An <dfn>annotation</dfn> is represented as a pair <code>k:v</code>, where <code>k</code> is the key (that
-            can be a string or QName) and <code>v</code> the value of attribute.</p>
+            can be a string, QName or IRI) and <code>v</code> the value of attribute.</p>
             <aside class="example" title="Annotation declaration">
-                <p>The example presents node declaration for node and annotation.</p>
+                <p>The example presents three variants of node declaration with annotation. The first one contains an RDF annotation with prefix, the second one contains an RDF annotation with IRI and the third one contains a string annotation.</p>
                 <pre>
     <"b43b">{"label1"}["value":5]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
+    <"b43b">{"label1"}["value":5]+&lt;http://xmlns.com/foaf/0.1/maker&gt;: "Łukasz Szeremeta and Dominik Tomaszuk"
+    <"b43b">{"label1"}["value":5]+"maker": "Łukasz Szeremeta and Dominik Tomaszuk"
     </pre>
             </aside>
         </section>
