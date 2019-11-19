@@ -133,23 +133,6 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
   </pre>
             </aside>
         </section>
-        <section id='section'>
-            <h2>Section</h2>
-            <p>An optional <dfn>section declaration</dfn> represents a name of the section of the YARS-PG document.</p>
-            <p>The following sections are distinguished: <code>PREFIXES</code>, <code>METADATA</code>,
-                <code>NODES</code>, <code>NODE SCHEMAS</code>, <code>EDGES</code> and <code>EDGE SCHEMAS</code>.</p>
-            <aside class="example" title="Section declaration">
-                <p>The example presents <code>PREFIXES</code> and <code>METADATA</code> sections declarations with
-                    prefix and metadata declarations.
-                    <pre>
-% PREFIXES
-:foaf: <http://xmlns.com/foaf/0.1/>
-
-% METADATA
--foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
-      </pre>
-            </aside>
-        </section>
         <section id='node'>
             <h2>Node</h2>
             <p>A <dfn>node declaration</dfn> begins with the node identifier, followed by a list of node labels and
@@ -308,6 +291,91 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
             </section>
         </section>
     </section>
+    <section id='canonical-form'>
+        <h2>Canonical form</h2>
+        <p>A <dfn>canonical version of YARS-PG</dfn> must meet the list of conditions specified below.</p>
+        <ul>
+            <li>Cannot contain:
+                <ul>
+                    <li>comments,</li>
+                    <li>blank lines,</li>
+                    <li>whitespaces between serialization elements (e.g. excluding <code>String</code> value),</li>
+                    <li>prefix declarations and prefixed version of IRI.</li>
+                </ul>
+            </li>
+            <li>each declaration must be definied on one line only (no multi-line declarations),</li>
+            <li>document must be divided into sections with section declarations.</li>
+        </ul>
+
+        <aside class="example" title="Bibliographic information - canonical form">
+            <p>The example presents a graphical representation of a property graph that contains bibliographic
+                information in canonical form
+                <pre>
+%PREFIXES
+:foaf:<http://xmlns.com/foaf/0.1/>
+%METADATA
+-foaf:maker:"Łukasz Szeremeta and Dominik Tomaszuk"
+%NODE SCHEMAS
+S{"Author"}["fname":String,"lname":String]
+S{"Entry","InProc"}["title":String,"numpages":Integer,"keyword":String]
+S{"Entry","Article"}["title":String,"numpages":Integer,"keyword":List(String)]
+S{"Proceedings"}["title":String,"year":Integer,"month":String]
+S{"Journal"}["title":String,"year":Integer,"vol":Integer]
+%NODES
+<"Author01">{"Author"}["fname":"John","lname":"Smith"]#Author01
+<"Author02">{"Author"}["fname":"Alice","lname":"Brown"]
+<"EI01">{"Entry","InProc"}["title":"Serialization for...","numpages":10,"keyword":"Graph database"]
+<"EA01">{"Entry","Article"}["title":"Property Graph...","numpages":10,"keyword":["Query","Graph"]]
+<"Proc01">{"Proceedings"}["title":"BDAS","year":2018,"month":"May"]
+<"Jour01">{"Journal"}["title":"J. DB","year":2020,"vol":30]
+%EDGE SCHEMAS
+S("Entry")-{"has_author"}["order":Integer]->("Author")
+S("Entry")-{"cities"}->("Entry")
+S("InProc")-{"booktitle"}["pages":String]->("Proceedings")
+S("Article")-{"published_in"}["pages":String]->("Journal")
+%EDGES
+("EI01")-{"has_author"}["order":1]->("Author01")
+("EI01")-{"has_author"}["order":2]->("Author02")
+("EA01")-{"has_author"}["order":1]->("Author02")
+("EA01")-{"cites"}->("EI01")
+("EI01")-{"booktitle"}["pages":"111-121"]->("Proc01")
+("EA01")-{"published_in"}["pages":"222-232"]->("Jour01")
+          </pre>
+        </aside>
+
+        <section id='section'>
+            <h2>Section declaration</h2>
+            <p>A <dfn>section declaration</dfn> represents a name of the section of the YARS-PG document.</p>
+            <p>The following sections are distinguished: <code>PREFIXES</code>, <code>METADATA</code>,
+                <code>NODE SCHEMAS</code>, <code>NODES</code>, <code>EDGE SCHEMAS</code> and <code>EDGES</code>.</p>
+            <aside class="example" title="Section declaration">
+                <p>The example presents <code>PREFIXES</code> and <code>METADATA</code> sections declarations with
+                    prefix and metadata declarations.
+                    <pre>
+        %PREFIXES
+        :foaf:<http://xmlns.com/foaf/0.1/>
+        %METADATA
+        -foaf:maker:"Łukasz Szeremeta and Dominik Tomaszuk"
+              </pre>
+            </aside>
+        </section>
+
+        <section id='canonicalization'>
+            <h2>Canonicalization</h2>
+            <p>The following algorithm can be used to convert YARS-PG into a canonical version:</p>
+            <ol class="algorithm">
+                <li>Remove all comments</li>
+                <li>Transform prefixes into full IRI</li>
+                <li>Remove prefix declarations</li>
+                <li>Roll up multi-line declaration into one line declaration</li>
+                <li>Reorder declarations for sections: prefixes, metadata, node schemas, nodes, edge schemas, edges</li>
+                <li>Add section declaration for each section</li>
+                <li>Remove all blank lines</li>
+                <li>Remove all whitespaces between serialization elements</li>
+            </ol>
+        </section>
+    </section>
+
     <section id='yarspg-grammar'>
         <h2>YARS-PG Grammar</h2>
         <p>The grammar of YARS-PG is written in [[ANTLR4]]. We have also prepared a preview of the grammar in
