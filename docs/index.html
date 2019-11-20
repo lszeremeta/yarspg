@@ -69,6 +69,12 @@ S{"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(Stri
 S{"Proceedings"}["title": String, "year": Integer, "month": String]
 S{"Journal"}["title": String, "year": Integer, "vol": Integer]
 
+# Edge schema
+S("Entry")-{"has_author"}["order": Integer]->("Author")
+S("Entry")-{"cities"}->("Entry")
+S("InProc")-{"booktitle"}["pages": String]->("Proceedings")
+S("Article")-{"published_in"}["pages": String]->("Journal")
+
 # Nodes
 <"Author01">{"Author"}["fname": "John", "lname": "Smith"] #Author01
 <"Author02">{"Author"}["fname": "Alice", "lname": "Brown"]
@@ -76,12 +82,6 @@ S{"Journal"}["title": String, "year": Integer, "vol": Integer]
 <"EA01">{"Entry", "Article"}["title": "Property Graph...",  "numpages": 10, "keyword": ["Query", "Graph"]]
 <"Proc01">{"Proceedings"}["title": "BDAS", "year": 2018, "month": "May"]
 <"Jour01">{"Journal"}["title": "J. DB", "year": 2020, "vol": 30]
-
-# Edge schema
-S("Entry")-{"has_author"}["order": Integer]->("Author")
-S("Entry")-{"cities"}->("Entry")
-S("InProc")-{"booktitle"}["pages": String]->("Proceedings")
-S("Article")-{"published_in"}["pages": String]->("Journal")
 
 # Edge
 ("EI01")-{"has_author"}["order": 1]->("Author01")
@@ -125,9 +125,11 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
         </section>
         <section id='metadata'>
             <h2>Metadata</h2>
-            <p>A <dfn>metadata declaration</dfn> represents a collection of metadata for the document.</p>
+            <p>A document <dfn>metadata declaration</dfn> associates metadata key (IRI or QName) with metadata value
+                (string or IRI).</p>
             <aside class="example" title="Metadata declaration">
-                <p>The example presents metadata declaration with <code>foaf</code> prefix and the same metadata declaration with full IRI below.
+                <p>The example presents metadata declaration with <code>foaf</code> prefix and the same metadata
+                    declaration with full IRI below.
                     <pre>
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 -&lt;http://xmlns.com/foaf/0.1/maker&gt;: "Łukasz Szeremeta and Dominik Tomaszuk"
@@ -137,8 +139,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
         <section id='node'>
             <h2>Node</h2>
             <p>A <dfn>node declaration</dfn> begins with the node identifier, followed by a list of node labels and
-                optional
-                properties of the node.</p>
+                optional node properties, optional list of graph names and optional annotation list.</p>
             <aside class="example" title="Node declaration">
                 <p>The example presents node declaration for node <code>EI01</code>. This node have two labels
                     (<code>Entry</code> and <code>InProc</code>)
@@ -150,13 +151,14 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
         </section>
         <section id='edge'>
             <h2>Edge</h2>
-            <p>A <dfn>relationship declaration</dfn> begins with the source node identifier, followed by relationship
+            <p>An <dfn>edge declaration</dfn> begins with the source node identifier, followed by relationship
                 identifier
-                (optional), a label, a set of properties (optional) and target node identifier. Relationships can be
+                (optional), a label, a set of properties (optional), target node identifier, optional list of graph
+                names and optional annotation list. Edge can be
                 directed (<code>-></code>) or undirected (<code>-</code>).</p>
             <aside class="example" title='Edge declaration'>
                 <p>The example presents edge declaration from source node <code>EI01</code> to target node
-                    <code>Author01</code>. Relationship
+                    <code>Author01</code>. Edge
                     have label <code>has_author</code> and one property (<code>order</code>).
                     <pre>
 ("EI01")-{"has_author"}["order":1]->("Author01")
@@ -173,16 +175,19 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
             <aside class="example" title="Edge declaration with Timestamp property value">
                 <p>The example presents edge declaration with <code>Timestamp</code> property value.</p>
                 <pre>
-("ABC5")-{"label5"}["timestamp": 1999-01-01T11:15:32]->("XYZ5")
+("EA01")-{"published_at"}["timestamp": 2019-01-01T11:15:32+01:00]->("Jour01")
   </pre>
 
         </section>
         <section id='annotation'>
             <h2>Annotation</h2>
             An <dfn>annotation</dfn> is represented as a pair <code>k:v</code>, where <code>k</code> is the key (that
-            can be a string, QName or IRI) and <code>v</code> the value of attribute.</p>
+            can be a string, QName or IRI) and <code>v</code> the value of attribute (that can be QName or IRI for QName
+            and IRI key and string for string key).</p>
             <aside class="example" title="Annotation declaration">
-                <p>The example presents three variants of node declaration with annotation. The first one contains an RDF annotation with prefix, the second one contains an RDF annotation with IRI and the third one contains a string annotation.</p>
+                <p>The example presents three variants of node declaration with annotation. The first one contains an
+                    RDF annotation with prefix, the second one contains an RDF annotation with IRI and the third one
+                    contains a string annotation.</p>
                 <pre>
     <"b43b">{"label1"}["value":5]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
     <"b43b">{"label1"}["value":5]+&lt;http://xmlns.com/foaf/0.1/maker&gt;: "Łukasz Szeremeta and Dominik Tomaszuk"
@@ -206,44 +211,45 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
     <section id='yarspg-schema-language'>
         <h2>YARS-PG Schema Language</h2>
         <p>An <dfn>YARS-PG schemas</dfn> may be used to determine the expected structure of a YARS-PG document.</p>
-        <section id='snodes'>
-            <h2>Nodes</h2>
+        <section id='node-schema'>
+            <h2>Node schema</h2>
             <p>A <dfn>node schema declaration</dfn> begins with list of node labels, followed by optional properties of
-                the node.</p>
-            <aside class="example" title="Node schema declaration">
-                <p>The example presents node schema declaration.</p>
+                the node with its value type, optional list of graph names and optional annotation list.</p>
+            <aside class="example" title="Node schema declaration for corresponding node">
+                <p>The example presents node schema declaration with the corresponding node declaration. Node schema
+                    have <code>Author</code> node label and two properties (<code>fname</code> and <code>lname</code>
+                    with <code>String</code> type value).</p>
                 <pre>
 S{"Author"}["fname": String, "lname": String]
-S{"Entry", "InProc"}["title": String, "numpages": Integer, "keyword": String]
-S{"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)]
-S{"Proceedings"}["title": String, "year": Integer, "month": String]
-S{"Journal"}["title": String, "year": Integer, "vol": Integer]
+<"Author02">{"Author"}["fname": "Alice", "lname": "Brown"]
   </pre>
             </aside>
         </section>
-        <section id='sedges'>
-            <h2>Edges</h2>
-            <p>A <dfn>relationship schema declaration</dfn> begins with the node label, followed by a label,
-                a set of properties (optional) and target node identifier. Relationships schema can be
+        <section id='edge-schema'>
+            <h2>Edge schema</h2>
+            <p>An <dfn>edge schema declaration</dfn> begins with the node label, followed by a label,
+                a set of properties (optional) and target node label. Edge schema can be
                 directed (<code>-></code>) or undirected (<code>-</code>).</p>
             <aside class="example" title="Edge schema declaration">
-                <p>The example presents edge schema declaration.</p>
+                <p>The example presents edge schema declarations with the corresponding edge declaration.
+                    Edge schema have <code>EI01</code> node label followed by <code>has_author</code> label,
+                    <code>order</code> property with <code>Integer</code> type value and <code>Author</code> target node
+                    label.</p>
                 <pre>
 S("Entry")-{"has_author"}["order": Integer]->("Author")
-S("Entry")-{"cities"}->("Entry")
-S("InProc")-{"booktitle"}["pages": String]->("Proceedings")
-S("Article")-{"published_in"}["pages": String]->("Journal")
+("EI01")-{"has_author"}["order": 1]->("Author01")
   </pre>
             </aside>
         </section>
         <section id='datatypes'>
-            <h2>Datatypes</h2>
-            <p>YARS-PG supports several primitive and complex <dfn>datatypes</dfn> including <code>String</code>,
-                <code>Integer</code>, <code>Date</code> and <code>List</code>. Datatypes can be used to declare the type
+            <h2>Data types</h2>
+            <p>YARS-PG supports several primitive and complex <dfn>data types</dfn> including <code>String</code>,
+                <code>Integer</code>, <code>Date</code> and <code>List</code>. Data types can be used to declare the
+                type
                 of expected value in schemas.</p>
             <section id='pdatatype'>
-                <h3>Primitive datatypes</h3>
-                <p>The following <dfn>primitive datatypes</dfn> are supported:
+                <h3>Primitive data types</h3>
+                <p>The following <dfn>primitive data types</dfn> are supported:
                     <code>Decimal</code>, <code>SmallInt</code>, <code>Integer</code>, <code>BigInt</code>,
                     <code>Float</code>, <code>Real</code>, <code>Double</code>, <code>Bool</code>, <code>Null</code>,
                     <code>String</code>, <code>Date</code>, <code>Time</code> and <code>Timestamp</code>.</p>
@@ -257,17 +263,17 @@ S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
               </pre>
                 </aside>
 
-                <aside class="example" title="Timestamp property with timezone in the edge schema and edge declaration">
-                    <p>The example presents edge schema and edge declarations with <code>Timezone</code> property.</p>
+                <aside class="example" title="Timestamp property in the edge schema and edge declaration">
+                    <p>The example presents edge schema and edge declarations with <code>Timestamp</code> property.</p>
                     <pre>
-S("A6")-{"label6"}["timestamptzp": Timestamp]->("Z6")
-("ABC6")-{"label6"}["timestamptzp": 1999-01-01T11:15:32+01:30]->("XYZ6")
+S("Article")-{"published_at"}["timestamp": Timestamp]->("Journal")
+("EA01")-{"published_at"}["timestamp": 2019-01-01T11:15:32]->("Jour01")
               </pre>
                 </aside>
             </section>
             <section id='cdatatype'>
-                <h3>Complex datatypes</h3>
-                <p>The following <dfn>complex datatypes</dfn> are supported:
+                <h3>Complex data types</h3>
+                <p>The following <dfn>complex data types</dfn> are supported:
                     <code>Set</code>, <code>List</code> and <code>Struct</code>.</p>
                 <p><code>Set</code> disallows duplicate elements. <code>List</code> allows duplicate elements, provided
                     the order of retrieval is not significant. <code>Struct</code> is a collection of name/value pairs.
@@ -302,7 +308,8 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
                 <ul>
                     <li>comments,</li>
                     <li>empty lines with only LF or CR,</li>
-                    <li>whitespaces (spaces <code>U+0020</code> or tabs <code>U+0009</code>) between serialization elements (e.g. excluding <code>String</code> value),</li>
+                    <li>whitespaces (spaces <code>U+0020</code> or tabs <code>U+0009</code>) between serialization
+                        elements (e.g. excluding <code>String</code> value),</li>
                     <li>prefix declarations and prefixed version of IRI.</li>
                 </ul>
             </li>
@@ -312,8 +319,8 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
 
         <aside class="example" title="Bibliographic information - canonical form">
             <p>The example presents a graphical representation of a property graph that contains bibliographic
-                information in canonical form
-                <pre>
+                information in canonical form.</p>
+            <pre>
 %METADATA
 -&lt;http://xmlns.com/foaf/0.1/maker&gt;:"Łukasz Szeremeta and Dominik Tomaszuk"
 %NODE SCHEMAS
@@ -366,10 +373,12 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
                 <li>Transform prefixes into full IRIs</li>
                 <li>Remove prefix declarations</li>
                 <li>Roll up multi-line declarations into one line declarations</li>
-                <li>Reorder declarations for sections in that order: metadata, node schemas, edge schemas, nodes, edges</li>
+                <li>Reorder declarations for sections in that order: metadata, node schemas, edge schemas, nodes, edges
+                </li>
                 <li>Add section declaration for each section</li>
                 <li>Remove all empty lines with only LF or CR</li>
-                <li>Remove all whitespaces (spaces <code>U+0020</code> or tabs <code>U+0009</code>) between serialization elements</li>
+                <li>Remove all whitespaces (spaces <code>U+0020</code> or tabs <code>U+0009</code>) between
+                    serialization elements</li>
             </ol>
         </section>
     </section>
@@ -380,8 +389,8 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
             [[EBNF-NOTATION]].
         </p>
 
-            <p>A preview version of YARS-PG grammar in [[EBNF-NOTATION]] is presented below.</p>
-            <pre>
+        <p>A preview version of YARS-PG grammar in [[EBNF-NOTATION]] is presented below.</p>
+        <pre>
 yarspg   ::= statement+
 statement
          ::= node
