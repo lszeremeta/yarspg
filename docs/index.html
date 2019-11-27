@@ -64,7 +64,7 @@
 
 # Node schema
 S{"Author"}["fname": String, "lname": String]
-S{"Entry", "InProc"}["title": String, "numpages": Integer, "keyword": String]
+S{"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String]
 S{"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)]
 S{"Proceedings"}["title": String, "year": Integer, "month": String]
 S{"Journal"}["title": String, "year": Integer, "vol": Integer]
@@ -72,13 +72,13 @@ S{"Journal"}["title": String, "year": Integer, "vol": Integer]
 # Edge schema
 S("Entry")-{"has_author"}["order": Integer]->("Author")
 S("Entry")-{"cities"}->("Entry")
-S("InProc")-{"booktitle"}["pages": String]->("Proceedings")
+S("InProceedings")-{"booktitle"}["pages": String]->("Proceedings")
 S("Article")-{"published_in"}["pages": String]->("Journal")
 
 # Nodes
 <"Author01">{"Author"}["fname": "John", "lname": "Smith"] #Author01
 <"Author02">{"Author"}["fname": "Alice", "lname": "Brown"]
-<"EI01">{"Entry", "InProc"}["title": "Serialization for...", "numpages": 10, "keyword": "Graph database"]
+<"EI01">{"Entry", "InProceedings"}["title": "Serialization for...", "numpages": 10, "keyword": "Graph database"]
 <"EA01">{"Entry", "Article"}["title": "Property Graph...",  "numpages": 10, "keyword": ["Query", "Graph"]]
 <"Proc01">{"Proceedings"}["title": "BDAS", "year": 2018, "month": "May"]
 <"Jour01">{"Journal"}["title": "J. DB", "year": 2020, "vol": 30]
@@ -142,10 +142,10 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
                 optional node properties, optional list of graph names and optional annotation list.</p>
             <aside class="example" title="Node declaration">
                 <p>The example presents node declaration for node <code>EI01</code>. This node have two labels
-                    (<code>Entry</code> and <code>InProc</code>)
+                    (<code>Entry</code> and <code>InProceedings</code>)
                     and three properties (<code>title</code>, <code>numpages</code> and <code>keyword</code>).
                     <pre>
-<"EI01">{"Entry", "InProc"}["title": "Serialization for...", "numpages": 10, "keyword": "Graph database"]
+<"EI01">{"Entry", "InProceedings"}["title": "Serialization for...", "numpages": 10, "keyword": "Graph database"]
   </pre>
             </aside>
         </section>
@@ -275,8 +275,9 @@ S("Article")-{"published_at"}["timestamp": Timestamp]->("Journal")
                 <h3>Complex datatypes</h3>
                 <p>The following <dfn>complex datatypes</dfn> are supported:
                     <code>Set</code>, <code>List</code> and <code>Struct</code>.</p>
-                <p><code>Set</code> disallows duplicate elements. <code>List</code> allows duplicate elements, provided
-                    the order of retrieval is not significant. <code>Struct</code> is a collection of name/value pairs.
+                <p><code>Set</code> disallows duplicate elements and provided
+                    the order of retrieval is not significant. <code>List</code> allows duplicate elements and provided
+                    the order of retrieval is significant. <code>Struct</code> is a collection of name/value pairs.
                 </p>
 
                 <aside class="example" title="Set property in the node schema and node declaration">
@@ -325,19 +326,19 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
 -&lt;http://xmlns.com/foaf/0.1/maker&gt;:"Łukasz Szeremeta and Dominik Tomaszuk"
 %NODE SCHEMAS
 S{"Author"}["fname":String,"lname":String]
-S{"Entry","InProc"}["title":String,"numpages":Integer,"keyword":String]
+S{"Entry","InProceedings"}["title":String,"numpages":Integer,"keyword":String]
 S{"Entry","Article"}["title":String,"numpages":Integer,"keyword":List(String)]
 S{"Proceedings"}["title":String,"year":Integer,"month":String]
 S{"Journal"}["title":String,"year":Integer,"vol":Integer]
 %EDGE SCHEMAS
 S("Entry")-{"has_author"}["order":Integer]->("Author")
 S("Entry")-{"cities"}->("Entry")
-S("InProc")-{"booktitle"}["pages":String]->("Proceedings")
+S("InProceedings")-{"booktitle"}["pages":String]->("Proceedings")
 S("Article")-{"published_in"}["pages":String]->("Journal")
 %NODES
 <"Author01">{"Author"}["fname":"John","lname":"Smith"]#Author01
 <"Author02">{"Author"}["fname":"Alice","lname":"Brown"]
-<"EI01">{"Entry","InProc"}["title":"Serialization for...","numpages":10,"keyword":"Graph database"]
+<"EI01">{"Entry","InProceedings"}["title":"Serialization for...","numpages":10,"keyword":"Graph database"]
 <"EA01">{"Entry","Article"}["title":"Property Graph...","numpages":10,"keyword":["Query","Graph"]]
 <"Proc01">{"Proceedings"}["title":"BDAS","year":2018,"month":"May"]
 <"Jour01">{"Journal"}["title":"J. DB","year":2020,"vol":30]

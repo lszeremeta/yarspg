@@ -2,19 +2,19 @@
 -<http://xmlns.com/foaf/0.1/maker>:"Łukasz Szeremeta and Dominik Tomaszuk"
 %NODE SCHEMAS
 S{"Author"}["fname":String,"lname":String]
-S{"Entry","InProc"}["title":String,"numpages":Integer,"keyword":String]
+S{"Entry","InProceedings"}["title":String,"numpages":Integer,"keyword":String]
 S{"Entry","Article"}["title":String,"numpages":Integer,"keyword":List(String)]
 S{"Proceedings"}["title":String,"year":Integer,"month":String]
 S{"Journal"}["title":String,"year":Integer,"vol":Integer]
 %EDGE SCHEMAS
 S("Entry")-{"has_author"}["order":Integer]->("Author")
 S("Entry")-{"cities"}->("Entry")
-S("InProc")-{"booktitle"}["pages":String]->("Proceedings")
+S("InProceedings")-{"booktitle"}["pages":String]->("Proceedings")
 S("Article")-{"published_in"}["pages":String]->("Journal")
 %NODES
 <"Author01">{"Author"}["fname":"John","lname":"Smith"]#Author01
 <"Author02">{"Author"}["fname":"Alice","lname":"Brown"]
-<"EI01">{"Entry","InProc"}["title":"Serialization for...","numpages":10,"keyword":"Graph database"]
+<"EI01">{"Entry","InProceedings"}["title":"Serialization for...","numpages":10,"keyword":"Graph database"]
 <"EA01">{"Entry","Article"}["title":"Property Graph...","numpages":10,"keyword":["Query","Graph"]]
 <"Proc01">{"Proceedings"}["title":"BDAS","year":2018,"month":"May"]
 <"Jour01">{"Journal"}["title":"J. DB","year":2020,"vol":30]
