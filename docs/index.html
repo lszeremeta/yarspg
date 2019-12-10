@@ -391,145 +391,614 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
         </p>
 
         <p>A preview version of YARS-PG grammar in [[EBNF-NOTATION]] is presented below.</p>
-        <pre>
-yarspg   ::= statement+
-statement
-         ::= node
-           | edge
-           | prefix_directive
-           | metadata
-           | node_schema
-           | edge_schema
-           | section
-prefix_directive
-         ::= pname IRI
-pname    ::= ':' ALNUM_PLUS ':'
-pn_local ::= ALNUM_PLUS
-metadata ::= '-' ( pn_local pname STRING | IRI ':' ( STRING | IRI ) )
-annotation
-         ::= string_annotation
-           | rdf_annotation
-string_annotation
-         ::= STRING ':' STRING
-rdf_annotation
-         ::= ( pn_local pname | IRI ':' ) ( STRING | IRI )
-annotations_list
-         ::= '+' annotation ( ',' annotation )+
-props_list
-         ::= '[' prop ( ',' prop )+ ']'
-graphs_list
-         ::= '/' graph_name ( ',' graph_name )+ '/'
+<table class='grammar'>
+<tbody id='grammar-productions'>
+<tr id='grammar-production-yarspg'>
+<td>[1]</td>
+<td><code>yarspg</code></td>
+<td>::=</td>
+<td>
+statement+
+</td>
+</tr>
+<tr id='grammar-production-statement'>
+<td>[2]</td>
+<td><code>statement</code></td>
+<td>::=</td>
+<td>
 node
-         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? props_list? graphs_list? annotations_list?
-edge
-         ::= directed
-           | undirected
-section  ::= '%' SECTION_NAME           
-directed ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' props_list? '->' '(' node_id ')' graphs_list? annotations_list?
-undirected
-         ::= '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' props_list? '-' '(' node_id ')' graphs_list? annotations_list?
-node_id  ::= STRING
-node_label
-         ::= STRING
-prop
-         ::= key ':' value         
-edge_id   ::= STRING
-edge_label
-         ::= STRING
-key      ::= STRING
-value    ::= primitive_value
-           | complex_value
-primitive_value
-         ::= STRING
-           | NUMBER
-           | DATETYPE
-           | BOOL
-           | 'null'
-complex_value
-         ::= set
-           | list
-           | struct
-set ::= '{' ( primitive_value | set ) ( ',' ( primitive_value | set ) )* '}'
-list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
-struct     ::= '{' key ':' ( primitive_value | struct ) ( ',' key ':' ( primitive_value | struct ) )* '}'
-node_schema
-         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? props_list_schema? graphs_list? annotations_list?
-props_list_schema
-         ::= '[' prop_schema ( ',' prop_schema )+ ']'
-prop_schema
-         ::= key ':' value_schema
-value_schema
-         ::= primitive_value_schema
-           | complex_value_schema
-primitive_value_schema
-         ::= 'Decimal'
-           | 'SmallInt'
-           | 'Integer'
-           | 'BigInt'
-           | 'Float'
-           | 'Real'
-           | 'Double'
-           | 'Bool'
-           | 'Null'
-           | 'String'
-           | 'Date'
-           | 'Time'
-           | 'Timestamp'
-complex_value_schema
-         ::= set_schema
-           | list_schema
-           | struct_schema
-set_schema
-         ::= 'Set' '(' ( primitive_value_schema | set_schema ) ')'
-list_schema
-         ::= 'List' '(' ( primitive_value_schema | list_schema ) ')'
-struct_schema
-         ::= 'Struct' '(' ( primitive_value_schema | struct_schema ) ')'
-edge_schema
-         ::= directed_schema
-           | undirected_schema
-directed_schema
-         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '->' ( '(' node_label ')' )?
-undirected_schema
-         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '-' ( '(' node_label ')' )?
-
-SECTION_NAME
-         ::= 'METADATA'
-           | 'NODE SCHEMAS'
-           | 'EDGE SCHEMAS'
-           | 'NODES'
-           | 'EDGES'
-COMMENT  ::= '#' [^#xd#xa#xc]*
-STRING   ::= STRING_LITERAL_QUOTE
-NUMBER   ::= SIGN? [0-9]+ '.'? [0-9]*
-BOOL     ::= 'true'
-           | 'false'
-STRING_LITERAL_QUOTE
-         ::= '"' ( [^"\#xd#xa] | "'" | '\"' )* '"'
+| edge
+| prefix_directive
+| metadata
+| node_schema
+| edge_schema
+| section
+</td>
+</tr>
+<tr id='grammar-production-prefix_directive'>
+<td>[3]</td>
+<td><code>prefix_directive</code></td>
+<td>::=</td>
+<td>
+pname IRI
+</td>
+</tr>
+<tr id='grammar-production-pname'>
+<td>[4]</td>
+<td><code>pname</code></td>
+<td>::=</td>
+<td>
+":" ALNUM_PLUS ":"
+</td>
+</tr>
+<tr id='grammar-production-pn_local'>
+<td>[5]</td>
+<td><code>pn_local</code></td>
+<td>::=</td>
+<td>
 ALNUM_PLUS
-         ::= PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
-IRI  ::= '<' ( PN_CHARS | '.' | ':' | '/' | '\' | '#' | '@' | '%' | '&' | UCHAR )* '>'
-PN_CHARS ::= PN_CHARS_U
-           | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
-PN_CHARS_U
-         ::= PN_CHARS_BASE
-           | '_'
-DATETYPE ::= DATE
-           | TIME
-           | TIMESTAMP
-DATE     ::= [0-9] [0-9] [0-9] [0-9] '-' [0-9] [0-9] '-' [0-9] [0-9]
-TIME     ::= [0-9] [0-9] ':' [0-9] [0-9] ':' [0-9] [0-9] TIMEZONE?
-TIMEZONE ::= SIGN? [0-9] [0-9] ':' [0-9] [0-9]
-TIMESTAMP
-         ::= DATE 'T' TIME
-SIGN     ::= '+'
-           | '-'
-UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
-PN_CHARS_BASE
-         ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
-HEX      ::= [0-9A-Fa-f]
-WS       ::= [ #x9#xa]+
-    </pre>
+</td>
+</tr>
+<tr id='grammar-production-metadata'>
+<td>[6]</td>
+<td><code>metadata</code></td>
+<td>::=</td>
+<td>
+"-"
+(pn_local pname STRING | IRI ":" (STRING | IRI))
+</td>
+</tr>
+<tr id='grammar-production-annotation'>
+<td>[7]</td>
+<td><code>annotation</code></td>
+<td>::=</td>
+<td>
+string_annotation | rdf_annotation
+</td>
+</tr>
+<tr id='grammar-production-string_annotation'>
+<td>[8]</td>
+<td><code>string_annotation</code></td>
+<td>::=</td>
+<td>
+STRING ":" STRING
+</td>
+</tr>
+<tr id='grammar-production-rdf_annotation'>
+<td>[9]</td>
+<td><code>rdf_annotation</code></td>
+<td>::=</td>
+<td>
+(pn_local pname | IRI ":") (STRING | IRI)
+</td>
+</tr>
+<tr id='grammar-production-annotations_list'>
+<td>[10]</td>
+<td><code>annotations_list</code></td>
+<td>::=</td>
+<td>
+"+" annotation ("," annotation)+
+</td>
+</tr>
+<tr id='grammar-production-props_list'>
+<td>[11]</td>
+<td><code>props_list</code></td>
+<td>::=</td>
+<td>
+"[" prop ("," prop)+ "]"
+</td>
+</tr>
+<tr id='grammar-production-graphs_list'>
+<td>[12]</td>
+<td><code>graphs_list</code></td>
+<td>::=</td>
+<td>
+"/" graph_name ("," graph_name)+ "/"
+</td>
+</tr>
+<tr id='grammar-production-node'>
+<td>[13]</td>
+<td><code>node</code></td>
+<td>::=</td>
+<td>
+"<"
+node_id
+">"
+("{" node_label ("," node_label)+ "}")?
+props_list?
+graphs_list?
+annotations_list?
+</td>
+</tr>
+<tr id='grammar-production-edge'>
+<td>[14]</td>
+<td><code>edge</code></td>
+<td>::=</td>
+<td>
+directed | undirected
+</td>
+</tr>
+<tr id='grammar-production-section'>
+<td>[15]</td>
+<td><code>section</code></td>
+<td>::=</td>
+<td>
+"%" SECTION_NAME
+</td>
+</tr>
+<tr id='grammar-production-directed'>
+<td>[16]</td>
+<td><code>directed</code></td>
+<td>::=</td>
+<td>
+"("
+node_id
+")"
+"-"
+("<" edge_id ">")?
+"{"
+edge_label
+"}"
+props_list?
+"->"
+"("
+node_id
+")"
+graphs_list?
+annotations_list?
+</td>
+</tr>
+<tr id='grammar-production-undirected'>
+<td>[17]</td>
+<td><code>undirected</code></td>
+<td>::=</td>
+<td>
+"("
+node_id
+")"
+"-"
+("<" edge_id ">")?
+"{"
+edge_label
+"}"
+props_list?
+"-"
+"("
+node_id
+")"
+graphs_list?
+annotations_list?
+</td>
+</tr>
+<tr id='grammar-production-node_id'>
+<td>[18]</td>
+<td><code>node_id</code></td>
+<td>::=</td>
+<td>
+STRING
+</td>
+</tr>
+<tr id='grammar-production-node_label'>
+<td>[19]</td>
+<td><code>node_label</code></td>
+<td>::=</td>
+<td>
+STRING
+</td>
+</tr>
+<tr id='grammar-production-prop'>
+<td>[20]</td>
+<td><code>prop</code></td>
+<td>::=</td>
+<td>
+key ":" value
+</td>
+</tr>
+<tr id='grammar-production-edge_id'>
+<td>[21]</td>
+<td><code>edge_id</code></td>
+<td>::=</td>
+<td>
+STRING
+</td>
+</tr>
+<tr id='grammar-production-edge_label'>
+<td>[22]</td>
+<td><code>edge_label</code></td>
+<td>::=</td>
+<td>
+STRING
+</td>
+</tr>
+<tr id='grammar-production-key'>
+<td>[23]</td>
+<td><code>key</code></td>
+<td>::=</td>
+<td>
+STRING
+</td>
+</tr>
+<tr id='grammar-production-value'>
+<td>[24]</td>
+<td><code>value</code></td>
+<td>::=</td>
+<td>
+primitive_value | complex_value
+</td>
+</tr>
+<tr id='grammar-production-primitive_value'>
+<td>[25]</td>
+<td><code>primitive_value</code></td>
+<td>::=</td>
+<td>
+STRING | NUMBER | DATETYPE | BOOL | "null"
+</td>
+</tr>
+<tr id='grammar-production-complex_value'>
+<td>[26]</td>
+<td><code>complex_value</code></td>
+<td>::=</td>
+<td>
+set | list | struct
+</td>
+</tr>
+<tr id='grammar-production-set'>
+<td>[27]</td>
+<td><code>set</code></td>
+<td>::=</td>
+<td>
+"{"
+(primitive_value | set)
+("," (primitive_value | set))*
+"}"
+</td>
+</tr>
+<tr id='grammar-production-list'>
+<td>[28]</td>
+<td><code>list</code></td>
+<td>::=</td>
+<td>
+"["
+(primitive_value | list)
+("," (primitive_value | list))*
+"]"
+</td>
+</tr>
+<tr id='grammar-production-struct'>
+<td>[29]</td>
+<td><code>struct</code></td>
+<td>::=</td>
+<td>
+"{"
+key
+":"
+(primitive_value | struct)
+("," key ":" (primitive_value | struct))*
+"}"
+</td>
+</tr>
+<tr id='grammar-production-node_schema'>
+<td>[30]</td>
+<td><code>node_schema</code></td>
+<td>::=</td>
+<td>
+"S"
+("{" node_label ("," node_label)+ "}")?
+props_list_schema?
+graphs_list?
+annotations_list?
+</td>
+</tr>
+<tr id='grammar-production-props_list_schema'>
+<td>[31]</td>
+<td><code>props_list_schema</code></td>
+<td>::=</td>
+<td>
+"[" prop_schema ("," prop_schema)+ "]"
+</td>
+</tr>
+<tr id='grammar-production-prop_schema'>
+<td>[32]</td>
+<td><code>prop_schema</code></td>
+<td>::=</td>
+<td>
+key ":" value_schema
+</td>
+</tr>
+<tr id='grammar-production-value_schema'>
+<td>[33]</td>
+<td><code>value_schema</code></td>
+<td>::=</td>
+<td>
+primitive_value_schema | complex_value_schema
+</td>
+</tr>
+<tr id='grammar-production-primitive_value_schema'>
+<td>[34]</td>
+<td><code>primitive_value_schema</code></td>
+<td>::=</td>
+<td>
+"Decimal"
+| "SmallInt"
+| "Integer"
+| "BigInt"
+| "Float"
+| "Real"
+| "Double"
+| "Bool"
+| "Null"
+| "String"
+| "Date"
+| "Time"
+| "Timestamp"
+</td>
+</tr>
+<tr id='grammar-production-complex_value_schema'>
+<td>[35]</td>
+<td><code>complex_value_schema</code></td>
+<td>::=</td>
+<td>
+set_schema | list_schema | struct_schema
+</td>
+</tr>
+<tr id='grammar-production-set_schema'>
+<td>[36]</td>
+<td><code>set_schema</code></td>
+<td>::=</td>
+<td>
+"Set"
+"("
+(primitive_value_schema | set_schema)
+")"
+</td>
+</tr>
+<tr id='grammar-production-list_schema'>
+<td>[37]</td>
+<td><code>list_schema</code></td>
+<td>::=</td>
+<td>
+"List"
+"("
+(primitive_value_schema | list_schema)
+")"
+</td>
+</tr>
+<tr id='grammar-production-struct_schema'>
+<td>[38]</td>
+<td><code>struct_schema</code></td>
+<td>::=</td>
+<td>
+"Struct"
+"("
+(primitive_value_schema | struct_schema)
+")"
+</td>
+</tr>
+<tr id='grammar-production-edge_schema'>
+<td>[39]</td>
+<td><code>edge_schema</code></td>
+<td>::=</td>
+<td>
+directed_schema | undirected_schema
+</td>
+</tr>
+<tr id='grammar-production-directed_schema'>
+<td>[40]</td>
+<td><code>directed_schema</code></td>
+<td>::=</td>
+<td>
+"S"
+("(" node_label ")")?
+"-"
+"{"
+edge_label
+"}"
+props_list_schema?
+"->"
+("(" node_label ")")?
+</td>
+</tr>
+<tr id='grammar-production-undirected_schema'>
+<td>[41]</td>
+<td><code>undirected_schema</code></td>
+<td>::=</td>
+<td>
+"S"
+("(" node_label ")")?
+"-"
+"{"
+edge_label
+"}"
+props_list_schema?
+"-"
+("(" node_label ")")?
+</td>
+</tr>
+<tr id='grammar-production-SECTION_NAME'>
+<td>[42]</td>
+<td><code>SECTION_NAME</code></td>
+<td>::=</td>
+<td>
+"METADATA"
+| "NODE SCHEMAS"
+| "EDGE SCHEMAS"
+| "NODES"
+| "EDGES"
+</td>
+</tr>
+<tr id='grammar-production-COMMENT'>
+<td>[43]</td>
+<td><code>COMMENT</code></td>
+<td>::=</td>
+<td>
+"#" ([^#xd#xa#xc])*
+</td>
+</tr>
+<tr id='grammar-production-STRING'>
+<td>[44]</td>
+<td><code>STRING</code></td>
+<td>::=</td>
+<td>
+STRING_LITERAL_QUOTE
+</td>
+</tr>
+<tr id='grammar-production-NUMBER'>
+<td>[45]</td>
+<td><code>NUMBER</code></td>
+<td>::=</td>
+<td>
+SIGN? ([0-9])+ "."? ([0-9])*
+</td>
+</tr>
+<tr id='grammar-production-BOOL'>
+<td>[46]</td>
+<td><code>BOOL</code></td>
+<td>::=</td>
+<td>
+"true" | "false"
+</td>
+</tr>
+<tr id='grammar-production-STRING_LITERAL_QUOTE'>
+<td>[47]</td>
+<td><code>STRING_LITERAL_QUOTE</code></td>
+<td>::=</td>
+<td>
+'"' ([^"#xd#xa] | "'" | '"')* '"'
+</td>
+</tr>
+<tr id='grammar-production-ALNUM_PLUS'>
+<td>[48]</td>
+<td><code>ALNUM_PLUS</code></td>
+<td>::=</td>
+<td>
+PN_CHARS_BASE (PN_CHARS | ".")* PN_CHARS?
+</td>
+</tr>
+<tr id='grammar-production-IRI'>
+<td>[49]</td>
+<td><code>IRI</code></td>
+<td>::=</td>
+<td>
+"<"
+(PN_CHARS | "." | ":" | "/" | "\" | "#" | "@" | "%" | "&" | UCHAR)*
+">"
+</td>
+</tr>
+<tr id='grammar-production-PN_CHARS'>
+<td>[50]</td>
+<td><code>PN_CHARS</code></td>
+<td>::=</td>
+<td>
+PN_CHARS_U | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
+</td>
+</tr>
+<tr id='grammar-production-PN_CHARS_U'>
+<td>[51]</td>
+<td><code>PN_CHARS_U</code></td>
+<td>::=</td>
+<td>
+PN_CHARS_BASE | "_"
+</td>
+</tr>
+<tr id='grammar-production-DATETYPE'>
+<td>[52]</td>
+<td><code>DATETYPE</code></td>
+<td>::=</td>
+<td>
+DATE | TIME | TIMESTAMP
+</td>
+</tr>
+<tr id='grammar-production-DATE'>
+<td>[53]</td>
+<td><code>DATE</code></td>
+<td>::=</td>
+<td>
+[0-9]
+[0-9]
+[0-9]
+[0-9]
+"-"
+[0-9]
+[0-9]
+"-"
+[0-9]
+[0-9]
+</td>
+</tr>
+<tr id='grammar-production-TIME'>
+<td>[54]</td>
+<td><code>TIME</code></td>
+<td>::=</td>
+<td>
+[0-9]
+[0-9]
+":"
+[0-9]
+[0-9]
+":"
+[0-9]
+[0-9]
+TIMEZONE?
+</td>
+</tr>
+<tr id='grammar-production-TIMEZONE'>
+<td>[55]</td>
+<td><code>TIMEZONE</code></td>
+<td>::=</td>
+<td>
+SIGN? [0-9] [0-9] ":" [0-9] [0-9]
+</td>
+</tr>
+<tr id='grammar-production-TIMESTAMP'>
+<td>[56]</td>
+<td><code>TIMESTAMP</code></td>
+<td>::=</td>
+<td>
+DATE "T" TIME
+</td>
+</tr>
+<tr id='grammar-production-SIGN'>
+<td>[57]</td>
+<td><code>SIGN</code></td>
+<td>::=</td>
+<td>
+"+" | "-"
+</td>
+</tr>
+<tr id='grammar-production-UCHAR'>
+<td>[58]</td>
+<td><code>UCHAR</code></td>
+<td>::=</td>
+<td>
+("u" | "U" HEX HEX HEX HEX) HEX HEX HEX HEX
+</td>
+</tr>
+<tr id='grammar-production-PN_CHARS_BASE'>
+<td>[59]</td>
+<td><code>PN_CHARS_BASE</code></td>
+<td>::=</td>
+<td>
+[A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
+</td>
+</tr>
+<tr id='grammar-production-HEX'>
+<td>[60]</td>
+<td><code>HEX</code></td>
+<td>::=</td>
+<td>
+[0-9A-Fa-f]
+</td>
+</tr>
+<tr id='grammar-production-WS'>
+<td>[61]</td>
+<td><code>WS</code></td>
+<td>::=</td>
+<td>
+([#x20#x9#xa])+
+</td>
+</tr>
+</tbody>
+</table>
     </section>
     <section class="informative" id='parsers'>
         <h2>Parsers</h2>
