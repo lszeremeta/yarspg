@@ -33,7 +33,7 @@
  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
 */
 
-yarspg   ::= statement+
+yarspg   ::= statement*
 statement
          ::= node
            | edge

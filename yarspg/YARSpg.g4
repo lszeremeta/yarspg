@@ -27,7 +27,7 @@
 grammar YARSpg;
 
 yarspg
-    : statement+ EOF
+    : statement* EOF
     ;
 
 statement
