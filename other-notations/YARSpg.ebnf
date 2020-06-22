@@ -116,7 +116,7 @@ primitive_value_schema
            | 'Null'
            | 'String'
            | 'Date'
-           | 'Timestamp'
+           | 'Datetime'
            | 'Time'
 complex_value_schema
          ::= set_schema
@@ -147,13 +147,13 @@ STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= SIGN? [0-9]+ '.'? [0-9]*
 BOOL     ::= 'true'
            | 'false'
-DATETYPE ::= TIMESTAMP
+DATETYPE ::= DATETIME
            | DATE
            | TIME
 DATE     ::= [0-9] [0-9] [0-9] [0-9] '-' [0-9] [0-9] '-' [0-9] [0-9]
 TIME     ::= [0-9] [0-9] ':' [0-9] [0-9] ':' [0-9] [0-9] TIMEZONE?
 TIMEZONE ::= SIGN? [0-9] [0-9] ':' [0-9] [0-9]
-TIMESTAMP
+DATETIME
          ::= DATE 'T' TIME
 SIGN     ::= '+'
            | '-'

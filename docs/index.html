@@ -172,10 +172,10 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
             property value could be atomic (e.g. String, Integer, Float, Null, Boolean) or complex (e.g. a list of
             atomic values).</p>
 
-            <aside class="example" title="Edge declaration with Timestamp property value">
-                <p>The example presents edge declaration with <code>Timestamp</code> property value.</p>
+            <aside class="example" title="Edge declaration with DateTime property value">
+                <p>The example presents edge declaration with <code>DateTime</code> property value.</p>
                 <pre>
-("EA01")-{"published_at"}["timestamp": 2019-01-01T11:15:32+01:00]->("Jour01")
+("EA01")-{"published_at"}["datetime": 2019-01-01T11:15:32+01:00]->("Jour01")
   </pre>
 
         </section>
@@ -252,7 +252,7 @@ S("Entry")-{"has_author"}["order": Integer]->("Author")
                 <p>The following <dfn>primitive datatypes</dfn> are supported:
                     <code>Decimal</code>, <code>SmallInt</code>, <code>Integer</code>, <code>BigInt</code>,
                     <code>Float</code>, <code>Real</code>, <code>Double</code>, <code>Bool</code>, <code>Null</code>,
-                    <code>String</code>, <code>Date</code>, <code>Time</code> and <code>Timestamp</code>.</p>
+                    <code>String</code>, <code>Date</code>, <code>Time</code> and <code>DateTime</code>.</p>
 
                 <aside class="example" title="Bool and null properties in the edge schema and edge declaration">
                     <p>The example presents edge schema and edge declarations with <code>Bool</code> and
@@ -263,11 +263,11 @@ S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
               </pre>
                 </aside>
 
-                <aside class="example" title="Timestamp property in the edge schema and edge declaration">
-                    <p>The example presents edge schema and edge declarations with <code>Timestamp</code> property.</p>
+                <aside class="example" title="DateTime property in the edge schema and edge declaration">
+                    <p>The example presents edge schema and edge declarations with <code>DateTime</code> property.</p>
                     <pre>
-S("Article")-{"published_at"}["timestamp": Timestamp]->("Journal")
-("EA01")-{"published_at"}["timestamp": 2019-01-01T11:15:32]->("Jour01")
+S("Article")-{"published_at"}["datetime": DateTime]->("Journal")
+("EA01")-{"published_at"}["datetime": 2019-01-01T11:15:32]->("Jour01")
               </pre>
                 </aside>
             </section>
@@ -730,7 +730,7 @@ primitive_value_schema | complex_value_schema
 | "Null"
 | "String"
 | "Date"
-| "Timestamp"
+| "DateTime"
 | "Time"
 </td>
 </tr>
@@ -864,7 +864,7 @@ SIGN? ([0-9])+ "."? ([0-9])*
 <td><code>DATETYPE</code></td>
 <td>::=</td>
 <td>
-TIMESTAMP | DATE | TIME
+DATETIME | DATE | TIME
 </td>
 </tr>
 <tr id='grammar-production-DATE'>
@@ -908,9 +908,9 @@ TIMEZONE?
 SIGN? [0-9] [0-9] ":" [0-9] [0-9]
 </td>
 </tr>
-<tr id='grammar-production-TIMESTAMP'>
+<tr id='grammar-production-DATETIME'>
 <td>[57]</td>
-<td><code>TIMESTAMP</code></td>
+<td><code>DATETIME</code></td>
 <td>::=</td>
 <td>
 DATE "T" TIME

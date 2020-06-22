@@ -194,7 +194,7 @@ primitive_value_schema
     | 'String'
     // DATETYPE
     | 'Date'
-    | 'Timestamp'    
+    | 'DateTime'    
     | 'Time'
     ;
 
@@ -255,7 +255,7 @@ BOOL
     ;
 
 DATETYPE
-    : TIMESTAMP | DATE | TIME
+    : DATETIME | DATE | TIME
     ;
 
 DATE
@@ -270,7 +270,7 @@ TIMEZONE
     : SIGN? [0-9][0-9] ':' [0-9][0-9]
     ;
 
-TIMESTAMP
+DATETIME
     : DATE 'T' TIME
     ;
 
