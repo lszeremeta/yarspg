@@ -1,5 +1,6 @@
 /*
  YARS-PG grammar in Extended Backus-Naur Form (EBNF) notation
+ (preview version)
  Based on YARS-PG grammar in ANTLR4
  
  See more at:
@@ -9,6 +10,9 @@
  Copyright (c) 2018-2019, Łukasz Szeremeta (@ University of Bialystok, http://www.uwb.edu.pl/)
  Copyright (c) 2018-2019, Dominik Tomaszuk (@ University of Bialystok, http://www.uwb.edu.pl/)
  All rights reserved.
+
+ Special thanks to Gregg Kellogg (greggkellogg.net) for valuable
+ comments to our EBNF (#1 GitHub issue).
 
  Based on YARS grammar
  (https://github.com/lszeremeta/antlr-yars/blob/master/yars/YARS.g4)
@@ -42,22 +46,24 @@ prefix_directive
          ::= pname IRI
 pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS
-metadata ::= '-' ( pn_local pname STRING | IRI ':' ( STRING | IRI ) )
+metadata ::= '-' ((pn_local pname) | (IRI ':')) (STRING | IRI)
+graph_name
+         ::= STRING
 annotation
          ::= string_annotation
            | rdf_annotation
 string_annotation
          ::= STRING ':' STRING
 rdf_annotation
-         ::= ( pn_local pname | IRI ':' ) ( STRING | IRI )
+         ::= ((pn_local pname) | (IRI ':')) (STRING | IRI)
 annotations_list
-         ::= '+' annotation ( ',' annotation )+
+         ::= '+' annotation (',' annotation)*
 props_list
-         ::= '[' prop ( ',' prop )+ ']'
+         ::= '[' prop (',' prop)* ']'
 graphs_list
-         ::= '/' graph_name ( ',' graph_name )+ '/'
+         ::= '/' graph_name (',' graph_name)* '/'
 node
-         ::= '<' node_id '>' ( '{' node_label ( ',' node_label )+ '}' )? props_list? graphs_list? annotations_list?
+         ::= '<' node_id '>' ('{' node_label (',' node_label)* '}')? props_list? graphs_list? annotations_list?
 edge
          ::= directed
            | undirected
@@ -78,21 +84,21 @@ value    ::= primitive_value
            | complex_value
 primitive_value
          ::= STRING
-           | NUMBER
            | DATETYPE
+           | NUMBER
            | BOOL
            | 'null'
 complex_value
          ::= set
            | list
            | struct
-set ::= '{' ( primitive_value | set ) ( ',' ( primitive_value | set ) )* '}'
-list     ::= '[' ( primitive_value | list ) ( ',' ( primitive_value | list ) )* ']'
-struct     ::= '{' key ':' ( primitive_value | struct ) ( ',' key ':' ( primitive_value | struct ) )* '}'
+set ::= '{' (primitive_value | set) (',' (primitive_value | set))* '}'
+list     ::= '[' (primitive_value | list) (',' (primitive_value | list))* ']'
+struct     ::= '{' key ':' (primitive_value | struct) (',' key ':' (primitive_value | struct))* '}'
 node_schema
-         ::= 'S' ( '{' node_label ( ',' node_label )+ '}' )? props_list_schema? graphs_list? annotations_list?
+         ::= 'S' ('{' node_label (',' node_label)* '}')? props_list_schema? graphs_list? annotations_list?
 props_list_schema
-         ::= '[' prop_schema ( ',' prop_schema )+ ']'
+         ::= '[' prop_schema (',' prop_schema)* ']'
 prop_schema
          ::= key ':' value_schema
 value_schema
@@ -110,25 +116,25 @@ primitive_value_schema
            | 'Null'
            | 'String'
            | 'Date'
-           | 'Time'
            | 'Timestamp'
+           | 'Time'
 complex_value_schema
          ::= set_schema
            | list_schema
            | struct_schema
 set_schema
-         ::= 'Set' '(' ( primitive_value_schema | set_schema ) ')'
+         ::= 'Set' '(' (primitive_value_schema | set_schema) ')'
 list_schema
-         ::= 'List' '(' ( primitive_value_schema | list_schema ) ')'
+         ::= 'List' '(' (primitive_value_schema | list_schema) ')'
 struct_schema
-         ::= 'Struct' '(' ( primitive_value_schema | struct_schema ) ')'
+         ::= 'Struct' '(' (primitive_value_schema | struct_schema) ')'
 edge_schema
          ::= directed_schema
            | undirected_schema
 directed_schema
-         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '->' ( '(' node_label ')' )?
+         ::= 'S' ('(' node_label ')')? '-' '{' edge_label '}' props_list_schema? '->' ('(' node_label ')')?
 undirected_schema
-         ::= 'S' ( '(' node_label ')' )? '-' '{' edge_label '}' props_list_schema? '-' ( '(' node_label ')' )?
+         ::= 'S' ('(' node_label ')')? '-' '{' edge_label '}' props_list_schema? '-' ('(' node_label ')')?
 
 SECTION_NAME
          ::= 'METADATA'
@@ -141,19 +147,9 @@ STRING   ::= STRING_LITERAL_QUOTE
 NUMBER   ::= SIGN? [0-9]+ '.'? [0-9]*
 BOOL     ::= 'true'
            | 'false'
-STRING_LITERAL_QUOTE
-         ::= '"' ( [^"\#xd#xa] | "'" | '\"' )* '"'
-ALNUM_PLUS
-         ::= PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
-IRI  ::= '<' ( PN_CHARS | '.' | ':' | '/' | '\' | '#' | '@' | '%' | '&' | UCHAR )* '>'
-PN_CHARS ::= PN_CHARS_U
-           | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
-PN_CHARS_U
-         ::= PN_CHARS_BASE
-           | '_'
-DATETYPE ::= DATE
+DATETYPE ::= TIMESTAMP
+           | DATE
            | TIME
-           | TIMESTAMP
 DATE     ::= [0-9] [0-9] [0-9] [0-9] '-' [0-9] [0-9] '-' [0-9] [0-9]
 TIME     ::= [0-9] [0-9] ':' [0-9] [0-9] ':' [0-9] [0-9] TIMEZONE?
 TIMEZONE ::= SIGN? [0-9] [0-9] ':' [0-9] [0-9]
@@ -161,8 +157,18 @@ TIMESTAMP
          ::= DATE 'T' TIME
 SIGN     ::= '+'
            | '-'
-UCHAR    ::= ( '\u' | '\U' HEX HEX HEX HEX ) HEX HEX HEX HEX
+STRING_LITERAL_QUOTE
+         ::= '"' ([^"\#xd#xa] | "'" | '\"')* '"'
+ALNUM_PLUS
+         ::= PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
+IRI  ::= '<' (PN_CHARS | '.' | ':' | '/' | '\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
+PN_CHARS ::= PN_CHARS_U
+           | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
+PN_CHARS_U
+         ::= PN_CHARS_BASE
+           | '_'
+UCHAR    ::= ('\u' | '\U' HEX HEX HEX HEX) HEX HEX HEX HEX
 PN_CHARS_BASE
          ::= [A-Za-z0-9#xC0-#xD6#xD8-#xF6#xF8-#x2FF#x370-#x37D#x37F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD]
 HEX      ::= [0-9A-Fa-f]
-WS       ::= [ #x9#xa]+
+WS       ::= ([#x20#x9#xa])+

@@ -54,7 +54,7 @@ S{"ZYT5"}["timestamp": Timestamp]
 <"ABC2">{"ZYT2"}["time": 11:15:32]
 <"ABC3">{"ZYT3"}["timezp": 11:15:32+01:30]
 <"ABC4">{"ZYT4"}["timezm": 09:32:11-08:00]
-<"ABC5">{"ZYT5"}["timestamp": "1999-01-01 11:15:32"]
+<"ABC5">{"ZYT5"}["timestamp": 1999-01-01T11:15:32]
 <"ABC5">{"ZYT5"}["timestamptzp": 1999-01-01T11:15:32+01:30]
 <"ABC5">{"ZYT5"}["timestamptzm": 1999-01-01T11:15:32-08:00]
 

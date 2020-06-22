@@ -444,12 +444,19 @@ ALNUM_PLUS
 <td><code>metadata</code></td>
 <td>::=</td>
 <td>
-"-"
-(pn_local pname STRING | IRI ":" (STRING | IRI))
+"-" ((pn_local pname) | (IRI ":")) (STRING | IRI)
+</td>
+</tr>
+<tr id='grammar-production-graph_name'>
+<td>[7]</td>
+<td><code>graph_name</code></td>
+<td>::=</td>
+<td>
+STRING
 </td>
 </tr>
 <tr id='grammar-production-annotation'>
-<td>[7]</td>
+<td>[8]</td>
 <td><code>annotation</code></td>
 <td>::=</td>
 <td>
@@ -457,7 +464,7 @@ string_annotation | rdf_annotation
 </td>
 </tr>
 <tr id='grammar-production-string_annotation'>
-<td>[8]</td>
+<td>[9]</td>
 <td><code>string_annotation</code></td>
 <td>::=</td>
 <td>
@@ -465,53 +472,47 @@ STRING ":" STRING
 </td>
 </tr>
 <tr id='grammar-production-rdf_annotation'>
-<td>[9]</td>
+<td>[10]</td>
 <td><code>rdf_annotation</code></td>
 <td>::=</td>
 <td>
-(pn_local pname | IRI ":") (STRING | IRI)
+((pn_local pname) | (IRI ":")) (STRING | IRI)
 </td>
 </tr>
 <tr id='grammar-production-annotations_list'>
-<td>[10]</td>
+<td>[11]</td>
 <td><code>annotations_list</code></td>
 <td>::=</td>
 <td>
-"+" annotation ("," annotation)+
+"+" annotation ("," annotation)*
 </td>
 </tr>
 <tr id='grammar-production-props_list'>
-<td>[11]</td>
+<td>[12]</td>
 <td><code>props_list</code></td>
 <td>::=</td>
 <td>
-"[" prop ("," prop)+ "]"
+"[" prop ("," prop)* "]"
 </td>
 </tr>
 <tr id='grammar-production-graphs_list'>
-<td>[12]</td>
+<td>[13]</td>
 <td><code>graphs_list</code></td>
 <td>::=</td>
 <td>
-"/" graph_name ("," graph_name)+ "/"
+"/" graph_name ("," graph_name)* "/"
 </td>
 </tr>
 <tr id='grammar-production-node'>
-<td>[13]</td>
+<td>[14]</td>
 <td><code>node</code></td>
 <td>::=</td>
 <td>
-"<"
-node_id
-">"
-("{" node_label ("," node_label)+ "}")?
-props_list?
-graphs_list?
-annotations_list?
+"<" node_id ">" ("{" node_label ("," node_label)* "}")? props_list? graphs_list? annotations_list?
 </td>
 </tr>
 <tr id='grammar-production-edge'>
-<td>[14]</td>
+<td>[15]</td>
 <td><code>edge</code></td>
 <td>::=</td>
 <td>
@@ -519,7 +520,7 @@ directed | undirected
 </td>
 </tr>
 <tr id='grammar-production-section'>
-<td>[15]</td>
+<td>[16]</td>
 <td><code>section</code></td>
 <td>::=</td>
 <td>
@@ -527,7 +528,7 @@ directed | undirected
 </td>
 </tr>
 <tr id='grammar-production-directed'>
-<td>[16]</td>
+<td>[17]</td>
 <td><code>directed</code></td>
 <td>::=</td>
 <td>
@@ -549,7 +550,7 @@ annotations_list?
 </td>
 </tr>
 <tr id='grammar-production-undirected'>
-<td>[17]</td>
+<td>[18]</td>
 <td><code>undirected</code></td>
 <td>::=</td>
 <td>
@@ -571,7 +572,7 @@ annotations_list?
 </td>
 </tr>
 <tr id='grammar-production-node_id'>
-<td>[18]</td>
+<td>[19]</td>
 <td><code>node_id</code></td>
 <td>::=</td>
 <td>
@@ -579,7 +580,7 @@ STRING
 </td>
 </tr>
 <tr id='grammar-production-node_label'>
-<td>[19]</td>
+<td>[20]</td>
 <td><code>node_label</code></td>
 <td>::=</td>
 <td>
@@ -587,7 +588,7 @@ STRING
 </td>
 </tr>
 <tr id='grammar-production-prop'>
-<td>[20]</td>
+<td>[21]</td>
 <td><code>prop</code></td>
 <td>::=</td>
 <td>
@@ -595,7 +596,7 @@ key ":" value
 </td>
 </tr>
 <tr id='grammar-production-edge_id'>
-<td>[21]</td>
+<td>[22]</td>
 <td><code>edge_id</code></td>
 <td>::=</td>
 <td>
@@ -603,7 +604,7 @@ STRING
 </td>
 </tr>
 <tr id='grammar-production-edge_label'>
-<td>[22]</td>
+<td>[23]</td>
 <td><code>edge_label</code></td>
 <td>::=</td>
 <td>
@@ -611,7 +612,7 @@ STRING
 </td>
 </tr>
 <tr id='grammar-production-key'>
-<td>[23]</td>
+<td>[24]</td>
 <td><code>key</code></td>
 <td>::=</td>
 <td>
@@ -619,7 +620,7 @@ STRING
 </td>
 </tr>
 <tr id='grammar-production-value'>
-<td>[24]</td>
+<td>[25]</td>
 <td><code>value</code></td>
 <td>::=</td>
 <td>
@@ -627,15 +628,15 @@ primitive_value | complex_value
 </td>
 </tr>
 <tr id='grammar-production-primitive_value'>
-<td>[25]</td>
+<td>[26]</td>
 <td><code>primitive_value</code></td>
 <td>::=</td>
 <td>
-STRING | NUMBER | DATETYPE | BOOL | "null"
+STRING | DATETYPE | NUMBER | BOOL | "null"
 </td>
 </tr>
 <tr id='grammar-production-complex_value'>
-<td>[26]</td>
+<td>[27]</td>
 <td><code>complex_value</code></td>
 <td>::=</td>
 <td>
@@ -643,7 +644,7 @@ set | list | struct
 </td>
 </tr>
 <tr id='grammar-production-set'>
-<td>[27]</td>
+<td>[28]</td>
 <td><code>set</code></td>
 <td>::=</td>
 <td>
@@ -654,7 +655,7 @@ set | list | struct
 </td>
 </tr>
 <tr id='grammar-production-list'>
-<td>[28]</td>
+<td>[29]</td>
 <td><code>list</code></td>
 <td>::=</td>
 <td>
@@ -665,7 +666,7 @@ set | list | struct
 </td>
 </tr>
 <tr id='grammar-production-struct'>
-<td>[29]</td>
+<td>[30]</td>
 <td><code>struct</code></td>
 <td>::=</td>
 <td>
@@ -678,27 +679,27 @@ key
 </td>
 </tr>
 <tr id='grammar-production-node_schema'>
-<td>[30]</td>
+<td>[31]</td>
 <td><code>node_schema</code></td>
 <td>::=</td>
 <td>
 "S"
-("{" node_label ("," node_label)+ "}")?
+("{" node_label ("," node_label)* "}")?
 props_list_schema?
 graphs_list?
 annotations_list?
 </td>
 </tr>
 <tr id='grammar-production-props_list_schema'>
-<td>[31]</td>
+<td>[32]</td>
 <td><code>props_list_schema</code></td>
 <td>::=</td>
 <td>
-"[" prop_schema ("," prop_schema)+ "]"
+"[" prop_schema ("," prop_schema)* "]"
 </td>
 </tr>
 <tr id='grammar-production-prop_schema'>
-<td>[32]</td>
+<td>[33]</td>
 <td><code>prop_schema</code></td>
 <td>::=</td>
 <td>
@@ -706,7 +707,7 @@ key ":" value_schema
 </td>
 </tr>
 <tr id='grammar-production-value_schema'>
-<td>[33]</td>
+<td>[34]</td>
 <td><code>value_schema</code></td>
 <td>::=</td>
 <td>
@@ -714,7 +715,7 @@ primitive_value_schema | complex_value_schema
 </td>
 </tr>
 <tr id='grammar-production-primitive_value_schema'>
-<td>[34]</td>
+<td>[35]</td>
 <td><code>primitive_value_schema</code></td>
 <td>::=</td>
 <td>
@@ -729,12 +730,12 @@ primitive_value_schema | complex_value_schema
 | "Null"
 | "String"
 | "Date"
-| "Time"
 | "Timestamp"
+| "Time"
 </td>
 </tr>
 <tr id='grammar-production-complex_value_schema'>
-<td>[35]</td>
+<td>[36]</td>
 <td><code>complex_value_schema</code></td>
 <td>::=</td>
 <td>
@@ -742,7 +743,7 @@ set_schema | list_schema | struct_schema
 </td>
 </tr>
 <tr id='grammar-production-set_schema'>
-<td>[36]</td>
+<td>[37]</td>
 <td><code>set_schema</code></td>
 <td>::=</td>
 <td>
@@ -753,7 +754,7 @@ set_schema | list_schema | struct_schema
 </td>
 </tr>
 <tr id='grammar-production-list_schema'>
-<td>[37]</td>
+<td>[38]</td>
 <td><code>list_schema</code></td>
 <td>::=</td>
 <td>
@@ -764,7 +765,7 @@ set_schema | list_schema | struct_schema
 </td>
 </tr>
 <tr id='grammar-production-struct_schema'>
-<td>[38]</td>
+<td>[39]</td>
 <td><code>struct_schema</code></td>
 <td>::=</td>
 <td>
@@ -775,7 +776,7 @@ set_schema | list_schema | struct_schema
 </td>
 </tr>
 <tr id='grammar-production-edge_schema'>
-<td>[39]</td>
+<td>[40]</td>
 <td><code>edge_schema</code></td>
 <td>::=</td>
 <td>
@@ -783,7 +784,7 @@ directed_schema | undirected_schema
 </td>
 </tr>
 <tr id='grammar-production-directed_schema'>
-<td>[40]</td>
+<td>[41]</td>
 <td><code>directed_schema</code></td>
 <td>::=</td>
 <td>
@@ -799,7 +800,7 @@ props_list_schema?
 </td>
 </tr>
 <tr id='grammar-production-undirected_schema'>
-<td>[41]</td>
+<td>[42]</td>
 <td><code>undirected_schema</code></td>
 <td>::=</td>
 <td>
@@ -815,7 +816,7 @@ props_list_schema?
 </td>
 </tr>
 <tr id='grammar-production-SECTION_NAME'>
-<td>[42]</td>
+<td>[43]</td>
 <td><code>SECTION_NAME</code></td>
 <td>::=</td>
 <td>
@@ -827,7 +828,7 @@ props_list_schema?
 </td>
 </tr>
 <tr id='grammar-production-COMMENT'>
-<td>[43]</td>
+<td>[44]</td>
 <td><code>COMMENT</code></td>
 <td>::=</td>
 <td>
@@ -835,7 +836,7 @@ props_list_schema?
 </td>
 </tr>
 <tr id='grammar-production-STRING'>
-<td>[44]</td>
+<td>[45]</td>
 <td><code>STRING</code></td>
 <td>::=</td>
 <td>
@@ -843,7 +844,7 @@ STRING_LITERAL_QUOTE
 </td>
 </tr>
 <tr id='grammar-production-NUMBER'>
-<td>[45]</td>
+<td>[46]</td>
 <td><code>NUMBER</code></td>
 <td>::=</td>
 <td>
@@ -851,65 +852,23 @@ SIGN? ([0-9])+ "."? ([0-9])*
 </td>
 </tr>
 <tr id='grammar-production-BOOL'>
-<td>[46]</td>
+<td>[47]</td>
 <td><code>BOOL</code></td>
 <td>::=</td>
 <td>
 "true" | "false"
 </td>
 </tr>
-<tr id='grammar-production-STRING_LITERAL_QUOTE'>
-<td>[47]</td>
-<td><code>STRING_LITERAL_QUOTE</code></td>
-<td>::=</td>
-<td>
-'"' ([^"#xd#xa] | "'" | '"')* '"'
-</td>
-</tr>
-<tr id='grammar-production-ALNUM_PLUS'>
-<td>[48]</td>
-<td><code>ALNUM_PLUS</code></td>
-<td>::=</td>
-<td>
-PN_CHARS_BASE (PN_CHARS | ".")* PN_CHARS?
-</td>
-</tr>
-<tr id='grammar-production-IRI'>
-<td>[49]</td>
-<td><code>IRI</code></td>
-<td>::=</td>
-<td>
-"<"
-(PN_CHARS | "." | ":" | "/" | "\" | "#" | "@" | "%" | "&" | UCHAR)*
-">"
-</td>
-</tr>
-<tr id='grammar-production-PN_CHARS'>
-<td>[50]</td>
-<td><code>PN_CHARS</code></td>
-<td>::=</td>
-<td>
-PN_CHARS_U | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
-</td>
-</tr>
-<tr id='grammar-production-PN_CHARS_U'>
-<td>[51]</td>
-<td><code>PN_CHARS_U</code></td>
-<td>::=</td>
-<td>
-PN_CHARS_BASE | "_"
-</td>
-</tr>
 <tr id='grammar-production-DATETYPE'>
-<td>[52]</td>
+<td>[53]</td>
 <td><code>DATETYPE</code></td>
 <td>::=</td>
 <td>
-DATE | TIME | TIMESTAMP
+TIMESTAMP | DATE | TIME
 </td>
 </tr>
 <tr id='grammar-production-DATE'>
-<td>[53]</td>
+<td>[54]</td>
 <td><code>DATE</code></td>
 <td>::=</td>
 <td>
@@ -926,7 +885,7 @@ DATE | TIME | TIMESTAMP
 </td>
 </tr>
 <tr id='grammar-production-TIME'>
-<td>[54]</td>
+<td>[55]</td>
 <td><code>TIME</code></td>
 <td>::=</td>
 <td>
@@ -942,7 +901,7 @@ TIMEZONE?
 </td>
 </tr>
 <tr id='grammar-production-TIMEZONE'>
-<td>[55]</td>
+<td>[56]</td>
 <td><code>TIMEZONE</code></td>
 <td>::=</td>
 <td>
@@ -950,7 +909,7 @@ SIGN? [0-9] [0-9] ":" [0-9] [0-9]
 </td>
 </tr>
 <tr id='grammar-production-TIMESTAMP'>
-<td>[56]</td>
+<td>[57]</td>
 <td><code>TIMESTAMP</code></td>
 <td>::=</td>
 <td>
@@ -958,15 +917,57 @@ DATE "T" TIME
 </td>
 </tr>
 <tr id='grammar-production-SIGN'>
-<td>[57]</td>
+<td>[58]</td>
 <td><code>SIGN</code></td>
 <td>::=</td>
 <td>
 "+" | "-"
 </td>
 </tr>
+<tr id='grammar-production-STRING_LITERAL_QUOTE'>
+<td>[48]</td>
+<td><code>STRING_LITERAL_QUOTE</code></td>
+<td>::=</td>
+<td>
+'"' ([^"#xd#xa] | "'" | '"')* '"'
+</td>
+</tr>
+<tr id='grammar-production-ALNUM_PLUS'>
+<td>[49]</td>
+<td><code>ALNUM_PLUS</code></td>
+<td>::=</td>
+<td>
+PN_CHARS_BASE ((PN_CHARS | ".")* PN_CHARS)?
+</td>
+</tr>
+<tr id='grammar-production-IRI'>
+<td>[50]</td>
+<td><code>IRI</code></td>
+<td>::=</td>
+<td>
+"<"
+(PN_CHARS | "." | ":" | "/" | "\" | "#" | "@" | "%" | "&" | UCHAR)*
+">"
+</td>
+</tr>
+<tr id='grammar-production-PN_CHARS'>
+<td>[51]</td>
+<td><code>PN_CHARS</code></td>
+<td>::=</td>
+<td>
+PN_CHARS_U | [-0-9#xB7#x0300-#x036F#x203F-#x2040]
+</td>
+</tr>
+<tr id='grammar-production-PN_CHARS_U'>
+<td>[52]</td>
+<td><code>PN_CHARS_U</code></td>
+<td>::=</td>
+<td>
+PN_CHARS_BASE | "_"
+</td>
+</tr>
 <tr id='grammar-production-UCHAR'>
-<td>[58]</td>
+<td>[59]</td>
 <td><code>UCHAR</code></td>
 <td>::=</td>
 <td>
@@ -974,7 +975,7 @@ DATE "T" TIME
 </td>
 </tr>
 <tr id='grammar-production-PN_CHARS_BASE'>
-<td>[59]</td>
+<td>[60]</td>
 <td><code>PN_CHARS_BASE</code></td>
 <td>::=</td>
 <td>
@@ -982,7 +983,7 @@ DATE "T" TIME
 </td>
 </tr>
 <tr id='grammar-production-HEX'>
-<td>[60]</td>
+<td>[61]</td>
 <td><code>HEX</code></td>
 <td>::=</td>
 <td>
@@ -990,7 +991,7 @@ DATE "T" TIME
 </td>
 </tr>
 <tr id='grammar-production-WS'>
-<td>[61]</td>
+<td>[62]</td>
 <td><code>WS</code></td>
 <td>::=</td>
 <td>
