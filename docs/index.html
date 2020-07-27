@@ -55,7 +55,7 @@
         <aside class="example" title="Bibliographic information">
             <p>The example presents a graphical representation of a property graph that contains bibliographic
                 information.
-                <pre>
+                <pre class="nohighlight">
 # Prefix declaration
 :foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
 
@@ -107,7 +107,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
                 account during its processing.</p>
             <aside class="example" title="Comments">
                 <p>The example presents two one-line comments.
-                    <pre>
+                    <pre class="nohighlight">
 # TODO: Check this later
 # ABD5 schema
       </pre>
@@ -118,7 +118,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
             <p>A <dfn>prefix declaration</dfn> associates a prefix label with an IRI.</p>
             <aside class="example" title="Prefix declaration">
                 <p>The example presents prefix declaration for <code>foaf</code>.
-                    <pre>
+                    <pre class="nohighlight">
 :foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
   </pre>
             </aside>
@@ -130,7 +130,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
             <aside class="example" title="Metadata declaration">
                 <p>The example presents metadata declaration with <code>foaf</code> prefix and the same metadata
                     declaration with full IRI below.
-                    <pre>
+                    <pre class="nohighlight">
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 -&lt;http://xmlns.com/foaf/0.1/maker&gt;: "Łukasz Szeremeta and Dominik Tomaszuk"
   </pre>
@@ -144,7 +144,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
                 <p>The example presents node declaration for node <code>EI01</code>. This node have two labels
                     (<code>Entry</code> and <code>InProceedings</code>)
                     and three properties (<code>title</code>, <code>numpages</code> and <code>keyword</code>).
-                    <pre>
+                    <pre class="nohighlight">
 <"EI01">{"Entry", "InProceedings"}["title": "Serialization for...", "numpages": 10, "keyword": "Graph database"]
   </pre>
             </aside>
@@ -160,7 +160,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
                 <p>The example presents edge declaration from source node <code>EI01</code> to target node
                     <code>Author01</code>. Edge
                     have label <code>has_author</code> and one property (<code>order</code>).
-                    <pre>
+                    <pre class="nohighlight">
 ("EI01")-{"has_author"}["order":1]->("Author01")
   </pre>
             </aside>
@@ -174,7 +174,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
 
             <aside class="example" title="Edge declaration with DateTime property value">
                 <p>The example presents edge declaration with <code>DateTime</code> property value.</p>
-                <pre>
+                <pre class="nohighlight">
 ("EA01")-{"published_at"}["datetime": 2019-01-01T11:15:32+01:00]->("Jour01")
   </pre>
 
@@ -188,7 +188,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
                 <p>The example presents three variants of node declaration with annotation. The first one contains an
                     RDF annotation with prefix, the second one contains an RDF annotation with IRI and the third one
                     contains a string annotation.</p>
-                <pre>
+                <pre class="nohighlight">
     <"b43b">{"label1"}["value":5]+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
     <"b43b">{"label1"}["value":5]+&lt;http://xmlns.com/foaf/0.1/maker&gt;: "Łukasz Szeremeta and Dominik Tomaszuk"
     <"b43b">{"label1"}["value":5]+"maker": "Łukasz Szeremeta and Dominik Tomaszuk"
@@ -202,7 +202,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
             <aside class="example" title="Named Property Graphs declaration">
                 <p>The example presents node declaration with property graph names (<code>graph1</code> and
                     <code>graph2</code>).</p>
-                <pre>
+                <pre class="nohighlight">
 <"z">{"432f"}["vegetables": ["carrot", "onion", "tomato"]]/"graph1", "graph2"/
 </pre>
             </aside>
@@ -219,7 +219,7 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
                 <p>The example presents node schema declaration with the corresponding node declaration. Node schema
                     have <code>Author</code> node label and two properties (<code>fname</code> and <code>lname</code>
                     with <code>String</code> type value).</p>
-                <pre>
+                <pre class="nohighlight">
 S{"Author"}["fname": String, "lname": String]
 <"Author02">{"Author"}["fname": "Alice", "lname": "Brown"]
   </pre>
@@ -235,7 +235,7 @@ S{"Author"}["fname": String, "lname": String]
                     Edge schema have <code>EI01</code> node label followed by <code>has_author</code> label,
                     <code>order</code> property with <code>Integer</code> type value and <code>Author</code> target node
                     label.</p>
-                <pre>
+                <pre class="nohighlight">
 S("Entry")-{"has_author"}["order": Integer]->("Author")
 ("EI01")-{"has_author"}["order": 1]->("Author01")
   </pre>
@@ -257,7 +257,7 @@ S("Entry")-{"has_author"}["order": Integer]->("Author")
                 <aside class="example" title="Bool and null properties in the edge schema and edge declaration">
                     <p>The example presents edge schema and edge declarations with <code>Bool</code> and
                         <code>Null</code> properties.</p>
-                    <pre>
+                    <pre class="nohighlight">
 S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
 ("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")
               </pre>
@@ -265,7 +265,7 @@ S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
 
                 <aside class="example" title="DateTime property in the edge schema and edge declaration">
                     <p>The example presents edge schema and edge declarations with <code>DateTime</code> property.</p>
-                    <pre>
+                    <pre class="nohighlight">
 S("Article")-{"published_at"}["datetime": DateTime]->("Journal")
 ("EA01")-{"published_at"}["datetime": 2019-01-01T11:15:32]->("Jour01")
               </pre>
@@ -283,7 +283,7 @@ S("Article")-{"published_at"}["datetime": DateTime]->("Journal")
                 <aside class="example" title="Set property in the node schema and node declaration">
                     <p>The example presents node schema and node declarations with <code>Set</code> property that
                         contains <code>String</code> elements.</p>
-                    <pre>
+                    <pre class="nohighlight">
 S{"432f"}["fruits": Set(String)]/"fgraph"/
 <"z">{"432f"}["fruits": {"apple", "banana"}]/"fgraph"/
           </pre>
@@ -292,7 +292,7 @@ S{"432f"}["fruits": Set(String)]/"fgraph"/
                 <aside class="example" title="Struct property in the node schema and node declaration">
                     <p>The example presents node schema and node declarations with <code>Struct</code> property that
                         contains another <code>Struct</code> with <code>String</code> elements.</p>
-                    <pre>
+                    <pre class="nohighlight">
 S{"2label4"}["keyword2": Struct(Struct(String))]
 <"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}]
               </pre>
@@ -321,7 +321,7 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
         <aside class="example" title="Bibliographic information - canonical form">
             <p>The example presents a graphical representation of a property graph that contains bibliographic
                 information in canonical form.</p>
-            <pre>
+            <pre class="nohighlight">
 %METADATA
 -&lt;http://xmlns.com/foaf/0.1/maker&gt;:"Łukasz Szeremeta and Dominik Tomaszuk"
 %NODE SCHEMAS
@@ -359,7 +359,7 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
                 <code>NODE SCHEMAS</code>, <code>NODES</code>, <code>EDGE SCHEMAS</code> and <code>EDGES</code>.</p>
             <aside class="example" title="Section declaration">
                 <p>The example presents <code>METADATA</code> section declarations with metadata declaration.
-                    <pre>
+                    <pre class="nohighlight">
         %METADATA
         -&lt;http://xmlns.com/foaf/0.1/maker&gt;:"Łukasz Szeremeta and Dominik Tomaszuk"
               </pre>
