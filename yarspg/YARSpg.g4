@@ -66,7 +66,7 @@ annotation
     ;
 
 string_annotation
-    : STRING ':' STRING
+    : key ':' STRING
     ;
 
 rdf_annotation
