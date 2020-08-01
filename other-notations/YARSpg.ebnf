@@ -53,7 +53,7 @@ annotation
          ::= string_annotation
            | rdf_annotation
 string_annotation
-         ::= STRING ':' STRING
+         ::= key ':' STRING
 rdf_annotation
          ::= ((pn_local pname) | (IRI ':')) (STRING | IRI)
 annotations_list
