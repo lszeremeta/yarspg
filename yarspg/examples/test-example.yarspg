@@ -23,17 +23,26 @@ S{"label333","c"}["value": String,"lang": String,"valid": Bool]/"graph2"/+<http:
 <"c">{"label333","c"}["value":"male","lang":"en","valid":false]/"graph2", "graph3"/+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>
 S{"label546"}["key": Float]
 <"d">{"label546"}["key":442.1333]
+S{"label546"}["key": Float@"source": String]
+<"d">{"label546"}["key":442.1333@"source": "XZYNews"]
 <"e">{"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]]
 <"f">["node":"node without label"]+foaf:maker: <http://example.com/me>
 <"g">{"df2","z","q"}["key664":[false,["another list", 52, 44.1]]]+"abc": "value33"
 <"h">{"label"}["key664":[false,["another list2", ["another list3", 54, false, true] , 52, 44.1]]]
+<"h">{"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true] , 52, 44.1]]]
+<"h">{"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true]@"access": [0, 1, 1, 0] @"ok": true, 52, 44.1]@"good": false]]
 S{"label"}["keyword": Struct(String)]
 <"i">{"label"}["keyword": {"name": "abc", "title": "xyz"}]
+S{"label"}["keyword": Struct(String)@"ok": Integer]
+<"i">{"label"}["keyword": {"name": "abc"@"info": "ok", "title": "xyz"}@"ok": 1]
 S{"2label4"}["keyword2": Struct(Struct(String))]
 <"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}]
+S{"2label4"}["keyword2": Struct(Struct(String)@"struct": String)@"struct": String @"ok": Bool]
+<"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}@"rating": 5, "names2": {"name2": "abc2"@"more": "ok", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}@"struct": "inside"}@"struct": "outside" @"ok": true]
 <"i2">{"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}]
 S{"432f"}["set": Set(String)]/"graphname"/
 <"z">{"432f"}["set": {"name", "title"}]/"graphname"/
+<"z">{"432f"}["set": {"name", "title"}@"test":"test3"]/"graphname"/
 S{"432f2"}["set": Set(Set(String))]
 <"z2">{"432f2"}["set": {{"set2", "title"}}]
 S{"3432f2"}["set": Set(Set(String))]
@@ -62,11 +71,13 @@ S{"ZYT5"}["datetime": DateTime]
 % EDGE SCHEMAS
 S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Integer)]->("label333")
 ("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44, 22]]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
+("a")-<"ferf">{"aaa1a"}["key": "value"@"ok": "no", "aab2bc": [44, 22]@"list name": "alph"]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")
 S("label1")-{"bbb23b"}-("ef22")
 ("b43b")-{"bbb23b"}-("e")
 S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
 ("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
+("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null@"psod": {"dff": 1, "ewf": 55}]-("e")+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
 
 S("A")-{"label"}["date": Date]->("Z")
 S("A2")-{"label2"}["time": Time]->("Z2")
