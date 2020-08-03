@@ -64,11 +64,13 @@ S{"ZYT5"}["datetime": DateTime]
 % EDGES
 % EDGE SCHEMAS
 S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Integer)]->("label333")
+S("a1d")-{"aaa1a"}["key": String ID, "aab2bc": List(Integer)]->("label333")
 ("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44, 22]]->("c")+<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>
 ("a")-<"id341">{"aaa2a"}->("c")
 S("label1")-{"bbb23b"}-("ef22")
 ("b43b")-{"bbb23b"}-("e")
 S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
+S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null ID]-("ef22")
 ("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
 
 S("A")-{"label"}["date": Date]->("Z")
