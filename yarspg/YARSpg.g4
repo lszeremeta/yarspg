@@ -170,7 +170,11 @@ prop_list_schema
     ;
 
 prop_schema
-    : key ':' value_schema
+    : key ':' value_schema id_key?
+    ;
+
+id_key
+    : 'ID'
     ;
 
 value_schema
