@@ -32,6 +32,7 @@ S{"label"}["keyword": Struct(String)]
 S{"label"}["keyword": Struct(String) ID]
 <"i">{"label"}["keyword": {"name": "abc", "title": "xyz"}]
 S{"2label4"}["keyword2": Struct(Struct(String))]
+S{"2label4"}["keyword2": Struct(Struct(String)) ID]
 <"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}]
 <"i2">{"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}]
 S{"432f"}["set": Set(String)]/"graphname"/
