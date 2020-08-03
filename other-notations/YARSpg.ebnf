@@ -100,7 +100,8 @@ node_schema
 props_list_schema
          ::= '[' prop_schema (',' prop_schema)* ']'
 prop_schema
-         ::= key ':' value_schema
+         ::= key ':' value_schema id_key?
+id_key   ::= 'ID'
 value_schema
          ::= primitive_value_schema
            | complex_value_schema
