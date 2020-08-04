@@ -101,11 +101,14 @@ props_list_schema
          ::= '[' prop_schema (',' prop_schema)* ']'
 prop_schema
          ::= key ':' value_schema id_key?
-id_key   ::= 'ID'
 value_schema
          ::= primitive_value_schema
+           | primitive_value_without_null_schema 'ID'
            | complex_value_schema
 primitive_value_schema
+         ::= primitive_value_without_null_schema
+           | 'Null'
+primitive_value_without_null_schema
          ::= 'Decimal'
            | 'SmallInt'
            | 'Integer'
@@ -114,10 +117,9 @@ primitive_value_schema
            | 'Real'
            | 'Double'
            | 'Bool'
-           | 'Null'
            | 'String'
            | 'Date'
-           | 'Datetime'
+           | 'DateTime'
            | 'Time'
 complex_value_schema
          ::= set_schema

@@ -170,19 +170,25 @@ prop_list_schema
     ;
 
 prop_schema
-    : key ':' value_schema id_key?
+    : key ':' value_schema
     ;
 
-id_key
+id_key_schema
     : 'ID'
     ;
 
 value_schema
     : primitive_value_schema
+    | primitive_value_without_null_schema id_key_schema
     | complex_value_schema
     ;
 
 primitive_value_schema
+    : primitive_value_without_null_schema
+    | 'Null'
+    ;
+
+primitive_value_without_null_schema
     // NUMBER
     : 'Decimal'
     | 'SmallInt'
@@ -193,7 +199,6 @@ primitive_value_schema
     | 'Double'
     // BOOL
     | 'Bool'
-    | 'Null'
     // STRING
     | 'String'
     // DATETYPE
