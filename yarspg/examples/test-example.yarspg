@@ -43,6 +43,10 @@ S{"3432f2"}["set": Set(Set(String))]
 <"3z2">{"3432f2"}["set": {{"set2", "title"}, {"set3", "title3"}}]
 S{"1ad32"}["list": List(String)]
 <"1dsc">{"1ad32"}["list": ["name55", "name3"]]
+S{"1ad32"}["list": List(String?)]
+<"1dsc">{"1ad32"}["list": ["name55", null]]
+S{"1ad32"}["list": List(String)?]
+<"1dsc">{"1ad32"}["list": null]
 S{"ad3"}["list": List(List(String))]
 <"ds">{"ad3"}["list": [["name55", "name3"]]]
 S{"ad32"}["list": List(List(String))]
@@ -69,8 +73,8 @@ S("a1d")-{"aaa1a"}["key": String ID, "aab2bc": List(Integer)]->("label333")
 ("a")-<"id341">{"aaa2a"}->("c")
 S("label1")-{"bbb23b"}-("ef22")
 ("b43b")-{"bbb23b"}-("e")
-S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": Null]-("ef22")
-S("label1")-{"bbb23b"}["bbbd32d": Bool ID, "value": Null]-("ef22")
+S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": String?]-("ef22")
+S("label1")-{"bbb23b"}["bbbd32d": Bool ID, "value": String?]-("ef22")
 ("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")+foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"
 
 S("A")-{"label"}["date": Date]->("Z")

@@ -102,13 +102,9 @@ props_list_schema
 prop_schema
          ::= key ':' value_schema id_key?
 value_schema
-         ::= primitive_value_schema
-           | primitive_value_without_null_schema 'ID'
-           | complex_value_schema
+         ::= primitive_value_schema ( 'ID' | '?' )?
+           | complex_value_schema '?'?
 primitive_value_schema
-         ::= primitive_value_without_null_schema
-           | 'Null'
-primitive_value_without_null_schema
          ::= 'Decimal'
            | 'SmallInt'
            | 'Integer'
@@ -126,14 +122,11 @@ complex_value_schema
            | list_schema
            | struct_schema
 set_schema
-         ::= 'Set' '(' (primitive_value_schema | set_schema) ')'
+         ::= 'Set' '(' ( primitive_value_schema '?'? | set_schema ) ')'
 list_schema
-         ::= 'List' '(' (primitive_value_schema | list_schema) ')'
+         ::= 'List' '(' ( primitive_value_schema '?'? | list_schema ) ')'
 struct_schema
-         ::= 'Struct' '(' (primitive_value_schema | struct_schema) ')'
-edge_schema
-         ::= directed_schema
-           | undirected_schema
+         ::= 'Struct' '(' ( primitive_value_schema '?'? | struct_schema ) ')'
 directed_schema
          ::= 'S' ('(' node_label ')')? '-' '{' edge_label '}' props_list_schema? '->' ('(' node_label ')')?
 undirected_schema

@@ -173,22 +173,12 @@ prop_schema
     : key ':' value_schema
     ;
 
-id_key_schema
-    : 'ID'
-    ;
-
 value_schema
-    : primitive_value_schema
-    | primitive_value_without_null_schema id_key_schema
-    | complex_value_schema
+    : primitive_value_schema ('ID' | '?')?
+    | complex_value_schema '?'?
     ;
 
 primitive_value_schema
-    : primitive_value_without_null_schema
-    | 'Null'
-    ;
-
-primitive_value_without_null_schema
     // NUMBER
     : 'Decimal'
     | 'SmallInt'
@@ -214,15 +204,15 @@ complex_value_schema
     ;
 
 set_schema
-    : 'Set' '(' (primitive_value_schema | set_schema) ')'
+    : 'Set' '(' (primitive_value_schema '?'? | set_schema) ')'
     ;
 
 list_schema
-    : 'List' '(' (primitive_value_schema | list_schema) ')'
+    : 'List' '(' (primitive_value_schema '?'? | list_schema) ')'
     ;
 
 struct_schema
-    : 'Struct' '(' (primitive_value_schema | struct_schema) ')'
+    : 'Struct' '(' (primitive_value_schema '?'? | struct_schema) ')'
     ;
 
 edge_schema
