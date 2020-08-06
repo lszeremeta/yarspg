@@ -174,8 +174,8 @@ prop_schema
     ;
 
 value_schema
-    : primitive_value_schema ('ID' | '?')?
-    | complex_value_schema '?'?
+    : primitive_value_schema ('ID' | 'NULL')?
+    | complex_value_schema 'NULL'?
     ;
 
 primitive_value_schema
@@ -204,15 +204,15 @@ complex_value_schema
     ;
 
 set_schema
-    : 'Set' '(' (primitive_value_schema '?'? | set_schema) ')'
+    : 'Set' '(' (primitive_value_schema 'NULL'? | set_schema) ')'
     ;
 
 list_schema
-    : 'List' '(' (primitive_value_schema '?'? | list_schema) ')'
+    : 'List' '(' (primitive_value_schema 'NULL'? | list_schema) ')'
     ;
 
 struct_schema
-    : 'Struct' '(' (primitive_value_schema '?'? | struct_schema) ')'
+    : 'Struct' '(' (primitive_value_schema 'NULL'? | struct_schema) ')'
     ;
 
 edge_schema
