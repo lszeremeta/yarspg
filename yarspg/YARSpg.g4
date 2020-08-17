@@ -78,7 +78,7 @@ annotations_list
     ;
 
 props_list
-    : '[' prop (',' prop)* ']'
+    : ( '[' ( prop (',' prop)* )? ']' )?
     ;
 
 meta_prop
@@ -90,7 +90,7 @@ graphs_list
     ;
 
 node
-    : '<' node_id '>' ('{' node_label (',' node_label)* '}')? props_list? graphs_list? annotations_list?
+    : '<' node_id '>' ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list graphs_list? annotations_list?
     ;
 
 edge
@@ -103,11 +103,11 @@ section
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' props_list? '->' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' ('<' edge_id '>')? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list '->' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' edge_id '>')? '{' edge_label '}' props_list? '-' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' ('<' edge_id '>')? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list '-' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 node_id
@@ -166,11 +166,11 @@ struct
     ;
 
 node_schema
-    : 'S' '{' node_label (',' node_label)* '}' prop_list_schema? graphs_list? annotations_list?
+    : 'S' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema graphs_list? annotations_list?
     ;
 
 prop_list_schema
-    : '[' prop_schema (',' prop_schema)* ']'
+    : ( '[' ( prop_schema (',' prop_schema)* )? ']' )?
     ;
 
 prop_schema
@@ -229,11 +229,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_label ')' '-' '{' edge_label '}' prop_list_schema? '->' '(' node_label ')'
+    : 'S' '(' node_label ')' '-' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema '->' '(' node_label ')'
     ;
 
 undirected_schema
-    : 'S' '(' node_label ')' '-' '{' edge_label '}' prop_list_schema? '-' '(' node_label ')'
+    : 'S' '(' node_label ')' '-' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema '-' '(' node_label ')'
     ;
 
 SECTION_NAME

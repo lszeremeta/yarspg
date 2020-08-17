@@ -18,7 +18,9 @@
 % NODES
 % NODE SCHEMAS
 <"a">{"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null]+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
+<"b43b">{}[]+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
 <"b43b">{"label1"}["value":5]+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
+S{}[]/"graph2"/
 S{"label333","c"}["value": String,"lang": String,"valid": Bool]/"graph2"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
 S{"label333","c"}["value": String,"lang": String,"valid": Bool ID]/"graph2"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
 S{"label333","c"}["value": String ID,"lang": String,"valid": Bool]/"graph2"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
@@ -76,8 +78,10 @@ S{"ZYT5"}["datetime": DateTime]
 
 % EDGES
 % EDGE SCHEMAS
+S("a1d")-{}[]->("label333")
 S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Integer)]->("label333")
 S("a1d")-{"aaa1a"}["key": String ID, "aab2bc": List(Integer)]->("label333")
+("a")-<"ferf">{}[]->("c")
 ("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44, 22]]->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
 ("a")-<"ferf">{"aaa1a"}["key": "value"@"ok": "no", "aab2bc": [44, 22]@"list name": "alph"]->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
 ("a")-<"id341">{"aaa2a"}->("c")
