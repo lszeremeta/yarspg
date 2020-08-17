@@ -74,7 +74,7 @@ rdf_annotation
     ;
 
 annotations_list
-    : '+' annotation (',' annotation)*
+    : '+' '[' annotation (',' annotation)* ']'
     ;
 
 props_list
