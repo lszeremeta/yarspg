@@ -57,7 +57,7 @@ string_annotation
 rdf_annotation
          ::= ((pn_local pname) | (IRI ':')) (STRING | IRI)
 annotations_list
-         ::= '+' annotation (',' annotation)*
+         ::= '+' '[' annotation (',' annotation)* ']'
 props_list
          ::= '[' prop (',' prop)* ']'
 meta_prop
