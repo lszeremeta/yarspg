@@ -253,8 +253,26 @@ STRING
     ;
 
 NUMBER
-    : SIGN? [0-9]+'.'?[0-9]*
+    : INTEGER
+    | DECIMAL
+    | DOUBLE
     ;
+
+INTEGER
+   : SIGN? [0-9]+
+   ;
+
+DECIMAL
+   : SIGN? [0-9]* '.' [0-9]+
+   ;
+
+DOUBLE
+   : SIGN? ([0-9]+ '.' [0-9]* EXPONENT | '.' [0-9]+ EXPONENT | [0-9]+ EXPONENT)
+   ;
+
+EXPONENT
+   : [eE] SIGN? [0-9]+
+   ;
 
 BOOL
     : 'true'

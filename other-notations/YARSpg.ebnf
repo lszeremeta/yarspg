@@ -146,7 +146,13 @@ SECTION_NAME
            | 'EDGES'
 COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= STRING_LITERAL_QUOTE
-NUMBER   ::= SIGN? [0-9]+ '.'? [0-9]*
+NUMBER   ::= INTEGER
+           | DECIMAL
+           | DOUBLE
+INTEGER  ::= SIGN? [0-9]+
+DECIMAL  ::= SIGN? [0-9]* '.' [0-9]+
+DOUBLE   ::= SIGN? ([0-9]+ '.' [0-9]* EXPONENT | '.' [0-9]+ EXPONENT | [0-9]+ EXPONENT)
+EXPONENT ::= [eE] SIGN? [0-9]+
 BOOL     ::= 'true'
            | 'false'
 DATETYPE ::= DATETIME
@@ -157,8 +163,6 @@ TIME     ::= [0-9] [0-9] ':' [0-9] [0-9] ':' [0-9] [0-9] TIMEZONE?
 TIMEZONE ::= SIGN? [0-9] [0-9] ':' [0-9] [0-9]
 DATETIME
          ::= DATE 'T' TIME
-SIGN     ::= '+'
-           | '-'
 STRING_LITERAL_QUOTE
          ::= '"' ([^"\#xd#xa] | "'" | '\"')* '"'
 ALNUM_PLUS
