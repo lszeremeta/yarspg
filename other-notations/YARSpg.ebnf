@@ -39,14 +39,22 @@ statement
            | edge
            | prefix_directive
            | metadata
+           | var_declaration
            | node_schema
            | edge_schema
+           | var_declaration_schema
            | section
 prefix_directive
          ::= pname IRI
 pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS
 metadata ::= '-' ((pn_local pname) | (IRI ':')) (STRING | IRI)
+var      ::= '$' var_name
+var_declaration
+         ::= var '=' prop ( ',' prop )*
+var_declaration_schema
+         ::= var '=' prop_schema ( ',' prop_schema )*
+var_name ::= ALNUM_PLUS
 graph_name
          ::= STRING
 annotation
@@ -59,7 +67,7 @@ rdf_annotation
 annotations_list
          ::= '+' '[' annotation (',' annotation)* ']'
 props_list
-         ::= ( '[' ( prop (',' prop)* )? ']' )?
+         ::= ( '[' ( ( prop | var ) ( ',' ( prop | var ) )* )? ']' )?
 meta_prop
          ::= '@' key ':' value
 graphs_list
@@ -99,7 +107,7 @@ struct   ::= '{' key ':' ( primitive_value | struct ) meta_prop* ( ',' key ':' (
 node_schema
          ::= 'S' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema graphs_list? annotations_list?
 prop_list_schema
-         ::= ( '[' ( prop_schema ( ',' prop_schema )* )? ']' )?
+         ::= ( '[' ( ( prop_schema | var ) ( ',' ( prop_schema | var ) )* )? ']' )?
 prop_schema
          ::= key ':' value_schema id_key?
 meta_prop_schema

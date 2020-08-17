@@ -35,8 +35,10 @@ statement
     | edge
     | prefix_directive
     | metadata
+    | var_declaration
     | node_schema
     | edge_schema
+    | var_declaration_schema
     | section
     ;
 
@@ -54,6 +56,22 @@ pn_local
 
 metadata
     : '-' ((pn_local pname) | (IRI ':')) (STRING | IRI)
+    ;
+
+var
+    : '$' var_name
+    ;
+
+var_declaration
+    : var '=' prop (',' prop)*
+    ;
+
+var_declaration_schema
+    : var '=' prop_schema (',' prop_schema)*
+    ;
+
+var_name
+    : ALNUM_PLUS
     ;
 
 graph_name
@@ -78,7 +96,7 @@ annotations_list
     ;
 
 props_list
-    : ( '[' ( prop (',' prop)* )? ']' )?
+    : ( '[' ( ( prop | var ) (',' ( prop | var ) )* )? ']' )?
     ;
 
 meta_prop
@@ -170,7 +188,7 @@ node_schema
     ;
 
 prop_list_schema
-    : ( '[' ( prop_schema (',' prop_schema)* )? ']' )?
+    : ( '[' ( ( prop_schema | var ) (',' ( prop_schema | var ) )* )? ']' )?
     ;
 
 prop_schema
