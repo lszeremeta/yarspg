@@ -72,16 +72,16 @@ meta_prop
          ::= '@' key ':' value
 graphs_list
          ::= '/' graph_name (',' graph_name)* '/'
-graph    ::= '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list
+graph    ::= '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list?
 node
-         ::= '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list ')' graphs_list? annotations_list?
+         ::= '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list? ')' graphs_list? annotations_list?
 edge
          ::= directed
            | undirected
 section  ::= '%' SECTION_NAME           
-directed ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list ')' '->' '(' node_id ')' graphs_list? annotations_list?
+directed ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '->' '(' node_id ')' graphs_list? annotations_list?
 undirected
-         ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list ')' '-' '(' node_id ')' graphs_list? annotations_list?
+         ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '-' '(' node_id ')' graphs_list? annotations_list?
 node_id  ::= STRING
 node_label
          ::= STRING

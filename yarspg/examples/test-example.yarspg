@@ -1,11 +1,16 @@
 %GRAPH
 /"graph1"/{"graph_label", "graphlabel2"}["prop": true, "prop2": "Abc"]
 
-%GRAPH
-/"graph2"/{}[]
+$graph2_prop = "prop2": "Abc"@"ok": false
 
 %GRAPH
-/"graph3"/
+/"graph2"/{"graph_label", "graphlabel2"}["prop": true, $graph2_prop]
+
+%GRAPH
+/"graph3"/{}[]
+
+%GRAPH
+/"graph4"/
 
 # This is test example
 # Another comment

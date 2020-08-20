@@ -97,7 +97,7 @@ annotations_list
     ;
 
 props_list
-    : ( '[' ( ( prop | var ) (',' ( prop | var ) )* )? ']' )?
+    : '[' ( ( prop | var ) (',' ( prop | var ) )* )? ']'
     ;
 
 meta_prop
@@ -109,11 +109,11 @@ graphs_list
     ;
 
 graph
-    : '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list
+    : '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list?
     ;
 
 node
-    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list ')' graphs_list? annotations_list?
+    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list? ')' graphs_list? annotations_list?
     ;
 
 edge
@@ -126,11 +126,11 @@ section
     ;
 
 directed
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list ')' '->' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '->' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 undirected
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list ')' '-' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '-' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 node_id
