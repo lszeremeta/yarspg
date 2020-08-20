@@ -1,3 +1,12 @@
+%GRAPH
+/"graph1"/{"graph_label", "graphlabel2"}["prop": true, "prop2": "Abc"]
+
+%GRAPH
+/"graph2"/{}[]
+
+%GRAPH
+/"graph3"/
+
 # This is test example
 # Another comment
 

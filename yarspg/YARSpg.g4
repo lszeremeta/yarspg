@@ -40,6 +40,7 @@ statement
     | edge_schema
     | var_declaration_schema
     | section
+    | graph
     ;
 
 prefix_directive
@@ -107,6 +108,10 @@ graphs_list
     : '/' graph_name (',' graph_name)* '/'
     ;
 
+graph
+    : '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list
+    ;
+
 node
     : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list ')' graphs_list? annotations_list?
     ;
@@ -145,6 +150,10 @@ edge_id
     ;
 
 edge_label
+    : STRING
+    ;
+
+graph_label
     : STRING
     ;
 

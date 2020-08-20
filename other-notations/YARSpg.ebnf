@@ -72,6 +72,7 @@ meta_prop
          ::= '@' key ':' value
 graphs_list
          ::= '/' graph_name (',' graph_name)* '/'
+graph    ::= '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list
 node
          ::= '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list ')' graphs_list? annotations_list?
 edge
@@ -87,6 +88,8 @@ node_label
 prop     ::= key ':' value meta_prop*       
 edge_id   ::= STRING
 edge_label
+         ::= STRING
+graph_label
          ::= STRING
 key      ::= STRING
 value    ::= primitive_value
