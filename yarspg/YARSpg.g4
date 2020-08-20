@@ -108,7 +108,7 @@ graphs_list
     ;
 
 node
-    : '<' node_id '>' ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list graphs_list? annotations_list?
+    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list ')' graphs_list? annotations_list?
     ;
 
 edge

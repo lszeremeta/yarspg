@@ -18,69 +18,69 @@
 % NODES
 % NODE SCHEMAS
 $var44 = "aa1a":true,"a2aa":"text"
-<"a">{"a1d","x"}[$var44,"aa3aa":null]+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
-<"a">{"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null]+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
-<"b43b">{}[]+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
-<"b43b">{"label1"}["value":5]+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
+("a" {"a1d","x"}[$var44,"aa3aa":null])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
+("a" {"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
+("b43b" {}[])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
+("b43b" {"label1"}["value":5])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
 S{}[]/"graph2"/
 $var44_schema = "value": String,"lang": String
 S{"label333","c"}[$var44_schema,"valid": Bool]/"graph2"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
 S{"label333","c"}["value": String,"lang": String,"valid": Bool ID]/"graph2"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
 S{"label333","c"}["value": String ID,"lang": String,"valid": Bool]/"graph2"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
-<"c">{"label333","c"}["value":"male","lang":"en","valid":false]/"graph2", "graph3"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
+("c" {"label333","c"}["value":"male","lang":"en","valid":false])/"graph2", "graph3"/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
 S{"label546"}["key": Float]
 S{"label546"}["key": Float ID]
-<"d">{"label546"}["key":.1333]
-<"d">{"label546"}["key":.1333e+5]
-<"d">{"label546"}["key":1333E-2]
-<"d">{"label546"}["key":442.1333]
+("d" {"label546"}["key":.1333])
+("d" {"label546"}["key":.1333e+5])
+("d" {"label546"}["key":1333E-2])
+("d" {"label546"}["key":442.1333])
 S{"label546"}["key": Float@"source": String]
-<"d">{"label546"}["key":442.1333@"source": "XZYNews"]
-<"e">{"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]]
-<"f">["node":"node without label"]+[foaf:maker: <http://example.com/me>]
-<"g">{"df2","z","q"}["key664":[false,["another list", 52, 44.1]]]+["abc": "value33"]
-<"h">{"label"}["key664":[false,["another list2", ["another list3", 54, false, true] , 52, 44.1]]]
-<"h">{"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true] , 52, 44.1]]]
-<"h">{"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true]@"access": [0, 1, 1, 0] @"ok": true, 52, 44.1]@"good": false]]
+("d" {"label546"}["key":442.1333@"source": "XZYNews"])
+("e" {"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]])
+("f" ["node":"node without label"])+[foaf:maker: <http://example.com/me>]
+("g" {"df2","z","q"}["key664":[false,["another list", 52, 44.1]]])+["abc": "value33"]
+("h" {"label"}["key664":[false,["another list2", ["another list3", 54, false, true] , 52, 44.1]]])
+("h" {"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true] , 52, 44.1]]])
+("h" {"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true]@"access": [0, 1, 1, 0] @"ok": true, 52, 44.1]@"good": false]])
 S{"label"}["keyword": Struct(String)]
-<"i">{"label"}["keyword": {"name": "abc", "title": "xyz"}]
+("i" {"label"}["keyword": {"name": "abc", "title": "xyz"}])
 S{"label"}["keyword": Struct(String)@"ok": Integer]
-<"i">{"label"}["keyword": {"name": "abc"@"info": "ok", "title": "xyz"}@"ok": 1]
+("i" {"label"}["keyword": {"name": "abc"@"info": "ok", "title": "xyz"}@"ok": 1])
 S{"2label4"}["keyword2": Struct(Struct(String))]
-<"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}]
+("2i44" {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}])
 S{"2label4"}["keyword2": Struct(Struct(String)@"struct": String)@"struct": String @"ok": Bool]
-<"2i44">{"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}@"rating": 5, "names2": {"name2": "abc2"@"more": "ok", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}@"struct": "inside"}@"struct": "outside" @"ok": true]
-<"i2">{"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}]
+("2i44" {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}@"rating": 5, "names2": {"name2": "abc2"@"more": "ok", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}@"struct": "inside"}@"struct": "outside" @"ok": true])
+("i2" {"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}])
 S{"432f"}["set": Set(String)]/"graphname"/
-<"z">{"432f"}["set": {"name", "title"}]/"graphname"/
-<"z">{"432f"}["set": {"name", "title"}@"test":"test3"]/"graphname"/
+("z" {"432f"}["set": {"name", "title"}])/"graphname"/
+("z" {"432f"}["set": {"name", "title"}@"test":"test3"])/"graphname"/
 S{"432f2"}["set": Set(Set(String))]
-<"z2">{"432f2"}["set": {{"set2", "title"}}]
+("z2" {"432f2"}["set": {{"set2", "title"}}])
 S{"3432f2"}["set": Set(Set(String))]
-<"3z2">{"3432f2"}["set": {{"set2", "title"}, {"set3", "title3"}}]
+("3z2" {"3432f2"}["set": {{"set2", "title"}, {"set3", "title3"}}])
 S{"1ad32"}["list": List(String)]
-<"1dsc">{"1ad32"}["list": ["name55", "name3"]]
+("1dsc" {"1ad32"}["list": ["name55", "name3"]])
 S{"1ad32"}["list": List(String NULL)]
-<"1dsc">{"1ad32"}["list": ["name55", null]]
+("1dsc" {"1ad32"}["list": ["name55", null]])
 S{"1ad32"}["list": List(String) NULL]
-<"1dsc">{"1ad32"}["list": null]
+("1dsc" {"1ad32"}["list": null])
 S{"ad3"}["list": List(List(String))]
-<"ds">{"ad3"}["list": [["name55", "name3"]]]
+("ds" {"ad3"}["list": [["name55", "name3"]]])
 S{"ad32"}["list": List(List(String))]
-<"dsc">{"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]]
+("dsc" {"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]])
 
 S{"ZYT"}["date": Date]
 S{"ZYT2"}["time": Time]
 S{"ZYT3"}["timezp": Time]
 S{"ZYT4"}["timezm": Time]
 S{"ZYT5"}["datetime": DateTime]
-<"ABC">{"ZYT"}["date": 1999-01-01]
-<"ABC2">{"ZYT2"}["time": 11:15:32]
-<"ABC3">{"ZYT3"}["timezp": 11:15:32+01:30]
-<"ABC4">{"ZYT4"}["timezm": 09:32:11-08:00]
-<"ABC5">{"ZYT5"}["datetime": 1999-01-01T11:15:32]
-<"ABC5">{"ZYT5"}["datetimetzp": 1999-01-01T11:15:32+01:30]
-<"ABC5">{"ZYT5"}["datetimetzm": 1999-01-01T11:15:32-08:00]
+("ABC" {"ZYT"}["date": 1999-01-01])
+("ABC2" {"ZYT2"}["time": 11:15:32])
+("ABC3" {"ZYT3"}["timezp": 11:15:32+01:30])
+("ABC4" {"ZYT4"}["timezm": 09:32:11-08:00])
+("ABC5" {"ZYT5"}["datetime": 1999-01-01T11:15:32])
+("ABC5" {"ZYT5"}["datetimetzp": 1999-01-01T11:15:32+01:30])
+("ABC5" {"ZYT5"}["datetimetzm": 1999-01-01T11:15:32-08:00])
 
 % EDGES
 % EDGE SCHEMAS

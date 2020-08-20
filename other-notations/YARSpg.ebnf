@@ -73,7 +73,7 @@ meta_prop
 graphs_list
          ::= '/' graph_name (',' graph_name)* '/'
 node
-         ::= '<' node_id '>' ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list graphs_list? annotations_list?
+         ::= '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list ')' graphs_list? annotations_list?
 edge
          ::= directed
            | undirected
