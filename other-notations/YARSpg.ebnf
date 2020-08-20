@@ -146,7 +146,8 @@ directed_schema
 undirected_schema
          ::= 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema ')' '-' '(' node_label ')'
 SECTION_NAME
-         ::= 'METADATA'
+         ::= 'GRAPH'
+           | 'METADATA'
            | 'NODE SCHEMAS'
            | 'EDGE SCHEMAS'
            | 'NODES'

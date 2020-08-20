@@ -255,7 +255,8 @@ undirected_schema
     ;
 
 SECTION_NAME
-    : 'METADATA'
+    : 'GRAPH'
+    | 'METADATA'
     | 'NODE SCHEMAS'
     | 'EDGE SCHEMAS'
     | 'NODES'
