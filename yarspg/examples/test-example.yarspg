@@ -84,36 +84,36 @@ S{"ZYT5"}["datetime": DateTime]
 
 % EDGES
 % EDGE SCHEMAS
-S("a1d")-{}[]->("label333")
-S("a1d")-{"aaa1a"}["key": String, "aab2bc": List(Integer)]->("label333")
-S("a1d")-{"aaa1a"}["key": String ID, "aab2bc": List(Integer)]->("label333")
-("a")-<"ferf">{}[]->("c")
-("a")-<"ferf">{"aaa1a"}["key": "value", "aab2bc": [44, 22]]->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
+S("a1d")-({}[])->("label333")
+S("a1d")-({"aaa1a"}["key": String, "aab2bc": List(Integer)])->("label333")
+S("a1d")-({"aaa1a"}["key": String ID, "aab2bc": List(Integer)])->("label333")
+("a")-("ferf" {}[])->("c")
+("a")-("ferf" {"aaa1a"}["key": "value", "aab2bc": [44, 22]])->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
 $var_e344 = "aab2bc": [44, 22]@"list name": "alph"
-("a")-<"ferf">{"aaa1a"}["key": "value"@"ok": "no", $var_e344]->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
-("a")-<"ferf">{"aaa1a"}["key": "value"@"ok": "no", "aab2bc": [44, 22]@"list name": "alph"]->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
-("a")-<"id341">{"aaa2a"}->("c")
-S("label1")-{"bbb23b"}-("ef22")
-("b43b")-{"bbb23b"}-("e")
+("a")-("ferf" {"aaa1a"}["key": "value"@"ok": "no", $var_e344])->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
+("a")-("ferf" {"aaa1a"}["key": "value"@"ok": "no", "aab2bc": [44, 22]@"list name": "alph"])->("c")+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
+("a")-("id341" {"aaa2a"})->("c")
+S("label1")-({"bbb23b"})-("ef22")
+("b43b")-({"bbb23b"})-("e")
 $var_234e_schema = "bbbd32d": Bool ID
-S("label1")-{"bbb23b"}["bbbd32d": Bool, "value": String NULL]-("ef22")
-S("label1")-{"bbb23b"}[$var_234e_schema, "value": String NULL]-("ef22")
-S("label1")-{"bbb23b"}["bbbd32d": Bool ID, "value": String NULL]-("ef22")
-("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null]-("e")+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
-("b43b")-{"bbbb53b"}["bbbd32d": false, "value": null@"psod": {"dff": 1, "ewf": 55}]-("e")+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
+S("label1")-({"bbb23b"}["bbbd32d": Bool, "value": String NULL])-("ef22")
+S("label1")-({"bbb23b"}[$var_234e_schema, "value": String NULL])-("ef22")
+S("label1")-({"bbb23b"}["bbbd32d": Bool ID, "value": String NULL])-("ef22")
+("b43b")-({"bbbb53b"}["bbbd32d": false, "value": null])-("e")+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
+("b43b")-({"bbbb53b"}["bbbd32d": false, "value": null@"psod": {"dff": 1, "ewf": 55}])-("e")+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
 
-S("A")-{"label"}["date": Date]->("Z")
-S("A2")-{"label2"}["time": Time]->("Z2")
-S("A3")-{"label3"}["timezp": Time]->("Z3")
-S("A4")-{"label4"}["timezm": Time]->("Z4")
-S("A5")-{"label5"}["datetime": DateTime]->("Z5")
-S("A5")-{"label5"}["datetime": DateTime ID]->("Z5")
-S("A6")-{"label6"}["datetimetzp": DateTime]->("Z6")
-S("A7")-{"label7"}["datetimetzm": DateTime]->("Z7")
-("ABC")-{"label"}["date": 1999-01-01]->("XYZ")
-("ABC2")-{"label2"}["time": 11:15:32]->("XYZ2")
-("ABC3")-{"label3"}["timezp": 11:15:32+01:30]->("XYZ3")
-("ABC4")-{"label4"}["timezm": 09:32:11-08:00]->("XYZ4")
-("ABC5")-{"label5"}["datetime": 1999-01-01T11:15:32]->("XYZ5")
-("ABC6")-{"label6"}["datetimetzp": 1999-01-01T11:15:32+01:30]->("XYZ6")
-("ABC7")-{"label7"}["datetimetzm": 1999-01-01T11:15:32-08:00]->("XYZ7")
+S("A")-({"label"}["date": Date])->("Z")
+S("A2")-({"label2"}["time": Time])->("Z2")
+S("A3")-({"label3"}["timezp": Time])->("Z3")
+S("A4")-({"label4"}["timezm": Time])->("Z4")
+S("A5")-({"label5"}["datetime": DateTime])->("Z5")
+S("A5")-({"label5"}["datetime": DateTime ID])->("Z5")
+S("A6")-({"label6"}["datetimetzp": DateTime])->("Z6")
+S("A7")-({"label7"}["datetimetzm": DateTime])->("Z7")
+("ABC")-({"label"}["date": 1999-01-01])->("XYZ")
+("ABC2")-({"label2"}["time": 11:15:32])->("XYZ2")
+("ABC3")-({"label3"}["timezp": 11:15:32+01:30])->("XYZ3")
+("ABC4")-({"label4"}["timezm": 09:32:11-08:00])->("XYZ4")
+("ABC5")-({"label5"}["datetime": 1999-01-01T11:15:32])->("XYZ5")
+("ABC6")-({"label6"}["datetimetzp": 1999-01-01T11:15:32+01:30])->("XYZ6")
+("ABC7")-({"label7"}["datetimetzm": 1999-01-01T11:15:32-08:00])->("XYZ7")

@@ -12,10 +12,10 @@ S{"Proceedings"}["title": String, "year": Integer, "month": String]
 S{"Journal"}["title": String, "year": Integer, "vol": Integer]
 
 # Edge schema
-S("Entry")-{"has_author"}["order": Integer]->("Author")
-S("Entry")-{"cities"}->("Entry")
-S("InProceedings")-{"booktitle"}["pages": String]->("Proceedings")
-S("Article")-{"published_in"}["pages": String]->("Journal")
+S("Entry")-({"has_author"}["order": Integer])->("Author")
+S("Entry")-({"cities"})->("Entry")
+S("InProceedings")-({"booktitle"}["pages": String])->("Proceedings")
+S("Article")-({"published_in"}["pages": String])->("Journal")
 
 # Nodes
 ("Author01" {"Author"}["fname": "John", "lname": "Smith"]) #Author01
@@ -26,9 +26,9 @@ S("Article")-{"published_in"}["pages": String]->("Journal")
 ("Jour01" {"Journal"}["title": "J. DB", "year": 2020, "vol": 30])
 
 # Edge
-("EI01")-{"has_author"}["order": 1]->("Author01")
-("EI01")-{"has_author"}["order": 2]->("Author02")
-("EA01")-{"has_author"}["order": 1]->("Author02")
-("EA01")-{"cites"}->("EI01")
-("EI01")-{"booktitle"}["pages": "111-121"]->("Proc01")
-("EA01")-{"published_in"}["pages": "222-232"]->("Jour01")
+("EI01")-({"has_author"}["order": 1])->("Author01")
+("EI01")-({"has_author"}["order": 2])->("Author02")
+("EA01")-({"has_author"}["order": 1])->("Author02")
+("EA01")-({"cites"})->("EI01")
+("EI01")-({"booktitle"}["pages": "111-121"])->("Proc01")
+("EA01")-({"published_in"}["pages": "222-232"])->("Jour01")

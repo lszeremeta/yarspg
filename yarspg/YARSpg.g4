@@ -121,11 +121,11 @@ section
     ;
 
 directed
-    : '(' node_id ')' '-' ('<' edge_id '>')? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list '->' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list ')' '->' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 undirected
-    : '(' node_id ')' '-' ('<' edge_id '>')? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list '-' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list ')' '-' '(' node_id ')' graphs_list? annotations_list?
     ;
 
 node_id
@@ -247,11 +247,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_label ')' '-' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema '->' '(' node_label ')'
+    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema ')' '->' '(' node_label ')'
     ;
 
 undirected_schema
-    : 'S' '(' node_label ')' '-' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema '-' '(' node_label ')'
+    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema ')' '-' '(' node_label ')'
     ;
 
 SECTION_NAME
