@@ -193,11 +193,11 @@ struct
     ;
 
 node_schema
-    : 'S' '(' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema ')' graphs_list? annotations_list?
+    : 'S' '(' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? annotations_list?
     ;
 
 prop_list_schema
-    : ( '[' ( ( prop_schema | var ) (',' ( prop_schema | var ) )* )? ']' )?
+    : '[' ( ( prop_schema | var ) (',' ( prop_schema | var ) )* )? ']'
     ;
 
 prop_schema
@@ -256,11 +256,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema ')' '->' '(' node_label ')'
+    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '->' '(' node_label ')'
     ;
 
 undirected_schema
-    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema ')' '-' '(' node_label ')'
+    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_label ')'
     ;
 
 SECTION_NAME
