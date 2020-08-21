@@ -82,11 +82,11 @@ section  ::= '%' SECTION_NAME
 directed ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '->' '(' node_id ')' graphs_list? annotations_list?
 undirected
          ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '-' '(' node_id ')' graphs_list? annotations_list?
-node_id  ::= STRING
+node_id  ::= ALNUM_PLUS
 node_label
          ::= STRING
 prop     ::= key ':' value meta_prop*       
-edge_id   ::= STRING
+edge_id   ::= ALNUM_PLUS
 edge_label
          ::= STRING
 graph_label

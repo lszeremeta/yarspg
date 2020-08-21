@@ -134,7 +134,7 @@ undirected
     ;
 
 node_id
-    : STRING
+    : ALNUM_PLUS
     ;
 
 node_label
@@ -146,7 +146,7 @@ prop
     ;
 
 edge_id
-    : STRING
+    : ALNUM_PLUS
     ;
 
 edge_label
