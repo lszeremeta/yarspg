@@ -55,8 +55,8 @@ var_declaration
 var_declaration_schema
          ::= var '=' prop_schema ( ',' prop_schema )*
 var_name ::= ALNUM_PLUS
-graph_name
-         ::= STRING
+graph_id
+         ::= ALNUM_PLUS
 annotation
          ::= string_annotation
            | rdf_annotation
@@ -71,8 +71,8 @@ props_list
 meta_prop
          ::= '@' key ':' value
 graphs_list
-         ::= '/' graph_name (',' graph_name)* '/'
-graph    ::= '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list?
+         ::= '/' graph_id (',' graph_id)* '/'
+graph    ::= '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list?
 node
          ::= '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list? ')' graphs_list? annotations_list?
 edge

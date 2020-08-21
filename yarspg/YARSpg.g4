@@ -75,8 +75,8 @@ var_name
     : ALNUM_PLUS
     ;
 
-graph_name
-    : STRING
+graph_id
+    : ALNUM_PLUS
     ;
 
 annotation
@@ -105,11 +105,11 @@ meta_prop
     ;
 
 graphs_list
-    : '/' graph_name (',' graph_name)* '/'
+    : '/' graph_id (',' graph_id)* '/'
     ;
 
 graph
-    : '/' graph_name '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list?
+    : '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list?
     ;
 
 node
