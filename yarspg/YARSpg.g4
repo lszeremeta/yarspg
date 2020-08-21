@@ -193,7 +193,7 @@ struct
     ;
 
 node_schema
-    : 'S' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema graphs_list? annotations_list?
+    : 'S' '(' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema ')' graphs_list? annotations_list?
     ;
 
 prop_list_schema

@@ -108,7 +108,7 @@ set      ::= '{' ( primitive_value | set ) meta_prop* ( ',' ( primitive_value | 
 list     ::= '[' ( primitive_value | list ) meta_prop* ( ',' ( primitive_value | list ) meta_prop* )* ']'
 struct   ::= '{' key ':' ( primitive_value | struct ) meta_prop* ( ',' key ':' ( primitive_value | struct ) meta_prop* )* '}'
 node_schema
-         ::= 'S' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema graphs_list? annotations_list?
+         ::= 'S' '(' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema ')' graphs_list? annotations_list?
 prop_list_schema
          ::= ( '[' ( ( prop_schema | var ) ( ',' ( prop_schema | var ) )* )? ']' )?
 prop_schema

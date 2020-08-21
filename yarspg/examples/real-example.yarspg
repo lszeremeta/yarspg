@@ -5,11 +5,11 @@
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 
 # Node schema
-S{"Author"}["fname": String, "lname": String]
-S{"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String]
-S{"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)]
-S{"Proceedings"}["title": String, "year": Integer, "month": String]
-S{"Journal"}["title": String, "year": Integer, "vol": Integer]
+S({"Author"}["fname": String, "lname": String])
+S({"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String])
+S({"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)])
+S({"Proceedings"}["title": String, "year": Integer, "month": String])
+S({"Journal"}["title": String, "year": Integer, "vol": Integer])
 
 # Edge schema
 S("Entry")-({"has_author"}["order": Integer])->("Author")
