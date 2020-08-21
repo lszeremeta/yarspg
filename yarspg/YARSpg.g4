@@ -1,6 +1,6 @@
 /*
  [The "BSD licence"]
- Copyright (c) 2018-2019, Łukasz Szeremeta (@ University of Bialystok, http://www.uwb.edu.pl/)
+ Copyright (c) 2018-2020, Łukasz Szeremeta (@ University of Bialystok, https://lukasz.science)
  Copyright (c) 2018, Dominik Tomaszuk (@ University of Bialystok, http://www.uwb.edu.pl/)
  Copyright (c) 2018, Karol Litman (@ University of Bialystok, http://www.uwb.edu.pl/)
  All rights reserved.
