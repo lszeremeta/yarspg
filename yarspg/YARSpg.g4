@@ -34,7 +34,7 @@ statement
     : node
     | edge
     | prefix_directive
-    | metadata
+    | doc_metadata
     | var_declaration
     | node_schema
     | edge_schema
@@ -55,7 +55,7 @@ pn_local
     : ALNUM_PLUS
     ;
 
-metadata
+doc_metadata
     : '-' ((pn_local pname) | (IRI ':')) (STRING | IRI)
     ;
 
@@ -79,21 +79,21 @@ graph_id
     : ALNUM_PLUS
     ;
 
-annotation
-    : string_annotation
-    | rdf_annotation
+local_metadata
+    : string_local_metadata
+    | rdf_local_metadata
     ;
 
-string_annotation
+string_local_metadata
     : key ':' STRING
     ;
 
-rdf_annotation
+rdf_local_metadata
     : ((pn_local pname) | (IRI ':')) (STRING | IRI)
     ;
 
-annotations_list
-    : '+' '[' annotation (',' annotation)* ']'
+local_metadata_list
+    : '+' '[' local_metadata (',' local_metadata)* ']'
     ;
 
 props_list
@@ -113,7 +113,7 @@ graph
     ;
 
 node
-    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list? ')' graphs_list? annotations_list?
+    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list? ')' graphs_list? local_metadata_list?
     ;
 
 edge
@@ -126,11 +126,11 @@ section
     ;
 
 directed
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '->' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '->' '(' node_id ')' graphs_list? local_metadata_list?
     ;
 
 undirected
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '-' '(' node_id ')' graphs_list? annotations_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '-' '(' node_id ')' graphs_list? local_metadata_list?
     ;
 
 node_id
@@ -193,7 +193,7 @@ struct
     ;
 
 node_schema
-    : 'S' '(' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? annotations_list?
+    : 'S' '(' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? local_metadata_list?
     ;
 
 prop_list_schema
