@@ -193,7 +193,11 @@ struct
     ;
 
 node_schema
-    : 'S' '(' ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? local_metadata_list?
+    : 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? local_metadata_list?
+    ;
+
+node_id_schema
+    : ALNUM_PLUS
     ;
 
 prop_list_schema
@@ -256,11 +260,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '->' '(' node_label ')'
+    : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '->' '(' node_id_schema ')'
     ;
 
 undirected_schema
-    : 'S' '(' node_label ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_label ')'
+    : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_id_schema ')'
     ;
 
 SECTION_NAME

@@ -5,17 +5,17 @@
 -foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
 
 # Node schema
-S({"Author"}["fname": String, "lname": String])
-S({"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String])
-S({"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)])
-S({"Proceedings"}["title": String, "year": Integer, "month": String])
-S({"Journal"}["title": String, "year": Integer, "vol": Integer])
+S(NS1 {"Author"}["fname": String, "lname": String])
+S(NS2 {"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String])
+S(NS3 {"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)])
+S(NS4 {"Proceedings"}["title": String, "year": Integer, "month": String])
+S(NS5 {"Journal"}["title": String, "year": Integer, "vol": Integer])
 
 # Edge schema
-S("Entry")-({"has_author"}["order": Integer])->("Author")
-S("Entry")-({"cities"})->("Entry")
-S("InProceedings")-({"booktitle"}["pages": String])->("Proceedings")
-S("Article")-({"published_in"}["pages": String])->("Journal")
+S(NS2)-({"has_author"}["order": Integer])->(NS1)
+S(NS3)-({"cities"})->(NS2)
+S(NS2)-({"booktitle"}["pages": String])->(NS4)
+S(NS3)-({"published_in"}["pages": String])->(NS5)
 
 # Nodes
 (Author01 {"Author"}["fname": "John", "lname": "Smith"]) #Author01
