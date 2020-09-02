@@ -213,8 +213,8 @@ meta_prop_schema
     ;
 
 value_schema
-    : primitive_value_schema ('ID' | 'NULL')? meta_prop_schema*
-    | complex_value_schema 'NULL'?
+    : primitive_value_schema ('ID' | 'NULL')? 'OPTIONAL'? meta_prop_schema*
+    | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema*
     ;
 
 primitive_value_schema
@@ -243,15 +243,15 @@ complex_value_schema
     ;
 
 set_schema
-    : 'Set' '(' (primitive_value_schema 'NULL'? | set_schema) ')' meta_prop_schema*
+    : 'Set' '(' (primitive_value_schema 'NULL'? 'OPTIONAL'? | set_schema) ')' meta_prop_schema*
     ;
 
 list_schema
-    : 'List' '(' (primitive_value_schema 'NULL'? | list_schema) ')' meta_prop_schema*
+    : 'List' '(' (primitive_value_schema 'NULL'? 'OPTIONAL'? | list_schema) ')' meta_prop_schema*
     ;
 
 struct_schema
-    : 'Struct' '(' (primitive_value_schema 'NULL'? | struct_schema) ')' meta_prop_schema*
+    : 'Struct' '(' (primitive_value_schema 'NULL'? 'OPTIONAL'? | struct_schema) ')' meta_prop_schema*
     ;
 
 edge_schema
