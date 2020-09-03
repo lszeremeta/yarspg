@@ -139,11 +139,11 @@ complex_value_schema
            | list_schema
            | struct_schema
 set_schema
-         ::= 'Set' '(' ( primitive_value_schema 'NULL'? 'OPTIONAL'? | set_schema ) ')' meta_prop_schema*
+         ::= 'Set' '(' ( primitive_value_schema | set_schema ) 'NULL'? 'OPTIONAL'? ')' meta_prop_schema*
 list_schema
-         ::= 'List' '(' ( primitive_value_schema 'NULL'? 'OPTIONAL'? | list_schema ) ')' meta_prop_schema*
+         ::= 'List' '(' ( primitive_value_schema | list_schema ) 'NULL'? 'OPTIONAL'? ')' meta_prop_schema*
 struct_schema
-         ::= 'Struct' '(' ( primitive_value_schema 'NULL'? 'OPTIONAL'? | struct_schema ) ')' meta_prop_schema*
+         ::= 'Struct' '(' ( primitive_value_schema | struct_schema ) 'NULL'? 'OPTIONAL'? ')' meta_prop_schema*
 edge_schema
          ::= directed_schema
            | undirected_schema

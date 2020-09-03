@@ -87,6 +87,8 @@ S(NS18 {"ad3"}["list": List(List(String))])
 (ds {"ad3"}["list": [["name55", "name3"]]])
 S(NS19 {"ad32"}["list": List(List(String))])
 S(NS192 {"ad32"}["list": List(List(String OPTIONAL)) OPTIONAL])
+S(NS1924 {"ad32"}["list": List(List(String OPTIONAL) OPTIONAL) OPTIONAL])
+S(NS19245 {"ad32"}["list": List(List(String NULL OPTIONAL) NULL OPTIONAL) NULL OPTIONAL])
 (dsc {"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]])
 
 S(NS20 {"ZYT"}["date": Date])
