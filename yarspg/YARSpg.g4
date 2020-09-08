@@ -213,7 +213,7 @@ meta_prop_schema
     ;
 
 value_schema
-    : primitive_value_schema ('ID' | 'NULL')? 'OPTIONAL'? meta_prop_schema*
+    : primitive_value_schema ('UNIQUE' | 'NULL')? 'OPTIONAL'? meta_prop_schema*
     | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema*
     ;
 

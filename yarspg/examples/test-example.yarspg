@@ -39,12 +39,12 @@ $var44 = "aa1a":true,"a2aa":"text"
 S(NS1 {}[])/graph2/
 $var44_schema = "value": String,"lang": String
 S(NS2 {"label333","c"}[$var44_schema,"valid": Bool])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
-S(NS3 {"label333","c"}["value": String,"lang": String,"valid": Bool ID])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
-S(NS4 {"label333","c"}["value": String ID,"lang": String,"valid": Bool])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
+S(NS3 {"label333","c"}["value": String,"lang": String,"valid": Bool UNIQUE])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
+S(NS4 {"label333","c"}["value": String UNIQUE,"lang": String,"valid": Bool])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
 (c {"label333","c"}["value":"male","lang":"en","valid":false])/graph2, graph3/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
 S(NS5 {"label546"}["key": Float])
 S(NS52 {"label546"}["key": Float OPTIONAL])
-S(NS6 {"label546"}["key": Float ID])
+S(NS6 {"label546"}["key": Float UNIQUE])
 (d {"label546"}["key":.1333])
 (d {"label546"}["key":.1333e+5])
 (d {"label546"}["key":1333E-2])
@@ -109,7 +109,7 @@ S(NS24 {"ZYT5"}["datetime": DateTime])
 % EDGE SCHEMAS
 S(A01)-({}[])->(A02)
 S(A01)-({"aaa1a"}["key": String, "aab2bc": List(Integer)])->(A02)
-S(A01)-({"aaa1a"}["key": String ID, "aab2bc": List(Integer)])->(A02)
+S(A01)-({"aaa1a"}["key": String UNIQUE, "aab2bc": List(Integer)])->(A02)
 (a)-(ferf {}[])->(c)
 (a)-(ferf {"aaa1a"}["key": "value", "aab2bc": [44, 22]])->(c)+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
 $var_e344 = "aab2bc": [44, 22]@"list name": "alph"
@@ -118,15 +118,15 @@ $var_e344 = "aab2bc": [44, 22]@"list name": "alph"
 (a)-(id341 {"aaa2a"})->(c)
 S(HAd34)-({"bbb23b"})-(sje2)
 (b43b)-({"bbb23b"})-(e)
-$var_234e_schema = "bbbd32d": Bool ID
+$var_234e_schema = "bbbd32d": Bool UNIQUE
 S(ABC43)-({"bbb23b"}["bbbd32d": Bool, "value": String NULL])-(JSk34)
 S(ABC434)-({"bbb23b"}["bbbd32d": Bool, "value": String OPTIONAL])-(JSk342)
 S(ad234)-({"bbb23b"}[$var_234e_schema, "value": String NULL])-(gr525)
-S(asf32)-({"bbb23b"}["bbbd32d": Bool ID, "value": String NULL])-(wef32)
-S(asf323)-({"bbb23b"}["bbbd32d": Bool ID, "value": List(String) NULL])-(wef323)
-S(asf3233)-({"bbb23b"}["bbbd32d": Bool ID @"dfwe": Integer NULL, "value": List(String) NULL @"efe": List(List(String))])-(wef3234)
-S(asf3245)-({"bbb23b"}["bbbd32d": Bool ID, "value": List(String) OPTIONAL])-(wef3245)
-S(asf3244)-({"bbb23b"}["bbbd32d": Bool ID, "value": List(String) OPTIONAL @"psod": Struct(Integer) OPTIONAL])-(wef3245)
+S(asf32)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": String NULL])-(wef32)
+S(asf323)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) NULL])-(wef323)
+S(asf3233)-({"bbb23b"}["bbbd32d": Bool UNIQUE @"dfwe": Integer NULL, "value": List(String) NULL @"efe": List(List(String))])-(wef3234)
+S(asf3245)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL])-(wef3245)
+S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @"psod": Struct(Integer) OPTIONAL])-(wef3245)
 (b43b)-({"bbbb53b"}["bbbd32d": false, "value": null])-(e)+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
 (b43b)-({"bbbb53b"}["bbbd32d": false, "value": null@"psod": {"dff": 1, "ewf": 55}])-(e)+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
 
@@ -137,7 +137,7 @@ S(Adg3)-({"label4"}["timezm": Time])->(saf24)
 S(Adg35)-({"label4"}["timezm": Time OPTIONAL])->(saf244)
 S(wf23)-({"label5"}["datetime": DateTime])->(erg32)
 S(wf2343)-({"label5"}["datetime": DateTime @"info": String])->(erg3264)
-S(sdaf56)-({"label5"}["datetime": DateTime ID])->(dsf53)
+S(sdaf56)-({"label5"}["datetime": DateTime UNIQUE])->(dsf53)
 S(sas34)-({"label6"}["datetimetzp": DateTime])->(sdag654)
 S(asdg41)-({"label7"}["datetimetzm": DateTime])->(asv94)
 (ABC)-({"label"}["date": 1999-01-01])->(XYZ)
