@@ -44,6 +44,7 @@ statement
            | edge_schema
            | var_declaration_schema
            | section
+           | graph
 prefix_directive
          ::= pname IRI
 pname    ::= ':' ALNUM_PLUS ':'
