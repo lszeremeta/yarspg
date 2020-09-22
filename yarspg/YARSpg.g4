@@ -41,6 +41,7 @@ statement
     | var_declaration_schema
     | section
     | graph
+    | graph_schema
     ;
 
 prefix_directive
@@ -282,6 +283,10 @@ directed_schema
 
 undirected_schema
     : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_id_schema ')'
+    ;
+
+graph_schema
+    : 'S' '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? prop_list_schema?
     ;
 
 number
