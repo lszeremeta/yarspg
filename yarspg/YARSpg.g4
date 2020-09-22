@@ -169,7 +169,7 @@ value
 primitive_value
     : STRING
     | DATETYPE
-    | NUMBER
+    | number
     | BOOL
     | 'null'
     ;
@@ -212,8 +212,25 @@ meta_prop_schema
     : '@' key ':' value_schema
     ;
 
+cardinality
+    : min_cardinality max_cardinality?
+    | max_cardinality
+    ;
+
+min_cardinality
+    : 'MIN' card_num
+    ;
+
+max_cardinality
+    : 'MAX' card_num
+    ;
+
+card_num
+    : UNSIGNED_INT
+    ;
+
 value_schema
-    : primitive_value_schema ('UNIQUE' | 'NULL')? 'OPTIONAL'? meta_prop_schema*
+    : primitive_value_schema ('UNIQUE' | 'NULL')? 'OPTIONAL'?  meta_prop_schema*
     | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema*
     ;
 
@@ -243,15 +260,15 @@ complex_value_schema
     ;
 
 set_schema
-    : 'Set' '(' (primitive_value_schema | set_schema) 'NULL'? 'OPTIONAL'? ')' meta_prop_schema*
+    : 'Set' '(' (primitive_value_schema | set_schema) 'NULL'? cardinality? ')' meta_prop_schema*
     ;
 
 list_schema
-    : 'List' '(' (primitive_value_schema | list_schema) 'NULL'? 'OPTIONAL'? ')' meta_prop_schema*
+    : 'List' '(' (primitive_value_schema | list_schema) 'NULL'? cardinality? ')' meta_prop_schema*
     ;
 
 struct_schema
-    : 'Struct' '(' (primitive_value_schema | struct_schema) 'NULL'? 'OPTIONAL'? ')' meta_prop_schema*
+    : 'Struct' '(' (primitive_value_schema | struct_schema) 'NULL'? cardinality? ')' meta_prop_schema*
     ;
 
 edge_schema
@@ -265,6 +282,13 @@ directed_schema
 
 undirected_schema
     : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_id_schema ')'
+    ;
+
+number
+    : UNSIGNED_INT
+    | SIGNED_INT
+    | DECIMAL
+    | DOUBLE
     ;
 
 SECTION_NAME
@@ -284,14 +308,12 @@ STRING
     : STRING_LITERAL_QUOTE
     ;
 
-NUMBER
-    : INTEGER
-    | DECIMAL
-    | DOUBLE
+UNSIGNED_INT
+    : [0-9]+
     ;
 
-INTEGER
-   : SIGN? [0-9]+
+SIGNED_INT
+   : SIGN [0-9]+
    ;
 
 DECIMAL

@@ -6,9 +6,9 @@
 
 # Node schema
 S(NS1 {"Author"}["fname": String, "lname": String])
-S(NS2 {"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String])
-S(NS3 {"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String)])
-S(NS4 {"Proceedings"}["title": String, "year": Integer, "month": String])
+S(NS2 {"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String OPTIONAL])
+S(NS3 {"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String MIN 1 MAX 5) OPTIONAL])
+S(NS4 {"Proceedings"}["title": String, "year": Integer, "month": String OPTIONAL])
 S(NS5 {"Journal"}["title": String, "year": Integer, "vol": Integer])
 
 # Edge schema
