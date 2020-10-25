@@ -26,4 +26,4 @@ Would you like to improve this project? Great! We are waiting for your help and 
 
 ## License
 
-Distributed under [BSD License](https://github.com/lszeremeta/yarspg/blob/master/LICENSE).
+Distributed under [BSD 3-Clause License](https://github.com/lszeremeta/yarspg/blob/master/LICENSE).
