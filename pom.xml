@@ -9,8 +9,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<target.jvm>1.7</target.jvm>
-		<antlr.version>4.8-1</antlr.version>
-		<antlr4test-maven-plugin.version>1.14</antlr4test-maven-plugin.version>
+		<antlr.version>4.9</antlr.version>
+		<antlr4test-maven-plugin.version>1.16</antlr4test-maven-plugin.version>
 		<junit.version>4.13.1</junit.version>
 	</properties>
 	<prerequisites>
@@ -39,7 +39,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>${target.jvm}</source>
 					<target>${target.jvm}</target>
@@ -65,7 +65,7 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-assembly-plugin</artifactId>
-						<version>3.1.0</version>
+						<version>3.3.0</version>
 						<configuration>
 							<descriptors>
 								<descriptor>${maven.multiModuleProjectDirectory}/assembly.xml</descriptor>
@@ -95,7 +95,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>3.0.1</version>
+						<version>3.2.1</version>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
@@ -108,7 +108,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.0.1	</version>
+						<version>3.2.0</version>
 						<executions>
 							<execution>
 								<id>attach-javadocs</id>
