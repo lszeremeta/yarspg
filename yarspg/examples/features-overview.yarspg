@@ -3,7 +3,7 @@
 %GRAPH # section declaration mainly for canonical version
 
 # Graph schema with graph id and optional labels and properties
-S/graph1/{"graph_label", "graphlabel2"}["prop": Bool, "prop2": String]4
+S/graph1/{"graph_label", "graphlabel2"}["prop": Bool, "prop2": String]
 
 # Graph with graph id and optional labels and properties
 /graph1/{"graph_label", "graphlabel2"}["prop": true, "prop2": "Abc"]
