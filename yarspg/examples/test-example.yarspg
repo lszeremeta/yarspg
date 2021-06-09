@@ -116,10 +116,15 @@ S(NS24 {"ZYT5"}["datetime": DateTime])
 
 % EDGES
 % EDGE SCHEMAS
+S(NS3)-->(NS2)
+S(NS3)--(NS2)
+S(NS3)-()->(NS2)
+S(NS3)-()-(NS2)
 S(A01)-({}[])->(A02)
 S(A01)-({}[])->(A02)/graph2/
 S(A01)-({}[])->(A02)/graph2/+["metadata": "value"]
 S(A01)-({}[])->(A02)/graph2/+["metadata": "value", "another": "one"]
+S(A01)-({}[])-(A02)/graph2/+["metadata": "value", "another": "one"]
 S(A01)-({"aaa1a"}["key": String, "aab2bc": List(Integer)])->(A02)
 S(A01)-({"aaa1a"}["key": String UNIQUE, "aab2bc": List(Integer)])->(A02)
 (a)-(ferf {}[])->(c)

@@ -158,9 +158,9 @@ edge_schema
          ::= directed_schema
            | undirected_schema
 directed_schema
-         ::= 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '->' '(' node_id_schema ')' graphs_list? local_metadata_list?
+         ::= 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '->' '(' node_id_schema ')' graphs_list? local_metadata_list?
 undirected_schema
-         ::= 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_id_schema1 ')' graphs_list? local_metadata_list?
+         ::= 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema1 ')' graphs_list? local_metadata_list?
 graph_schema
          ::= 'S' '/' graph_id '/' prop_list_schema?
 number   ::= UNSIGNED_INT
