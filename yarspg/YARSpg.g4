@@ -278,11 +278,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '->' '(' node_id_schema ')'
+    : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '->' '(' node_id_schema ')' graphs_list? local_metadata_list?
     ;
 
 undirected_schema
-    : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_id_schema ')'
+    : 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_id_schema ')' graphs_list? local_metadata_list?
     ;
 
 graph_schema
