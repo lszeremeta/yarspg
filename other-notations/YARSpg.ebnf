@@ -162,7 +162,7 @@ directed_schema
 undirected_schema
          ::= 'S' '(' node_id_schema ')' '-' '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' '-' '(' node_id_schema1 ')'
 graph_schema
-         ::= 'S' '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? prop_list_schema?
+         ::= 'S' '/' graph_id '/' prop_list_schema?
 number   ::= UNSIGNED_INT
            | SIGNED_INT
            | DECIMAL

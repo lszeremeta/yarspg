@@ -286,7 +286,7 @@ undirected_schema
     ;
 
 graph_schema
-    : 'S' '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? prop_list_schema?
+    : 'S' '/' graph_id '/' prop_list_schema?
     ;
 
 number
