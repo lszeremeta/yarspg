@@ -51,7 +51,7 @@ prefix_directive
 pname    ::= ':' ALNUM_PLUS ':'
 pn_local ::= ALNUM_PLUS
 doc_metadata
-         ::= '-' ((pn_local pname) | (IRI ":")) (STRING | IRI)
+         ::= '-' '[' ((pn_local pname) | (IRI ":")) (STRING | IRI) ']'
 var      ::= '$' var_name
 var_declaration
          ::= var '=' prop ( ',' prop )*

@@ -26,12 +26,12 @@ S/graph4/
 
 # Metadata
 % METADATA
--foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"
--foaf:maker: <http://example.com/me>
--dc:test: "Test metadata"
--<http://xmlns.com/foaf/0.1/maker>: "Łukasz Szeremeta and Dominik Tomaszuk"
--<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/abc>
--<http://xmlns.com/dc/0.5/zyz>: "Test"
+-[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"]
+-[foaf:maker: <http://example.com/me>]
+- [ dc:test: "Test metadata" ]
+- [<http://xmlns.com/foaf/0.1/maker>: "Łukasz Szeremeta and Dominik Tomaszuk"]
+-[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/abc> ]
+-[ <http://xmlns.com/dc/0.5/zyz>: "Test"]
 
 # comment3#12
 % NODES

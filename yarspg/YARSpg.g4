@@ -57,7 +57,7 @@ pn_local
     ;
 
 doc_metadata
-    : '-' ((pn_local pname) | (IRI ':')) (STRING | IRI)
+    : '-' '[' ((pn_local pname) | (IRI ':')) (STRING | IRI) ']'
     ;
 
 var

@@ -21,7 +21,7 @@ S/graph2/["prop": Bool, $graph2_prop_schema]
 :foaf: <http://xmlns.com/foaf/0.1/>
 
 # Metadata
--foaf:maker: "Łukasz Szeremeta"
+- [foaf:maker: "Łukasz Szeremeta"]
 
 # Node schema with node id and optional: node labels, properties, graphs and local metadata
 # MIN, MAX, OPTIONAL

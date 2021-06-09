@@ -1,5 +1,5 @@
 %METADATA
--<http://xmlns.com/foaf/0.1/maker>:"Łukasz Szeremeta and Dominik Tomaszuk"
+-[<http://xmlns.com/foaf/0.1/maker>:"Łukasz Szeremeta and Dominik Tomaszuk"]
 %NODE SCHEMAS
 S(NS1{"Author"}["fname":String,"lname":String])
 S(NS2{"Entry","InProceedings"}["title":String,"numpages":Integer,"keyword":String])
