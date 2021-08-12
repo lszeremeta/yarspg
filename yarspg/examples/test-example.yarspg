@@ -1,4 +1,7 @@
 %GRAPH
+S/default/["prop": Bool]
+/default/{"graph_label"}["prop": "false"]
+
 S/graph1/["prop": Bool, "prop2": String]
 /graph1/{"graph_label", "graphlabel2"}["prop": "true", "prop2": "Abc"]
 

@@ -64,7 +64,8 @@ var_name
     ;
 
 graph_id
-    : ALNUM_PLUS
+    : 'default'
+    | ALNUM_PLUS
     ;
 
 local_metadata

@@ -54,7 +54,8 @@ var_declaration_schema
          ::= var '=' prop_schema ( ',' prop_schema )*
 var_name ::= ALNUM_PLUS
 graph_id
-         ::= ALNUM_PLUS
+         ::= 'default'
+           | ALNUM_PLUS
 local_metadata
          ::= '+' prop_list
 prop_list
