@@ -1,13 +1,13 @@
 %GRAPH
 S/graph1/["prop": Bool, "prop2": String]
-/graph1/{"graph_label", "graphlabel2"}["prop": true, "prop2": "Abc"]
+/graph1/{"graph_label", "graphlabel2"}["prop": "true", "prop2": "Abc"]
 
-$graph2_prop = "prop2": "Abc"@"ok": false
+$graph2_prop = "prop2": "Abc"@"ok": "false"
 $graph2_prop_schema = "prop2": String @"ok": Bool
 
 %GRAPH
 S/graph2/["prop": Bool, $graph2_prop_schema]
-/graph2/{"graph_label", "graphlabel2"}["prop": true, $graph2_prop]
+/graph2/{"graph_label", "graphlabel2"}["prop": "true", $graph2_prop]
 
 %GRAPH
 S/graph3/[]
@@ -20,60 +20,59 @@ S/graph4/
 # This is test example
 # Another comment
 
-# Prefix declaration
-:dc: <http://xmlns.com/dc/0.5/>
-:foaf: <http://xmlns.com/foaf/0.1/>
+# Metadata (with prefixes)
+-[":dc": "<http://xmlns.com/dc/0.5/>"]
+-[":foaf": "<http://xmlns.com/foaf/0.1/>"]
 
-# Metadata
 % METADATA
--[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"]
--[foaf:maker: <http://example.com/me>]
-- [ dc:test: "Test metadata" ]
-- [<http://xmlns.com/foaf/0.1/maker>: "Łukasz Szeremeta and Dominik Tomaszuk"]
--[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/abc> ]
--[ <http://xmlns.com/dc/0.5/zyz>: "Test"]
+-["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
+-["foaf:maker": "<http://example.com/me>"]
+- [ "dc:test": "Test metadata" ]
+- ["<http://xmlns.com/foaf/0.1/maker>": "Łukasz Szeremeta and Dominik Tomaszuk"]
+-["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/abc>" ]
+-[ "<http://xmlns.com/dc/0.5/zyz>": "Test"]
 
 # comment3#12
 % NODES
 % NODE SCHEMAS
-$var44 = "aa1a":true,"a2aa":"text"
-(a {"a1d","x"}[$var44,"aa3aa":null])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
-(a {"a1d","x"}["aa1a":true,"a2aa":"text","aa3aa":null])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
-(b43b {}[])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
-(b43b {"label1"}["value":5])+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
+$var44 = "aa1a":"true","a2aa":"text"
+(a {"a1d","x"}[$var44,"aa3aa":"null"])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
+(a {"a1d","x"}["aa1a":"true","a2aa":"text","aa3aa":"null"])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
+(b43b {}[])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
+(b43b {"label1"}["value":"5"])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
 S(NS1 {}[])/graph2/
 $var4_schema = "value": String,"lang": String
 $var44_schema = "value": String NULL,"lang": String OPTIONAL
-S(NS2 {"label333","c"}[$var44_schema,"valid": Bool])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
-S(NS3 {"label333","c"}["value": String,"lang": String,"valid": Bool UNIQUE])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
-S(NS4 {"label333","c"}["value": String UNIQUE,"lang": String,"valid": Bool])/graph2/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
-(c {"label333","c"}["value":"male","lang":"en","valid":false])/graph2, graph3/+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>, foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation", "cdf": "fgh", foaf:maker: <http://example.com/me>]
+S(NS2 {"label333","c"}[$var44_schema,"valid": Bool])/graph2/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
+S(NS3 {"label333","c"}["value": String,"lang": String,"valid": Bool UNIQUE])/graph2/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
+S(NS4 {"label333","c"}["value": String UNIQUE,"lang": String,"valid": Bool])/graph2/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
+(c {"label333","c"}["value":"male","lang":"en","valid":"false"])/graph2, graph3/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
 S(NS5 {"label546"}["key": Float])
 S(NS52 {"label546"}["key": Float OPTIONAL])
 S(NS6 {"label546"}["key": Float UNIQUE])
-(d {"label546"}["key":.1333])
-(d {"label546"}["key":.1333e+5])
-(d {"label546"}["key":1333E-2])
-(d {"label546"}["key":442.1333])
+(d {"label546"}["key":".1333"])
+(d {"label546"}["key":".1333e+5"])
+(d {"label546"}["key":"1333E-2"])
+(d {"label546"}["key":"442.1333"])
 S(NS7 {"label546"}["key": Float@"source": String])
 S(NS72 {"label546"}["key": Float@"source": String OPTIONAL])
-(d {"label546"}["key":442.1333@"source": "XZYNews"])
-(e {"ef22","y","v"}["key44":[true,false,"some text", null, 11, 11.2231]])
-(f ["node":"node without label"])+[foaf:maker: <http://example.com/me>]
-(g {"df2","z","q"}["key664":[false,["another list", 52, 44.1]]])+["abc": "value33"]
-(h {"label"}["key664":[false,["another list2", ["another list3", 54, false, true] , 52, 44.1]]])
-(h {"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true] , 52, 44.1]]])
-(h {"label"}["key664":[false,["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", 54, false, true]@"access": [0, 1, 1, 0] @"ok": true, 52, 44.1]@"good": false]])
+(d {"label546"}["key":"442.1333"@"source": "XZYNews"])
+(e {"ef22","y","v"}["key44":["true","false","some text", "null", "11", "11.2231"]])
+(f ["node":"node without label"])+["foaf:maker": "<http://example.com/me>"]
+(g {"df2","z","q"}["key664":["false",["another list", "52", "44.1"]]])+["abc": "value33"]
+(h {"label"}["key664":["false",["another list2", ["another list3", "54", "false", "true"] , "52", "44.1"]]])
+(h {"label"}["key664":["false",["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", "54", "false", "true"] , "52", "44.1"]]])
+(h {"label"}["key664":["false",["another list2"@"info": {"source": "ABC", "trust": "XYZ"}, ["another list3", "54", "false", "true"]@"access": ["0", "1", "1", "0"] @"ok": "true", "52", "44.1"]@"good": "false"]])
 S(NS8 {"label"}["keyword": Struct(String)])
 S(NS82 {"label"}["keyword": Struct(String) OPTIONAL])
 (i {"label"}["keyword": {"name": "abc", "title": "xyz"}])
 S(NS9 {"label"}["keyword": Struct(String)@"ok": Integer])
 S(NS92 {"label"}["keyword": Struct(String)@"ok": Integer OPTIONAL])
-(i {"label"}["keyword": {"name": "abc"@"info": "ok", "title": "xyz"}@"ok": 1])
+(i {"label"}["keyword": {"name": "abc"@"info": "ok", "title": "xyz"}@"ok": "1"])
 S(NS10 {"2label4"}["keyword2": Struct(Struct(String))])
 (2i44 {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}])
 S(NS11 {"2label4"}["keyword2": Struct(Struct(String)@"struct": String)@"struct": String @"ok": Bool])
-(2i44 {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}@"rating": 5, "names2": {"name2": "abc2"@"more": "ok", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}@"struct": "inside"}@"struct": "outside" @"ok": true])
+(2i44 {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}@"rating": "5", "names2": {"name2": "abc2"@"more": "ok", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}@"struct": "inside"}@"struct": "outside" @"ok": "true"])
 (i2 {"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}])
 S(NS12 {"432f"}["set": Set(String)])/graphname/
 (z {"432f"}["set": {"name", "title"}])/graphname/
@@ -88,9 +87,9 @@ S(NS16 {"1ad32"}["list": List(String NULL)])
 S(NS163 {"1ad32"}["list": List(String MAX 3)])
 S(NS164 {"1ad32"}["list": List(String MIN 1)])
 S(NS165 {"1ad32"}["list": List(String MAX 1)])
-(1dsc {"1ad32"}["list": ["name55", null]])
+(1dsc {"1ad32"}["list": ["name55", "null"]])
 S(NS17 {"1ad32"}["list": List(String) NULL])
-(1dsc {"1ad32"}["list": null])
+(1dsc {"1ad32"}["list": "null"])
 S(NS18 {"ad3"}["list": List(List(String))])
 (ds {"ad3"}["list": [["name55", "name3"]]])
 S(NS19 {"ad32"}["list": List(List(String))])
@@ -106,13 +105,13 @@ S(NS22 {"ZYT3"}["timezp": Time])
 S(NS23 {"ZYT4"}["timezm": Time])
 S(NS232 {"ZYT4"}["timezm": Time OPTIONAL])
 S(NS24 {"ZYT5"}["datetime": DateTime])
-(ABC {"ZYT"}["date": 1999-01-01])
-(ABC2 {"ZYT2"}["time": 11:15:32])
-(ABC3 {"ZYT3"}["timezp": 11:15:32+01:30])
-(ABC4 {"ZYT4"}["timezm": 09:32:11-08:00])
-(ABC5 {"ZYT5"}["datetime": 1999-01-01T11:15:32])
-(ABC5 {"ZYT5"}["datetimetzp": 1999-01-01T11:15:32+01:30])
-(ABC5 {"ZYT5"}["datetimetzm": 1999-01-01T11:15:32-08:00])
+(ABC {"ZYT"}["date": "1999-01-01"])
+(ABC2 {"ZYT2"}["time": "11:15:32"])
+(ABC3 {"ZYT3"}["timezp": "11:15:32+01:30"])
+(ABC4 {"ZYT4"}["timezm": "09:32:11-08:00"])
+(ABC5 {"ZYT5"}["datetime": "1999-01-01T11:15:32"])
+(ABC5 {"ZYT5"}["datetimetzp": "1999-01-01T11:15:32+01:30"])
+(ABC5 {"ZYT5"}["datetimetzm": "1999-01-01T11:15:32-08:00"])
 
 % EDGES
 % EDGE SCHEMAS
@@ -128,10 +127,10 @@ S(A01)-({}[])-(A02)/graph2/+["metadata": "value", "another": "one"]
 S(A01)-({"aaa1a"}["key": String, "aab2bc": List(Integer)])->(A02)
 S(A01)-({"aaa1a"}["key": String UNIQUE, "aab2bc": List(Integer)])->(A02)
 (a)-(ferf {}[])->(c)
-(a)-(ferf {"aaa1a"}["key": "value", "aab2bc": [44, 22]])->(c)+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
-$var_e344 = "aab2bc": [44, 22]@"list name": "alph"
-(a)-(ferf {"aaa1a"}["key": "value"@"ok": "no", $var_e344])->(c)+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
-(a)-(ferf {"aaa1a"}["key": "value"@"ok": "no", "aab2bc": [44, 22]@"list name": "alph"])->(c)+[<http://xmlns.com/dc/0.5/zyz>: <http://xmlns.com/dc/0.5/qtv>]
+(a)-(ferf {"aaa1a"}["key": "value", "aab2bc": ["44", "22"]])->(c)+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>"]
+$var_e344 = "aab2bc": ["44", "22"]@"list name": "alph"
+(a)-(ferf {"aaa1a"}["key": "value"@"ok": "no", $var_e344])->(c)+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>"]
+(a)-(ferf {"aaa1a"}["key": "value"@"ok": "no", "aab2bc": ["44", "22"]@"list name": "alph"])->(c)+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>"]
 (a)-(id341 {"aaa2a"})->(c)
 S(HAd34)-({"bbb23b"})-(sje2)
 (b43b)-({"bbb23b"})-(e)
@@ -146,8 +145,8 @@ S(asf3245)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL])-
 S(asf3245)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String MIN 4) OPTIONAL])-(wef3245)
 S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @"psod": Struct(Integer) OPTIONAL])-(wef3245)
 S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @"psod": Struct(Integer MAX 3) OPTIONAL])-(wef3245)
-(b43b)-({"bbbb53b"}["bbbd32d": false, "value": null])-(e)+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
-(b43b)-({"bbbb53b"}["bbbd32d": false, "value": null@"psod": {"dff": 1, "ewf": 55}])-(e)+[foaf:maker: "Łukasz Szeremeta and Dominik Tomaszuk", <http://xmlns.com/dc/0.5/zyz>: "Test annotation"]
+(b43b)-({"bbbb53b"}["bbbd32d": "false", "value": "null"])-(e)+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
+(b43b)-({"bbbb53b"}["bbbd32d": "false", "value": "null"@"psod": {"dff": "1", "ewf": "55"}])-(e)+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
 
 S(f23)-({"label"}["date": Date])->(f321)
 S(g34g2)-({"label2"}["time": Time])->(fwef334)
@@ -159,17 +158,17 @@ S(wf2343)-({"label5"}["datetime": DateTime @"info": String])->(erg3264)
 S(sdaf56)-({"label5"}["datetime": DateTime UNIQUE])->(dsf53)
 S(sas34)-({"label6"}["datetimetzp": DateTime])->(sdag654)
 S(asdg41)-({"label7"}["datetimetzm": DateTime])->(asv94)
-(ABC)-({"label"}["date": 1999-01-01])->(XYZ)
-(ABC1)-({"label"}["dateminustimezone": -1999-01-01-08:00])->(XYZ1)
-(ABC2)-({"label2"}["time": 11:15:32])->(XYZ2)
-(ABC22)-({"label2"}["timems": 03:15:32.54])->(XYZ22)
-(ABC223)-({"label2"}["timemstimezone": 03:15:32.54+05:00])->(XYZ223)
-(ABC3)-({"label3"}["timezp": 11:15:32+01:30])->(XYZ3)
-(ABC4)-({"label4"}["timezm": 09:32:11-08:00])->(XYZ4)
-(ABC5)-({"label5"}["datetime": 1999-01-01T11:15:32])->(XYZ5)
-(ABC6)-({"label6"}["datetimetzp": 1999-01-01T11:15:32+01:30])->(XYZ6)
-(ABC7)-({"label7"}["datetimetzm": 1999-01-01T11:15:32-08:00])->(XYZ7)
-(ABC8)-({"label7"}["datetimetzmminus": -0003-01-05T11:15:32+05:00])->(XYZ8)
-(ABC9)-({"label7"}["datetimetzmminusms": -0003-01-05T11:15:32.432+05:00])->(XYZ9)
-(ABC10)-({"label7"}["datetimetzmminusms2": -0003-01-05T11:15:32.5+05:00])->(XYZ10)
-(ABC10)-({"label7"}["datetimetzmms3": 2020-01-07T14:15:32.24+08:00])->(XYZ10)
+(ABC)-({"label"}["date": "1999-01-01"])->(XYZ)
+(ABC1)-({"label"}["dateminustimezone": "-1999-01-01-08:00"])->(XYZ1)
+(ABC2)-({"label2"}["time": "11:15:32"])->(XYZ2)
+(ABC22)-({"label2"}["timems": "03:15:32.54"])->(XYZ22)
+(ABC223)-({"label2"}["timemstimezone": "03:15:32.54+05:00"])->(XYZ223)
+(ABC3)-({"label3"}["timezp": "11:15:32+01:30"])->(XYZ3)
+(ABC4)-({"label4"}["timezm": "09:32:11-08:00"])->(XYZ4)
+(ABC5)-({"label5"}["datetime": "1999-01-01T11:15:32"])->(XYZ5)
+(ABC6)-({"label6"}["datetimetzp": "1999-01-01T11:15:32+01:30"])->(XYZ6)
+(ABC7)-({"label7"}["datetimetzm": "1999-01-01T11:15:32-08:00"])->(XYZ7)
+(ABC8)-({"label7"}["datetimetzmminus": "-0003-01-05T11:15:32+05:00"])->(XYZ8)
+(ABC9)-({"label7"}["datetimetzmminusms": "-0003-01-05T11:15:32.432+05:00"])->(XYZ9)
+(ABC10)-({"label7"}["datetimetzmminusms2": "-0003-01-05T11:15:32.5+05:00"])->(XYZ10)
+(ABC10)-({"label7"}["datetimetzmms3": "2020-01-07T14:15:32.24+08:00"])->(XYZ10)

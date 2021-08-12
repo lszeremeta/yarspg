@@ -33,7 +33,6 @@ yarspg
 statement
     : node
     | edge
-    | prefix_directive
     | doc_metadata
     | var_declaration
     | node_schema
@@ -44,20 +43,8 @@ statement
     | graph_schema
     ;
 
-prefix_directive
-    : pname IRI
-    ;
-
-pname
-    : ':' ALNUM_PLUS ':'
-    ;
-
-pn_local
-    : ALNUM_PLUS
-    ;
-
 doc_metadata
-    : '-' '[' ((pn_local pname) | (IRI ':')) (STRING | IRI) ']'
+    : '-' prop_list
     ;
 
 var
@@ -81,23 +68,10 @@ graph_id
     ;
 
 local_metadata
-    : string_local_metadata
-    | rdf_local_metadata
+    : '+' prop_list
     ;
 
-string_local_metadata
-    : key ':' STRING
-    ;
-
-rdf_local_metadata
-    : ((pn_local pname) | (IRI ':')) (STRING | IRI)
-    ;
-
-local_metadata_list
-    : '+' '[' local_metadata (',' local_metadata)* ']'
-    ;
-
-props_list
+prop_list
     : '[' ( ( prop | var ) (',' ( prop | var ) )* )? ']'
     ;
 
@@ -110,11 +84,11 @@ graphs_list
     ;
 
 graph
-    : '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? props_list?
+    : '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? prop_list?
     ;
 
 node
-    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? props_list? ')' graphs_list? local_metadata_list?
+    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list? ')' graphs_list? local_metadata?
     ;
 
 edge
@@ -127,11 +101,11 @@ section
     ;
 
 directed
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '->' '(' node_id ')' graphs_list? local_metadata_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '->' '(' node_id ')' graphs_list? local_metadata?
     ;
 
 undirected
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? props_list? ')' '-' '(' node_id ')' graphs_list? local_metadata_list?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '-' '(' node_id ')' graphs_list? local_metadata?
     ;
 
 node_id
@@ -169,10 +143,6 @@ value
 
 primitive_value
     : STRING
-    | DATETYPE
-    | number
-    | BOOL
-    | 'null'
     ;
 
 complex_value
@@ -194,7 +164,7 @@ struct
     ;
 
 node_schema
-    : 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? local_metadata_list?
+    : 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? local_metadata?
     ;
 
 node_id_schema
@@ -278,22 +248,15 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '->' '(' node_id_schema ')' graphs_list? local_metadata_list?
+    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '->' '(' node_id_schema ')' graphs_list? local_metadata?
     ;
 
 undirected_schema
-    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema ')' graphs_list? local_metadata_list?
+    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema ')' graphs_list? local_metadata?
     ;
 
 graph_schema
     : 'S' '/' graph_id '/' prop_list_schema?
-    ;
-
-number
-    : UNSIGNED_INT
-    | SIGNED_INT
-    | DECIMAL
-    | DOUBLE
     ;
 
 SECTION_NAME
@@ -310,69 +273,15 @@ COMMENT
     ;
 
 STRING
-    : STRING_LITERAL_QUOTE
+    : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
     ;
 
 UNSIGNED_INT
     : [0-9]+
     ;
 
-SIGNED_INT
-   : SIGN [0-9]+
-   ;
-
-DECIMAL
-   : SIGN? [0-9]* '.' [0-9]+
-   ;
-
-DOUBLE
-   : SIGN? ([0-9]+ '.' [0-9]* EXPONENT | '.' [0-9]+ EXPONENT | [0-9]+ EXPONENT)
-   ;
-
-EXPONENT
-   : [eE] SIGN? [0-9]+
-   ;
-
-BOOL
-    : 'true'
-    | 'false'
-    ;
-
-DATETYPE
-    : DATETIME | DATE | TIME
-    ;
-
-DATE
-    : '-'? [0-9][0-9][0-9][0-9] '-' [0-9][0-9] '-' [0-9][0-9] TIMEZONE?
-    ;
-
-TIME
-    : [0-9][0-9] ':' [0-9][0-9] ':' [0-9][0-9] ('.' [0-9]+)? TIMEZONE?
-    ;
-
-TIMEZONE
-    : SIGN? [0-9][0-9] ':' [0-9][0-9]
-    ;
-
-DATETIME
-    : '-'? [0-9][0-9][0-9][0-9] '-' [0-9][0-9] '-' [0-9][0-9] 'T' [0-9][0-9] ':' [0-9][0-9] ':' [0-9][0-9] ('.' [0-9]+)? TIMEZONE?
-    ;
-
-SIGN
-    : '+'
-    | '-'
-    ;
-
-STRING_LITERAL_QUOTE
-    : '"' (~ ["\\\r\n] | '\'' | '\\"')* '"'
-    ;
-
 ALNUM_PLUS
     : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
-    ;
-
-IRI
-    : '<' (PN_CHARS | '.' | ':' | '/' | '\\' | '#' | '@' | '%' | '&' | UCHAR)* '>'
     ;
 
 PN_CHARS
@@ -381,10 +290,6 @@ PN_CHARS
 
 PN_CHARS_U
     : PN_CHARS_BASE | '_'
-    ;
-
-UCHAR
-    : '\\u' HEX HEX HEX HEX | '\\U' HEX HEX HEX HEX HEX HEX HEX HEX
     ;
 
 PN_CHARS_BASE
