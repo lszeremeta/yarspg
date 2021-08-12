@@ -1,6 +1,6 @@
 /*
  [The "BSD licence"]
- Copyright (c) 2018-2020, Łukasz Szeremeta (@ University of Bialystok, https://lukasz.science)
+ Copyright (c) 2018-2021, Łukasz Szeremeta (@ University of Bialystok, https://github.com/lszeremeta)
  Copyright (c) 2018, Dominik Tomaszuk (@ University of Bialystok, http://www.uwb.edu.pl/)
  Copyright (c) 2018, Karol Litman (@ University of Bialystok, http://www.uwb.edu.pl/)
  All rights reserved.
@@ -60,12 +60,12 @@ var_declaration_schema
     ;
 
 var_name
-    : ALNUM_PLUS
+    : ID
     ;
 
 graph_id
     : 'default'
-    | ALNUM_PLUS
+    | ID
     ;
 
 local_metadata
@@ -110,7 +110,7 @@ undirected
     ;
 
 node_id
-    : ALNUM_PLUS
+    : ID
     ;
 
 node_label
@@ -122,7 +122,7 @@ prop
     ;
 
 edge_id
-    : ALNUM_PLUS
+    : ID
     ;
 
 edge_label
@@ -169,7 +169,7 @@ node_schema
     ;
 
 node_id_schema
-    : ALNUM_PLUS
+    : ID
     ;
 
 prop_list_schema
@@ -281,20 +281,8 @@ UNSIGNED_INT
     : [0-9]+
     ;
 
-ALNUM_PLUS
-    : PN_CHARS_BASE ((PN_CHARS | '.')* PN_CHARS)?
-    ;
-
-PN_CHARS
-    : PN_CHARS_U | '-' | [0-9] | '\u00B7' | [\u0300-\u036F] | [\u203F-\u2040]
-    ;
-
-PN_CHARS_U
-    : PN_CHARS_BASE | '_'
-    ;
-
-PN_CHARS_BASE
-    : 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '\u00C0' .. '\u00D6' | '\u00D8' .. '\u00F6' | '\u00F8' .. '\u02FF' | '\u0370' .. '\u037D' | '\u037F' .. '\u1FFF' | '\u200C' .. '\u200D' | '\u2070' .. '\u218F' | '\u2C00' .. '\u2FEF' | '\u3001' .. '\uD7FF' | '\uF900' .. '\uFDCF' | '\uFDF0' .. '\uFFFD'
+ID
+    : [a-zA-Z_][a-zA-Z0-9_]*
     ;
     
 HEX
