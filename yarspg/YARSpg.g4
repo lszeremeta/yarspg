@@ -142,21 +142,21 @@ primitive_value
     ;
 
 complex_value
-    : set
-    | list
-    | struct
+    : set_value
+    | list_value
+    | struct_value
     ;
 
-set
-    : '{' (primitive_value | set) meta_prop* (',' (primitive_value | set) meta_prop*)* '}'
+set_value
+    : '{' (primitive_value | set_value) meta_prop* (',' (primitive_value | set_value) meta_prop*)* '}'
     ;
 
-list
-    : '[' (primitive_value | list) meta_prop* (',' (primitive_value | list) meta_prop*)* ']'
+list_value
+    : '[' (primitive_value | list_value) meta_prop* (',' (primitive_value | list_value) meta_prop*)* ']'
     ;
 
-struct
-    : '{' key ':' (primitive_value | struct) meta_prop* (',' key ':' (primitive_value | struct) meta_prop*)* '}'
+struct_value
+    : '{' key ':' (primitive_value | struct_value) meta_prop* (',' key ':' (primitive_value | struct_value) meta_prop*)* '}'
     ;
 
 node_schema
