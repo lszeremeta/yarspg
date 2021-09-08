@@ -1,4 +1,4 @@
-%GRAPH
+# GRAPH
 S/default/["prop": Bool]
 /default/{"graph_label"}["prop": "false"]
 
@@ -8,15 +8,15 @@ S/graph1/["prop": Bool, "prop2": String]
 $graph2_prop = "prop2": "Abc"@"ok": "false"
 $graph2_prop_schema = "prop2": String @"ok": Bool
 
-%GRAPH
+# GRAPH
 S/graph2/["prop": Bool, $graph2_prop_schema]
 /graph2/{"graph_label", "graphlabel2"}["prop": "true", $graph2_prop]
 
-%GRAPH
+# GRAPH
 S/graph3/[]
 /graph3/{}[]
 
-%GRAPH
+# GRAPH
 S/graph4/
 /graph4/
 
@@ -27,7 +27,7 @@ S/graph4/
 -[":dc": "<http://xmlns.com/dc/0.5/>"]
 -[":foaf": "<http://xmlns.com/foaf/0.1/>"]
 
-% METADATA
+# METADATA
 -["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
 -["foaf:maker": "<http://example.com/me>"]
 - [ "dc:test": "Test metadata" ]
@@ -36,8 +36,8 @@ S/graph4/
 -[ "<http://xmlns.com/dc/0.5/zyz>": "Test"]
 
 # comment3#12
-% NODES
-% NODE SCHEMAS
+# NODES
+# NODE SCHEMAS
 $var44 = "aa1a":"true","a2aa":"text"
 (a {"a1d","x"}[$var44,"aa3aa":"null"])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
 (a {"a1d","x"}["aa1a":"true","a2aa":"text","aa3aa":"null"])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
@@ -117,8 +117,8 @@ S(NS24 {"ZYT5"}["datetime": DateTime])
 (ABC5 {"ZYT5"}["datetimetzp": "1999-01-01T11:15:32+01:30"])
 (ABC5 {"ZYT5"}["datetimetzm": "1999-01-01T11:15:32-08:00"])
 
-% EDGES
-% EDGE SCHEMAS
+# EDGES
+# EDGE SCHEMAS
 S(NS3)-->(NS2)
 S(NS3)--(NS2)
 S(NS3)-()->(NS2)

@@ -315,7 +315,7 @@ S{"2label4"}["keyword2": Struct(Struct(String))]
                 </ul>
             </li>
             <li>each declaration must be defined on one line only (no multi-line declarations),</li>
-            <li>document must be divided into sections with section declarations.</li>
+            <li>document must be divided into sections.</li>
         </ul>
 
         <aside class="example" title="Bibliographic information - canonical form">
@@ -352,20 +352,6 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
           </pre>
         </aside>
 
-        <section id='section'>
-            <h2>Section declaration</h2>
-            <p>A <dfn>section declaration</dfn> represents a name of the section of the YARS-PG document.</p>
-            <p>The following sections are distinguished: <code>METADATA</code>,
-                <code>NODE SCHEMAS</code>, <code>NODES</code>, <code>EDGE SCHEMAS</code> and <code>EDGES</code>.</p>
-            <aside class="example" title="Section declaration">
-                <p>The example presents <code>METADATA</code> section declarations with metadata declaration.
-                    <pre class="nohighlight">
-        %METADATA
-        -&lt;http://xmlns.com/foaf/0.1/maker&gt;:"Łukasz Szeremeta and Dominik Tomaszuk"
-              </pre>
-            </aside>
-        </section>
-
         <section id='canonicalization'>
             <h2>Canonicalization</h2>
             <p>The following algorithm can be used to convert YARS-PG into a canonical form:</p>
@@ -376,7 +362,6 @@ S("Article")-{"published_in"}["pages":String]->("Journal")
                 <li>Roll up multi-line declarations into one line declarations</li>
                 <li>Reorder declarations for sections in that order: metadata, node schemas, edge schemas, nodes, edges
                 </li>
-                <li>Add section declaration for each section</li>
                 <li>Remove all empty lines with only LF or CR</li>
                 <li>Remove all whitespaces (spaces <code>U+0020</code> or tabs <code>U+0009</code>) between
                     serialization elements</li>

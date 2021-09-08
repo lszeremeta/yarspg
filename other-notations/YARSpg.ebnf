@@ -42,7 +42,6 @@ statement
            | node_schema
            | edge_schema
            | var_declaration_schema
-           | section
            | graph
            | graphs_schema
 doc_metadata
@@ -70,7 +69,6 @@ node
 edge
          ::= directed
            | undirected
-section  ::= '%' SECTION_NAME           
 directed ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '->' '(' node_id ')' graphs_list? local_metadata?
 undirected
          ::= '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '-' '(' node_id ')' graphs_list? local_metadata?
@@ -148,13 +146,6 @@ undirected_schema
          ::= 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema1 ')' graphs_list? local_metadata?
 graph_schema
          ::= 'S' '/' graph_id '/' prop_list_schema?
-SECTION_NAME
-         ::= 'GRAPH'
-           | 'METADATA'
-           | 'NODE SCHEMAS'
-           | 'EDGE SCHEMAS'
-           | 'NODES'
-           | 'EDGES'
 COMMENT  ::= '#' [^#xd#xa#xc]*
 STRING   ::= '"' ([^"\#xd#xa] | "'" | '\"')* '"'
 UNSIGNED_INT

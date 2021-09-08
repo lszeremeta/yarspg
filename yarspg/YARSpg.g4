@@ -38,7 +38,6 @@ statement
     | node_schema
     | edge_schema
     | var_declaration_schema
-    | section
     | graph
     | graph_schema
     ;
@@ -95,10 +94,6 @@ node
 edge
     : directed
     | undirected
-    ;
-
-section
-    : '%' SECTION_NAME
     ;
 
 directed
@@ -258,15 +253,6 @@ undirected_schema
 
 graph_schema
     : 'S' '/' graph_id '/' prop_list_schema?
-    ;
-
-SECTION_NAME
-    : 'GRAPH'
-    | 'METADATA'
-    | 'NODE SCHEMAS'
-    | 'EDGE SCHEMAS'
-    | 'NODES'
-    | 'EDGES'
     ;
 
 COMMENT
