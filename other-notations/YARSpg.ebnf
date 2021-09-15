@@ -38,27 +38,28 @@ statement
          ::= node
            | edge
            | doc_metadata
-           | var_declaration
+           | variable_declaration
            | node_schema
            | edge_schema
-           | var_declaration_schema
+           | variable_declaration_schema
            | graph
            | graphs_schema
 doc_metadata
          ::= '-' prop_list
-var      ::= '$' var_name
-var_declaration
-         ::= var '=' prop ( ',' prop )*
-var_declaration_schema
-         ::= var '=' prop_schema ( ',' prop_schema )*
-var_name ::= ID
+variable ::= '$' variable_name
+variable_declaration
+         ::= variable '=' prop ( ',' prop )*
+variable_declaration_schema
+         ::= variable '=' prop_schema ( ',' prop_schema )*
+variable_name
+         ::= ID
 graph_id
          ::= 'default'
            | ID
 local_metadata
          ::= '+' prop_list
 prop_list
-         ::= ( '[' ( ( prop | var ) ( ',' ( prop | var ) )* )? ']' )?
+         ::= ( '[' ( ( prop | variable ) ( ',' ( prop | variable ) )* )? ']' )?
 meta_prop
          ::= '@' key ':' value
 graphs_list
@@ -98,7 +99,7 @@ node_schema
 node_id_schema
          ::= ID
 prop_list_schema
-         ::= '[' ( ( prop_schema | var ) ( ',' ( prop_schema | var ) )* )? ']'
+         ::= '[' ( ( prop_schema | variable ) ( ',' ( prop_schema | variable ) )* )? ']'
 prop_schema
          ::= key ':' value_schema id_key?
 meta_prop_schema

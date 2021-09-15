@@ -34,10 +34,10 @@ statement
     : node
     | edge
     | doc_metadata
-    | var_declaration
+    | variable_declaration
     | node_schema
     | edge_schema
-    | var_declaration_schema
+    | variable_declaration_schema
     | graph
     | graph_schema
     ;
@@ -46,19 +46,19 @@ doc_metadata
     : '-' prop_list
     ;
 
-var
-    : '$' var_name
+variable
+    : '$' variable_name
     ;
 
-var_declaration
-    : var '=' prop (',' prop)*
+variable_declaration
+    : variable '=' prop (',' prop)*
     ;
 
-var_declaration_schema
-    : var '=' prop_schema (',' prop_schema)*
+variable_declaration_schema
+    : variable '=' prop_schema (',' prop_schema)*
     ;
 
-var_name
+variable_name
     : ID
     ;
 
@@ -72,7 +72,7 @@ local_metadata
     ;
 
 prop_list
-    : '[' ( ( prop | var ) (',' ( prop | var ) )* )? ']'
+    : '[' ( ( prop | variable ) (',' ( prop | variable ) )* )? ']'
     ;
 
 meta_prop
@@ -168,7 +168,7 @@ node_id_schema
     ;
 
 prop_list_schema
-    : '[' ( ( prop_schema | var ) (',' ( prop_schema | var ) )* )? ']'
+    : '[' ( ( prop_schema | variable ) (',' ( prop_schema | variable ) )* )? ']'
     ;
 
 prop_schema
