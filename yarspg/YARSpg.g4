@@ -214,6 +214,7 @@ primitive_value_schema
     | 'Date'
     | 'DateTime'    
     | 'Time'
+    | ALNUMPLUS
     ;
 
 complex_value_schema

@@ -126,6 +126,7 @@ primitive_value_schema
            | 'Date'
            | 'DateTime'
            | 'Time'
+           | ALNUMPLUS
 complex_value_schema
          ::= set_schema
            | list_schema
