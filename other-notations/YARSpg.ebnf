@@ -152,5 +152,4 @@ UNSIGNED_INT
          ::= [0-9]*
 ALNUMPLUS
          ::= [a-zA-Z_][a-zA-Z0-9_]*
-HEX      ::= [0-9A-Fa-f]
 WS       ::= ([#x20#x9#xa])+

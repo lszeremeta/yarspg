@@ -267,10 +267,6 @@ UNSIGNED_INT
 ALNUMPLUS
     : [a-zA-Z_][a-zA-Z0-9_]*
     ;
-    
-HEX
-    : [0-9] | [A-F] | [a-f]
-    ;
 
 WS
     : [ \t\n]+ -> skip
