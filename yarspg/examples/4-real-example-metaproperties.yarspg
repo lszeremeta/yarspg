@@ -1,6 +1,6 @@
 # Metadata
--[":foaf": "<http://xmlns.com/foaf/0.1/>"]
--["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
++[":foaf": "<http://xmlns.com/foaf/0.1/>"]
++["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
 
 # Node schema
 S(NS1 {"Author"}["fname": String, "lname": String])+["created": "yesterday"]

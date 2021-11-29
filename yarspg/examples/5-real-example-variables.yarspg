@@ -1,6 +1,6 @@
 # Metadata
--[":foaf": "<http://xmlns.com/foaf/0.1/>"]
--["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
++[":foaf": "<http://xmlns.com/foaf/0.1/>"]
++["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
 
 # Variable
 $title_numpages = "title": String, "numpages": Integer

@@ -15,9 +15,9 @@ S/graph2/["prop": Bool, $graph2_prop_schema]
 /graph2/{"graph_label", "graphlabel2"}["prop": "true", $graph2_prop]
 
 # Metadata (with prefixes)
--[":dc": "<http://xmlns.com/dc/0.5/>"]
--[":foaf": "<http://xmlns.com/foaf/0.1/>"]
--["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
++[":dc": "<http://xmlns.com/dc/0.5/>"]
++[":foaf": "<http://xmlns.com/foaf/0.1/>"]
++["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]
 
 # Node schema with node id and optional: node labels, properties, graphs and local metadata
 # MIN, MAX, OPTIONAL

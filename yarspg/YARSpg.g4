@@ -33,7 +33,7 @@ yarspg
 statement
     : node
     | edge
-    | doc_metadata
+    | metadata
     | variable_declaration
     | node_schema
     | edge_schema
@@ -42,8 +42,8 @@ statement
     | graph_schema
     ;
 
-doc_metadata
-    : '-' prop_list
+metadata
+    : '+' prop_list
     ;
 
 variable
@@ -67,10 +67,6 @@ graph_id
     | ID
     ;
 
-local_metadata
-    : '+' prop_list
-    ;
-
 prop_list
     : '[' ( ( prop | variable ) (',' ( prop | variable ) )* )? ']'
     ;
@@ -88,7 +84,7 @@ graph
     ;
 
 node
-    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list? ')' graphs_list? local_metadata?
+    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list? ')' graphs_list? metadata?
     ;
 
 edge
@@ -97,11 +93,11 @@ edge
     ;
 
 directed
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '->' '(' node_id ')' graphs_list? local_metadata?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '->' '(' node_id ')' graphs_list? metadata?
     ;
 
 undirected
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '-' '(' node_id ')' graphs_list? local_metadata?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '-' '(' node_id ')' graphs_list? metadata?
     ;
 
 node_id
@@ -160,7 +156,7 @@ struct_value
     ;
 
 node_schema
-    : 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? local_metadata?
+    : 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? metadata?
     ;
 
 node_id_schema
@@ -244,11 +240,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '->' '(' node_id_schema ')' graphs_list? local_metadata?
+    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '->' '(' node_id_schema ')' graphs_list? metadata?
     ;
 
 undirected_schema
-    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema ')' graphs_list? local_metadata?
+    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema ')' graphs_list? metadata?
     ;
 
 graph_schema
