@@ -6,7 +6,7 @@
 S(NS1 {"Author"}["fname": String, "lname": String])+["created": "yesterday"]
 S(NS2 {"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String OPTIONAL])
 S(NS3 {"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String MIN 1 MAX 5) OPTIONAL])
-S(NS4 {"Proceedings"}["title": String, "year": Integer, "month": String OPTIONAL @"season": String])
+S(NS4 {"Proceedings"}["title": String, "year": Integer, "month": String OPTIONAL @<"season": String>])
 S(NS5 {"Journal"}["title": String, "year": Integer, "vol": Integer])
 
 # Edge schema
@@ -20,8 +20,8 @@ S(NS3)-({"published_in"}["pages": String])->(NS5)
 (Author02 {"Author"}["fname": "Alice", "lname": "Brown"])
 (EI01 {"Entry", "InProceedings"}["title": "Serialization for...", "numpages": "10", "keyword": "Graph database"])
 (EA01 {"Entry", "Article"}["title": "Property Graph...", "numpages": "10", "keyword": ["Query", "Graph"]])
-(Proc01 {"Proceedings"}["title": "BDAS", "year": "2018", "month": "May" @"season": "spring"])
-(Jour01 {"Journal"}["title": "J. DB", "year": "2020" @"date": "2020-06-16", "vol": "30"])
+(Proc01 {"Proceedings"}["title": "BDAS", "year": "2018", "month": "May" @<"season": "spring">])
+(Jour01 {"Journal"}["title": "J. DB", "year": "2020" @<"date": "2020-06-16">, "vol": "30"])
 
 # Edges
 (EI01)-({"has_author"}["order": "1"])->(Author01)

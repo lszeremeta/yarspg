@@ -7,8 +7,8 @@ S/graph1/["prop": Bool, "prop2": String]
 /graph1/{"graph_label", "graphlabel2"}["prop": "true", "prop2": "Abc"]
 
 # Variables (can store properties; @ - meta properties)
-$graph2_prop = "prop2": "Abc"@"ok": "false"
-$graph2_prop_schema = "prop2": String @"ok": Bool
+$graph2_prop = "prop2": "Abc"@<"ok": "false">
+$graph2_prop_schema = "prop2": String @<"ok": Bool>
 
 # Use of variables
 S/graph2/["prop": Bool, $graph2_prop_schema]

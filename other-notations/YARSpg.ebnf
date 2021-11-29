@@ -59,7 +59,7 @@ graph_id
 prop_list
          ::= ( '[' ( ( prop | variable ) ( ',' ( prop | variable ) )* )? ']' )?
 meta_prop
-         ::= '@' key ':' value
+         ::= '@' '<' ( key ':' value ( ',' key ':' value )* )? '>'
 graphs_list
          ::= '/' graph_id (',' graph_id)* '/'
 graph    ::= '/' graph_id '/' ( '{' ( graph_label ( ',' graph_label )* )? '}' )? prop_list?
@@ -74,7 +74,7 @@ undirected
 node_id  ::= ID
 node_label
          ::= STRING
-prop     ::= key ':' value meta_prop*       
+prop     ::= key ':' value meta_prop?       
 edge_id   ::= ID
 edge_label
          ::= STRING
@@ -89,9 +89,9 @@ complex_value
          ::= set_value
            | list_value
            | struct_value
-set_value      ::= '{' ( primitive_value | set_value ) meta_prop* ( ',' ( primitive_value | set_value ) meta_prop* )* '}'
-list_value     ::= '[' ( primitive_value | list_value ) meta_prop* ( ',' ( primitive_value | list_value ) meta_prop* )* ']'
-struct_value   ::= '{' key ':' ( primitive_value | struct_value ) meta_prop* ( ',' key ':' ( primitive_value | struct_value ) meta_prop* )* '}'
+set_value      ::= '{' ( primitive_value | set_value ) meta_prop? ( ',' ( primitive_value | set_value ) meta_prop? )* '}'
+list_value     ::= '[' ( primitive_value | list_value ) meta_prop? ( ',' ( primitive_value | list_value ) meta_prop? )* ']'
+struct_value   ::= '{' key ':' ( primitive_value | struct_value ) meta_prop? ( ',' key ':' ( primitive_value | struct_value ) meta_prop? )* '}'
 node_schema
          ::= 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? metadata?
 node_id_schema
@@ -101,7 +101,7 @@ prop_list_schema
 prop_schema
          ::= key ':' value_schema id_key?
 meta_prop_schema
-         ::= '@' key ':' value_schema
+         ::= '@' '<' ( key ':' value_schema ( ',' key ':' value_schema )* )? '>'
 cardinality
          ::= min_cardinality max_cardinality?
            | max_cardinality
@@ -111,8 +111,8 @@ max_cardinality
          ::= 'MAX' card_num
 card_num ::= UNSIGNED_INT
 value_schema
-         ::= primitive_value_schema ( 'UNIQUE' | 'NULL' )? 'OPTIONAL'? meta_prop_schema*
-           | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema*
+         ::= primitive_value_schema ( 'UNIQUE' | 'NULL' )? 'OPTIONAL'? meta_prop_schema?
+           | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema?
 primitive_value_schema
          ::= 'Decimal'
            | 'SmallInt'
@@ -131,11 +131,11 @@ complex_value_schema
            | list_schema
            | struct_schema
 set_schema
-         ::= 'Set' '(' ( primitive_value_schema | set_schema ) 'NULL'? cardinality? ')' meta_prop_schema*
+         ::= 'Set' '(' ( primitive_value_schema | set_schema ) 'NULL'? cardinality? ')' meta_prop_schema?
 list_schema
-         ::= 'List' '(' ( primitive_value_schema | list_schema ) 'NULL'? cardinality? ')' meta_prop_schema*
+         ::= 'List' '(' ( primitive_value_schema | list_schema ) 'NULL'? cardinality? ')' meta_prop_schema?
 struct_schema
-         ::= 'Struct' '(' ( primitive_value_schema | struct_schema ) 'NULL'? cardinality? ')' meta_prop_schema*
+         ::= 'Struct' '(' ( primitive_value_schema | struct_schema ) 'NULL'? cardinality? ')' meta_prop_schema?
 edge_schema
          ::= directed_schema
            | undirected_schema

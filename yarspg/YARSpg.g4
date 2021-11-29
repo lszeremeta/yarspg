@@ -72,7 +72,7 @@ prop_list
     ;
 
 meta_prop
-    : '@' key ':' value
+    : '@' '<' ( key ':' value ( ',' key ':' value )* )? '>'
     ;
 
 graphs_list
@@ -109,7 +109,7 @@ node_label
     ;
 
 prop
-    : key ':' value meta_prop*
+    : key ':' value meta_prop?
     ;
 
 edge_id
@@ -144,15 +144,15 @@ complex_value
     ;
 
 set_value
-    : '{' (primitive_value | set_value) meta_prop* (',' (primitive_value | set_value) meta_prop*)* '}'
+    : '{' (primitive_value | set_value) meta_prop? (',' (primitive_value | set_value) meta_prop?)* '}'
     ;
 
 list_value
-    : '[' (primitive_value | list_value) meta_prop* (',' (primitive_value | list_value) meta_prop*)* ']'
+    : '[' (primitive_value | list_value) meta_prop? (',' (primitive_value | list_value) meta_prop?)* ']'
     ;
 
 struct_value
-    : '{' key ':' (primitive_value | struct_value) meta_prop* (',' key ':' (primitive_value | struct_value) meta_prop*)* '}'
+    : '{' key ':' (primitive_value | struct_value) meta_prop? (',' key ':' (primitive_value | struct_value) meta_prop?)* '}'
     ;
 
 node_schema
@@ -172,7 +172,7 @@ prop_schema
     ;
 
 meta_prop_schema
-    : '@' key ':' value_schema
+    : '@' '<' ( key ':' value_schema ( ',' key ':' value_schema )* )? '>'
     ;
 
 cardinality
@@ -193,8 +193,8 @@ card_num
     ;
 
 value_schema
-    : primitive_value_schema ('UNIQUE' | 'NULL')? 'OPTIONAL'?  meta_prop_schema*
-    | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema*
+    : primitive_value_schema ('UNIQUE' | 'NULL')? 'OPTIONAL'?  meta_prop_schema?
+    | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema?
     ;
 
 primitive_value_schema
@@ -223,15 +223,15 @@ complex_value_schema
     ;
 
 set_schema
-    : 'Set' '(' (primitive_value_schema | set_schema) 'NULL'? cardinality? ')' meta_prop_schema*
+    : 'Set' '(' (primitive_value_schema | set_schema) 'NULL'? cardinality? ')' meta_prop_schema?
     ;
 
 list_schema
-    : 'List' '(' (primitive_value_schema | list_schema) 'NULL'? cardinality? ')' meta_prop_schema*
+    : 'List' '(' (primitive_value_schema | list_schema) 'NULL'? cardinality? ')' meta_prop_schema?
     ;
 
 struct_schema
-    : 'Struct' '(' (primitive_value_schema | struct_schema) 'NULL'? cardinality? ')' meta_prop_schema*
+    : 'Struct' '(' (primitive_value_schema | struct_schema) 'NULL'? cardinality? ')' meta_prop_schema?
     ;
 
 edge_schema
