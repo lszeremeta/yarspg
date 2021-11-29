@@ -1,19 +1,19 @@
 # GRAPH
 S/default/["prop": Bool]
-/default/{"graph_label"}["prop": "false"]
+/default/{"graph_label"}["prop": "false"] +["metadata": "yes"]
 
 S/graph1/["prop": Bool, "prop2": String]
 /graph1/{"graph_label", "graphlabel2"}["prop": "true", "prop2": "Abc"]
 
-$graph2_prop = "prop2": "Abc"@<"ok": "false">
-$graph2_prop_schema = "prop2": String @<"ok": Bool>
+$graph2_prop = "prop2": "Abc"@<"ok": "false">+ ["metadata": "yes"]
+$graph2_prop_schema = "prop2": String @<"ok": Bool>+["metadata": "yes"]
 
 # GRAPH
 S/graph2/["prop": Bool, $graph2_prop_schema]
 /graph2/{"graph_label", "graphlabel2"}["prop": "true", $graph2_prop]
 
 # GRAPH
-S/graph3/[]
+S/graph3/[]+["metadata": "yes"]
 /graph3/{}[]
 
 # GRAPH
@@ -25,7 +25,7 @@ S/graph4/
 
 # Metadata (with prefixes)
 +[":dc": "<http://xmlns.com/dc/0.5/>"]
-+[":foaf": "<http://xmlns.com/foaf/0.1/>"]
++[":foaf": "<http://xmlns.com/foaf/0.1/>"]+["metadata": "YES"]
 
 # METADATA
 +["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"]

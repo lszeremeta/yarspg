@@ -27,7 +27,7 @@
 grammar YARSpg;
 
 yarspg
-    : statement* EOF
+    : (statement metadata?)* EOF
     ;
 
 statement
@@ -84,7 +84,7 @@ graph
     ;
 
 node
-    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list? ')' graphs_list? metadata?
+    : '(' node_id ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list? ')' graphs_list?
     ;
 
 edge
@@ -93,11 +93,11 @@ edge
     ;
 
 directed
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '->' '(' node_id ')' graphs_list? metadata?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '->' '(' node_id ')' graphs_list?
     ;
 
 undirected
-    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '-' '(' node_id ')' graphs_list? metadata?
+    : '(' node_id ')' '-' '(' edge_id? ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list? ')' '-' '(' node_id ')' graphs_list?
     ;
 
 node_id
@@ -156,7 +156,7 @@ struct_value
     ;
 
 node_schema
-    : 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list? metadata?
+    : 'S' '(' node_id_schema ( '{' ( node_label ( ',' node_label )* )? '}' )? prop_list_schema? ')' graphs_list?
     ;
 
 node_id_schema
@@ -241,11 +241,11 @@ edge_schema
     ;
 
 directed_schema
-    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '->' '(' node_id_schema ')' graphs_list? metadata?
+    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '->' '(' node_id_schema ')' graphs_list?
     ;
 
 undirected_schema
-    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema ')' graphs_list? metadata?
+    : 'S' '(' node_id_schema ')' '-' ( '(' ( '{' ( edge_label ( ',' edge_label )* )? '}' )? prop_list_schema? ')' )? '-' '(' node_id_schema ')' graphs_list?
     ;
 
 graph_schema
