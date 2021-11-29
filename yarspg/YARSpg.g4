@@ -59,12 +59,12 @@ variable_declaration_schema
     ;
 
 variable_name
-    : ID
+    : ALNUMPLUS
     ;
 
 graph_id
     : 'default'
-    | ID
+    | ALNUMPLUS
     ;
 
 prop_list
@@ -101,7 +101,7 @@ undirected
     ;
 
 node_id
-    : ID
+    : ALNUMPLUS
     ;
 
 node_label
@@ -113,7 +113,7 @@ prop
     ;
 
 edge_id
-    : ID
+    : ALNUMPLUS
     ;
 
 edge_label
@@ -160,7 +160,7 @@ node_schema
     ;
 
 node_id_schema
-    : ID
+    : ALNUMPLUS
     ;
 
 prop_list_schema
@@ -263,7 +263,7 @@ UNSIGNED_INT
     : [0-9]+
     ;
 
-ID
+ALNUMPLUS
     : [a-zA-Z_][a-zA-Z0-9_]*
     ;
     
