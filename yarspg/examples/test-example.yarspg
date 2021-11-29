@@ -45,7 +45,9 @@ $var44 = "aa1a":"true","a2aa":"text"
 (b43b {"label1"}["value":"5"])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
 S(NS1 {}[])/graph2/
 $var4_schema = "value": String,"lang": String
+$var4_schema = "value": string,"lang": sTRIng
 $var44_schema = "value": String NULL,"lang": String OPTIONAL
+$var44_schema = "value": String NULL,"lang": String opTionaL
 S(NS2 {"label333","c"}[$var44_schema,"valid": Bool])/graph2/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
 S(NS3 {"label333","c"}["value": String,"lang": String,"valid": Bool UNIQUE])/graph2/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
 S(NS4 {"label333","c"}["value": String UNIQUE,"lang": String,"valid": Bool])/graph2/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
@@ -53,6 +55,8 @@ S(NS4 {"label333","c"}["value": String UNIQUE,"lang": String,"valid": Bool])/gra
 S(NS5 {"label546"}["key": Float])
 S(NS52 {"label546"}["key": Float OPTIONAL])
 S(NS6 {"label546"}["key": Float UNIQUE])
+S(NS6 {"label546"}["key": floAt UNIQUE])
+S(NS6 {"label546"}["key": Float UniquE])
 (d {"label546"}["key":".1333"])
 (d {"label546"}["key":".1333e+5"])
 (d {"label546"}["key":"1333E-2"])
@@ -89,6 +93,7 @@ S(NS15 {"1ad32"}["list": List(String)])
 S(NS16 {"1ad32"}["list": List(String NULL)])
 S(NS163 {"1ad32"}["list": List(String MAX 3)])
 S(NS164 {"1ad32"}["list": List(String MIN 1)])
+S(NS164 {"1ad32"}["list": list(string min 1)])
 S(NS165 {"1ad32"}["list": List(String MAX 1)])
 (c1dsc {"1ad32"}["list": ["name55", "null"]])
 S(NS17 {"1ad32"}["list": List(String) NULL])

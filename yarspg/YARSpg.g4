@@ -63,7 +63,7 @@ variable_name
     ;
 
 graph_id
-    : 'default'
+    : DEFAULT
     | ALNUMPLUS
     ;
 
@@ -181,11 +181,11 @@ cardinality
     ;
 
 min_cardinality
-    : 'MIN' card_num
+    : MIN card_num
     ;
 
 max_cardinality
-    : 'MAX' card_num
+    : MAX card_num
     ;
 
 card_num
@@ -193,27 +193,27 @@ card_num
     ;
 
 value_schema
-    : primitive_value_schema ('UNIQUE' | 'NULL')? 'OPTIONAL'?  meta_prop_schema?
-    | complex_value_schema 'NULL'? 'OPTIONAL'? meta_prop_schema?
+    : primitive_value_schema (UNIQUE | NULL)? OPTIONAL?  meta_prop_schema?
+    | complex_value_schema NULL? OPTIONAL? meta_prop_schema?
     ;
 
 primitive_value_schema
     // NUMBER
-    : 'Decimal'
-    | 'SmallInt'
-    | 'Integer'
-    | 'BigInt'
-    | 'Float'
-    | 'Real'
-    | 'Double'
+    : DECIMAL
+    | SMALLINT
+    | INTEGER
+    | BIGINT
+    | FLOAT
+    | REAL
+    | DOUBLE
     // BOOL
-    | 'Bool'
+    | BOOL
     // STRING
-    | 'String'
+    | STRING_TYPE
     // DATETYPE
-    | 'Date'
-    | 'DateTime'    
-    | 'Time'
+    | DATE
+    | DATETIME    
+    | TIME
     | ALNUMPLUS
     ;
 
@@ -224,15 +224,15 @@ complex_value_schema
     ;
 
 set_schema
-    : 'Set' '(' (primitive_value_schema | set_schema) 'NULL'? cardinality? ')' meta_prop_schema?
+    : SET '(' (primitive_value_schema | set_schema) NULL? cardinality? ')' meta_prop_schema?
     ;
 
 list_schema
-    : 'List' '(' (primitive_value_schema | list_schema) 'NULL'? cardinality? ')' meta_prop_schema?
+    : LIST '(' (primitive_value_schema | list_schema) NULL? cardinality? ')' meta_prop_schema?
     ;
 
 struct_schema
-    : 'Struct' '(' (primitive_value_schema | struct_schema) 'NULL'? cardinality? ')' meta_prop_schema?
+    : STRUCT '(' (primitive_value_schema | struct_schema) NULL? cardinality? ')' meta_prop_schema?
     ;
 
 edge_schema
@@ -251,6 +251,34 @@ undirected_schema
 graph_schema
     : 'S' '/' graph_id '/' prop_list_schema?
     ;
+
+// CASE-INSENSITIVE NAMES
+DEFAULT : ( 'D' | 'd' ) ( 'E' | 'e' ) ( 'F' | 'f' ) ( 'A' | 'a' ) ( 'U' | 'u' ) ( 'L' | 'l' ) ( 'T' | 't' );
+MIN: ( 'M' | 'm' ) ( 'I' | 'i' ) ( 'N' | 'n' );
+MAX: ( 'M' | 'm' ) ( 'A' | 'a' ) ( 'X' | 'x' );
+UNIQUE: ( 'U' | 'u' ) ( 'N' | 'n' ) ( 'I' | 'i' ) ( 'Q' | 'q' ) ( 'U' | 'u' ) ( 'E' | 'e' );
+NULL: ( 'N' | 'n' ) ( 'U' | 'u' ) ( 'L' | 'l' ) ( 'L' | 'l' );
+OPTIONAL: ( 'O' | 'o' ) ( 'P' | 'p' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'O' | 'o' ) ( 'N' | 'n' ) ( 'A' | 'a' ) ( 'L' | 'l' );
+
+// primitive datetypes
+DECIMAL: ( 'D' | 'd' ) ( 'E' | 'e' ) ( 'C' | 'c' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'A' | 'a' ) ( 'L' | 'l' );
+SMALLINT: ( 'S' | 's' ) ( 'M' | 'm' ) ( 'A' | 'a' ) ( 'L' | 'l' ) ( 'L' | 'l' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'T' | 't' );
+INTEGER: ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'T' | 't' ) ( 'E' | 'e' ) ( 'G' | 'g' ) ( 'E' | 'e' ) ( 'R' | 'r' );
+BIGINT: ( 'B' | 'b' ) ( 'I' | 'i' ) ( 'G' | 'g' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'T' | 't' );
+FLOAT: ( 'F' | 'f' ) ( 'L' | 'l' ) ( 'O' | 'o' ) ( 'A' | 'a' ) ( 'T' | 't' );
+REAL: ( 'R' | 'r' ) ( 'E' | 'e' ) ( 'A' | 'a' ) ( 'L' | 'l' );
+DOUBLE: ( 'D' | 'd' ) ( 'O' | 'o' ) ( 'U' | 'u' ) ( 'B' | 'b' ) ( 'L' | 'l' ) ( 'E' | 'e' );
+BOOL: ( 'B' | 'b' ) ( 'O' | 'o' ) ( 'O' | 'o' ) ( 'L' | 'l' );
+STRING_TYPE: ( 'S' | 's' ) ( 'T' | 't' ) ( 'R' | 'r' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'G' | 'g' );
+DATE: ( 'D' | 'd' ) ( 'A' | 'a' ) ( 'T' | 't' ) ( 'E' | 'e' );
+DATETIME: ( 'D' | 'd' ) ( 'A' | 'a' ) ( 'T' | 't' ) ( 'E' | 'e' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'E' | 'e' );
+TIME: ( 'T' | 't' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'E' | 'e' );
+
+// complex datetypes
+SET: ( 'S' | 's' ) ( 'E' | 'e' ) ( 'T' | 't' );
+LIST: ( 'L' | 'l' ) ( 'I' | 'i' ) ( 'S' | 's' ) ( 'T' | 't' );
+STRUCT: ( 'S' | 's' ) ( 'T' | 't' ) ( 'R' | 'r' ) ( 'U' | 'u' ) ( 'C' | 'c' ) ( 'T' | 't' );
+// END CASE-INSENSITIVE NAMES
 
 COMMENT
     : '#' ~[\r\n\f]* -> skip
