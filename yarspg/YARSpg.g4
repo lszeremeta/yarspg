@@ -198,29 +198,36 @@ value_schema
     ;
 
 primitive_value_schema
-    // NUMBER
     : DECIMAL
     | SMALLINT
     | INTEGER
+    | UINTEGER
     | BIGINT
     | FLOAT
     | REAL
     | DOUBLE
-    // BOOL
     | BOOL
-    // STRING
-    | STRING_TYPE
-    // DATETYPE
+    | STRINGT
     | DATE
-    | DATETIME    
+    | DATETIME
+    | LOCALDATETIME 
     | TIME
+    | LOCALTIME
+    | DURATION
+    | BINARY
     | ALNUMPLUS
     ;
 
 complex_value_schema
-    : set_schema
+    : multiset_schema
+    | set_schema
     | list_schema
+    | listd_schema
     | struct_schema
+    ;
+
+multiset_schema
+    : MULTISET '(' (primitive_value_schema | set_schema) NULL? cardinality? ')' meta_prop_schema?
     ;
 
 set_schema
@@ -229,6 +236,10 @@ set_schema
 
 list_schema
     : LIST '(' (primitive_value_schema | list_schema) NULL? cardinality? ')' meta_prop_schema?
+    ;
+
+listd_schema
+    : LISTD '(' (primitive_value_schema | list_schema) NULL? cardinality? ')' meta_prop_schema?
     ;
 
 struct_schema
@@ -264,19 +275,26 @@ OPTIONAL: ( 'O' | 'o' ) ( 'P' | 'p' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'O' | 'o' ) 
 DECIMAL: ( 'D' | 'd' ) ( 'E' | 'e' ) ( 'C' | 'c' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'A' | 'a' ) ( 'L' | 'l' );
 SMALLINT: ( 'S' | 's' ) ( 'M' | 'm' ) ( 'A' | 'a' ) ( 'L' | 'l' ) ( 'L' | 'l' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'T' | 't' );
 INTEGER: ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'T' | 't' ) ( 'E' | 'e' ) ( 'G' | 'g' ) ( 'E' | 'e' ) ( 'R' | 'r' );
+UINTEGER: ( 'U' | 'u' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'T' | 't' ) ( 'E' | 'e' ) ( 'G' | 'g' ) ( 'E' | 'e' ) ( 'R' | 'r' );
 BIGINT: ( 'B' | 'b' ) ( 'I' | 'i' ) ( 'G' | 'g' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'T' | 't' );
 FLOAT: ( 'F' | 'f' ) ( 'L' | 'l' ) ( 'O' | 'o' ) ( 'A' | 'a' ) ( 'T' | 't' );
 REAL: ( 'R' | 'r' ) ( 'E' | 'e' ) ( 'A' | 'a' ) ( 'L' | 'l' );
 DOUBLE: ( 'D' | 'd' ) ( 'O' | 'o' ) ( 'U' | 'u' ) ( 'B' | 'b' ) ( 'L' | 'l' ) ( 'E' | 'e' );
 BOOL: ( 'B' | 'b' ) ( 'O' | 'o' ) ( 'O' | 'o' ) ( 'L' | 'l' );
-STRING_TYPE: ( 'S' | 's' ) ( 'T' | 't' ) ( 'R' | 'r' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'G' | 'g' );
+STRINGT: ( 'S' | 's' ) ( 'T' | 't' ) ( 'R' | 'r' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'G' | 'g' );
 DATE: ( 'D' | 'd' ) ( 'A' | 'a' ) ( 'T' | 't' ) ( 'E' | 'e' );
 DATETIME: ( 'D' | 'd' ) ( 'A' | 'a' ) ( 'T' | 't' ) ( 'E' | 'e' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'E' | 'e' );
+LOCALDATETIME: ( 'L' | 'l' ) ( 'O' | 'o' ) ( 'C' | 'c' ) ( 'A' | 'a' ) ( 'L' | 'l' ) ( 'D' | 'd' ) ( 'A' | 'a' ) ( 'T' | 't' ) ( 'E' | 'e' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'E' | 'e' );
 TIME: ( 'T' | 't' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'E' | 'e' );
+LOCALTIME: ( 'L' | 'l' ) ( 'O' | 'o' ) ( 'C' | 'c' ) ( 'A' | 'a' ) ( 'L' | 'l' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'M' | 'm' ) ( 'E' | 'e' );
+DURATION: ( 'D' | 'd' ) ( 'U' | 'u' ) ( 'R' | 'r' ) ( 'A' | 'a' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'O' | 'o' ) ( 'N' | 'n' );
+BINARY: ( 'B' | 'b' ) ( 'I' | 'i' ) ( 'N' | 'n' ) ( 'A' | 'a' ) ( 'R' | 'r' ) ( 'Y' | 'y' );
 
 // complex datetypes
+MULTISET: ( 'M' | 'm' ) ( 'U' | 'u' ) ( 'L' | 'l' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'S' | 's' ) ( 'E' | 'e' ) ( 'T' | 't' );
 SET: ( 'S' | 's' ) ( 'E' | 'e' ) ( 'T' | 't' );
 LIST: ( 'L' | 'l' ) ( 'I' | 'i' ) ( 'S' | 's' ) ( 'T' | 't' );
+LISTD: ( 'L' | 'l' ) ( 'I' | 'i' ) ( 'S' | 's' ) ( 'T' | 't' ) ( 'D' | 'd' );
 STRUCT: ( 'S' | 's' ) ( 'T' | 't' ) ( 'R' | 'r' ) ( 'U' | 'u' ) ( 'C' | 'c' ) ( 'T' | 't' );
 // END CASE-INSENSITIVE NAMES
 
