@@ -227,7 +227,7 @@ complex_value_schema
     ;
 
 multiset_schema
-    : MULTISET '(' (primitive_value_schema | set_schema) NULL? cardinality? ')' meta_prop_schema?
+    : MULTISET '(' (primitive_value_schema | multiset_schema) NULL? cardinality? ')' meta_prop_schema?
     ;
 
 set_schema
@@ -239,7 +239,7 @@ list_schema
     ;
 
 listd_schema
-    : LISTD '(' (primitive_value_schema | list_schema) NULL? cardinality? ')' meta_prop_schema?
+    : LISTD '(' (primitive_value_schema | listd_schema) NULL? cardinality? ')' meta_prop_schema?
     ;
 
 struct_schema
