@@ -4,6 +4,8 @@ S/default/["prop": Bool]
 
 S/graph1/["prop": Bool, "prop2": String]
 /graph1/{"graph_label", "graphlabel2"}["prop": "true", "prop2": "Abc"]
+S/graph1/["prop": Bool, "prop2": String()]
+S/graph1/["prop": Bool, "prop2": String(3)]
 
 $graph2_prop = "prop2": "Abc"@<"ok": "false">+ ["metadata": "yes"]
 $graph2_prop_schema = "prop2": String @<"ok": Bool>+["metadata": "yes"]
@@ -45,6 +47,7 @@ $var44 = "aa1a":"true","a2aa":"text"
 (b43b {"label1"}["value":"5"])+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk"] #b43b
 S(NS1 {}[])/graph2/
 $var4_schema = "value": String,"lang": String
+$var4_schema = "value": String,"lang": Decimal
 $var4_schema = "value": string,"lang": sTRIng
 $var44_schema = "value": String NULL,"lang": String OPTIONAL
 $var44_schema = "value": String NULL,"lang": String opTionaL
@@ -53,10 +56,16 @@ S(NS3 {"label333","c"}["value": String,"lang": String,"valid": Bool UNIQUE])/gra
 S(NS4 {"label333","c"}["value": String UNIQUE,"lang": String,"valid": Bool])/graph2/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
 (c {"label333","c"}["value":"male","lang":"en","valid":"false"])/graph2, graph3/+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>", "foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation", "cdf": "fgh", "foaf:maker": "<http://example.com/me>"]
 S(NS5 {"label546"}["key": Float])
+S(NS5 {"label546"}["key": Float()])
 S(NS52 {"label546"}["key": Float OPTIONAL])
 S(NS6 {"label546"}["key": Float UNIQUE])
+S(NS6 {"label546"}["key": Float(5) UNIQUE])
+S(NS6 {"label546"}["key": Float(5,2) UNIQUE])
 S(NS6 {"label546"}["key": floAt UNIQUE])
 S(NS6 {"label546"}["key": Float UniquE])
+S(NS6 {"label546"}["key": Decimal() UniquE])
+S(NS6 {"label546"}["key": Decimal(4)])
+S(NS6 {"label546"}["key": Decimal(4, 2) UNIQUE])
 (d {"label546"}["key":".1333"])
 (d {"label546"}["key":".1333e+5"])
 (d {"label546"}["key":"1333E-2"])
@@ -73,8 +82,8 @@ S(NS72 {"label546"}["key": Float@<"source": String OPTIONAL>])
 S(NS8 {"label"}["keyword": Struct(String)])
 S(NS82 {"label"}["keyword": Struct(String) OPTIONAL])
 (i {"label"}["keyword": {"name": "abc", "title": "xyz"}])
-S(NS9 {"label"}["keyword": Struct(String)@<"ok": Integer>])
-S(NS92 {"label"}["keyword": Struct(String)@<"ok": Integer OPTIONAL>])
+S(NS9 {"label"}["keyword": Struct(String)@<"ok": INTEGER>])
+S(NS92 {"label"}["keyword": Struct(String)@<"ok": integer OPTIONAL>])
 (i {"label"}["keyword": {"name": "abc"@<"info": "ok">, "title": "xyz"}@<"ok": "1">])
 S(NS10 {"2label4"}["keyword2": Struct(Struct(String))])
 (a2i44 {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}])
@@ -82,6 +91,7 @@ S(NS11 {"2label4"}["keyword2": Struct(Struct(String)@<"struct": String>)@<"struc
 (a2i44 {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}@<"rating": "5">, "names2": {"name2": "abc2"@<"more": "ok">, "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}@<"struct": "inside">}@<"struct": "outside", "ok": "true">])
 (i2 {"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}])
 S(NS12 {"432f"}["set": Set(String)])/graphname/
+S(NS12 {"432f"}["set": Multiset(String)])/graphname/
 (z {"432f"}["set": {"name", "title"}])/graphname/
 (z {"432f"}["set": {"name", "title"}@<"test":"test3">])/graphname/
 S(NS13 {"432f2"}["set": Set(Set(String))])
@@ -89,6 +99,7 @@ S(NS13 {"432f2"}["set": Set(Set(String))])
 S(NS14 {"3432f2"}["set": Set(Set(String))])
 (z3z2 {"3432f2"}["set": {{"set2", "title"}, {"set3", "title3"}}])
 S(NS15 {"1ad32"}["list": List(String)])
+S(NS15 {"1ad32"}["list": DList(String)])
 (c1dsc {"1ad32"}["list": ["name55", "name3"]])
 S(NS16 {"1ad32"}["list": List(String NULL)])
 S(NS163 {"1ad32"}["list": List(String MAX 3)])
@@ -135,6 +146,9 @@ S(A01)-({}[])->(A02)/graph2/+["metadata": "value", "another": "one"]
 S(A01)-({}[])-(A02)/graph2/+["metadata": "value", "another": "one"]
 S(A01)-({"aaa1a"}["key": String, "aab2bc": List(Integer)])->(A02)
 S(A01)-({"aaa1a"}["key": String UNIQUE, "aab2bc": List(Integer)])->(A02)
+S(A01)-({"aaa1a"}["key": String UNIQUE, "aab2bc": List(Integer(4))])->(A02)
+S(A01)-({"aaa1a"}["key": String UNIQUE, "aab2bc": List(uInteger())])->(A02)
+S(A01)-({"aaa1a"}["key": String UNIQUE, "aab2bc": List(uInteger(2))])->(A02)
 (a)-(ferf {}[])->(c)
 (a)-(ferf {"aaa1a"}["key": "value", "aab2bc": ["44", "22"]])->(c)+["<http://xmlns.com/dc/0.5/zyz>": "<http://xmlns.com/dc/0.5/qtv>"]
 $var_e344 = "aab2bc": ["44", "22"]@<"list name": "alph">
@@ -145,14 +159,15 @@ S(HAd34)-({"bbb23b"})-(sje2)
 (b43b)-({"bbb23b"})-(e)
 $var_234e_schema = "bbbd32d": Bool UNIQUE
 S(ABC43)-({"bbb23b"}["bbbd32d": Bool, "value": String NULL])-(JSk34)
+S(ABC43)-({"bbb23b"}["bbbd32d": Bool, "value": String(5) NULL])-(JSk34)
 S(ABC434)-({"bbb23b"}["bbbd32d": Bool, "value": String OPTIONAL])-(JSk342)
 S(ad234)-({"bbb23b"}[$var_234e_schema, "value": String NULL])-(gr525)
 S(asf32)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": String NULL])-(wef32)
 S(asf323)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) NULL])-(wef323)
-S(asf3233)-({"bbb23b"}["bbbd32d": Bool UNIQUE @<"dfwe": SInteger NULL>, "value": List(String) NULL @<"efe": List(List(String))>])-(wef3234)
+S(asf3233)-({"bbb23b"}["bbbd32d": Bool UNIQUE @<"dfwe": Integer NULL>, "value": List(String) NULL @<"efe": List(List(String))>])-(wef3234)
 S(asf3245)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL])-(wef3245)
 S(asf3245)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String MIN 4) OPTIONAL])-(wef3245)
-S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @<"psod": Struct(SInteger) OPTIONAL>])-(wef3245)
+S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @<"psod": Struct(Integer) OPTIONAL>])-(wef3245)
 S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @<"psod": Struct(Integer MAX 3) OPTIONAL>])-(wef3245)
 (b43b)-({"bbbb53b"}["bbbd32d": "false", "value": "null"])-(e)+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
 (b43b)-({"bbbb53b"}["bbbd32d": "false", "value": "null"@<"psod": {"dff": "1", "ewf": "55"}>])-(e)+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
@@ -182,5 +197,10 @@ S(asdg41)-({"label7"}["datetimetzm": DateTime])->(asv94)
 (ABC10)-({"label7"}["datetimetzmminusms2": "-0003-01-05T11:15:32.5+05:00"])->(XYZ10)
 (ABC10)-({"label7"}["datetimetzmms3": "2020-01-07T14:15:32.24+08:00"])->(XYZ10)
 S(asdg41)-({"label7"}["test": MyType])->(asv94)
-
-# Add DURATION, BINARY, SMALLINT, BIGINT examples
+S(asdg41)-({"label7"}["test": _AnotherMyType])->(asv94)
+S(f23)-({"label"}["bytes": Bytes])->(f321)
+S(f23)-({"label"}["bytes": Bytes()])->(f321)
+S(f23)-({"label"}["bytes": Bytes(4)])->(f321)
+S(f23)-({"label"}["bytes": Bytes(2,4)])->(f321)
+S(f23)-({"label"}["bytes": Bytes(2, 4)])->(f321)
+S(f23)-({"label"}["duration": Duration])->(f321)
