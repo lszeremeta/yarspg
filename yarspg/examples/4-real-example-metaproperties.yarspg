@@ -7,7 +7,7 @@ S(NS1 {"Author"}["fname": String, "lname": String])+["created": "yesterday"]
 S(NS2 {"Entry", "InProceedings"}["title": String, "numpages": Integer, "keyword": String OPTIONAL])
 S(NS3 {"Entry", "Article"}["title": String, "numpages": Integer, "keyword": List(String MIN 1 MAX 5) OPTIONAL])
 S(NS4 {"Proceedings"}["title": String, "year": Integer, "month": String OPTIONAL @<"season": String>])
-S(NS5 {"Journal"}["title": String, "year": Integer, "vol": Integer])
+S(NS5 {"Journal"}["title": String, "year": Integer @<"date": Date>, "vol": Integer])
 
 # Edge schema
 S(NS2)-({"has_author"}["order": Integer])->(NS1)
