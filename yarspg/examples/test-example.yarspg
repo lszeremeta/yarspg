@@ -1,3 +1,10 @@
+# TEST FILE
+# This is a file for testing purposes.
+# The file shows the many different YARS-PG syntax possibilities.
+# The YARS-PG syntax in this file is correct,
+# but other things may not be allowed or might not make sense.
+# If you're looking for real examples, see the files with "real-example" in the name.
+
 # GRAPH
 S/default/["prop": Bool]
 /default/{"graph_label"}["prop": "false"] +["metadata": "yes"]
@@ -79,15 +86,17 @@ S(NS72 {"label546"}["key": Float@<"source": String OPTIONAL>])
 (h {"label"}["key664":["false",["another list2", ["another list3", "54", "false", "true"] , "52", "44.1"]]])
 (h {"label"}["key664":["false",["another list2"@<"info": {"source": "ABC", "trust": "XYZ"}>, ["another list3", "54", "false", "true"] , "52", "44.1"]]])
 (h {"label"}["key664":["false",["another list2"@<"info": {"source": "ABC", "trust": "XYZ"}>, ["another list3", "54", "false", "true"]@<"access": ["0", "1", "1", "0"], "ok": "true">, "52", "44.1"]@<"good": "false">]])
-S(NS8 {"label"}["keyword": Struct(String)])
-S(NS82 {"label"}["keyword": Struct(String) OPTIONAL])
+S(NS8 {"label"}["keyword": Struct("name": String, "title": String)])
+S(NS82 {"label"}["keyword": Struct("name": String) OPTIONAL])
+S(NS83 {"label"}["keyword": List(Struct("subkeyword": String))])
 (i {"label"}["keyword": {"name": "abc", "title": "xyz"}])
-S(NS9 {"label"}["keyword": Struct(String)@<"ok": INTEGER>])
-S(NS92 {"label"}["keyword": Struct(String)@<"ok": integer OPTIONAL>])
+S(NS9 {"label"}["keyword": Struct("name": String)@<"ok": INTEGER>])
+S(NS92 {"label"}["keyword": Struct("title": String)@<"ok": integer OPTIONAL>])
+S(NS9 {"label"}["keyword": Struct("name": String @<"info": STRING>, "title": STRING @<"info": INTEGER>)@<"ok": INTEGER>])
 (i {"label"}["keyword": {"name": "abc"@<"info": "ok">, "title": "xyz"}@<"ok": "1">])
-S(NS10 {"2label4"}["keyword2": Struct(Struct(String))])
+S(NS10 {"2label4"}["keyword2": Struct("names": Struct("names2": String, "names3": String))])
 (a2i44 {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}, "names2": {"name2": "abc2", "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}}])
-S(NS11 {"2label4"}["keyword2": Struct(Struct(String)@<"struct": String>)@<"struct": String, "ok": Bool>])
+S(NS11 {"2label4"}["keyword2": Struct("names": Struct("name": STRING, "title": STRING) @<"rating": INTEGER>, "names2": Struct("name2": STRING @<"more": STRING>, "title2": STRING), "names3": Struct("name3": String, "title3": String))@<"struct": String, "ok": Bool>])
 (a2i44 {"2label4"}["keyword2": {"names": {"name": "abc", "title": "xyz"}@<"rating": "5">, "names2": {"name2": "abc2"@<"more": "ok">, "title2": "xyz2"}, "names3": {"name3": "abc3", "title3": "xyz3"}@<"struct": "inside">}@<"struct": "outside", "ok": "true">])
 (i2 {"label"}["keyword": {"name": "abc", "title": {"name2": "abc2", "title2": "xyz2"}}])
 S(NS12 {"432f"}["set": Set(String)])/graphname/
@@ -114,10 +123,26 @@ S(NS18 {"ad3"}["list": List(List(String))])
 (ds {"ad3"}["list": [["name55", "name3"]]])
 S(NS19 {"ad32"}["list": List(List(String))])
 S(NS192 {"ad32"}["list": List(List(String MIN 1 MAX 1)) OPTIONAL])
+S(NS192 {"ad32"}["list": List(List(List(String MIN 1 MAX 1))) OPTIONAL])
+S(NS192 {"ad32"}["list": List(List(Set(String MIN 1 MAX 1))) OPTIONAL])
+S(NS192 {"ad32"}["list": List(List(DList(Multiset(String MIN 1 MAX 1)))) OPTIONAL])
+S(NS192 {"ad32"}["list": List(List(DList(Multiset(Struct("test": String MIN 1 MAX 1))))) OPTIONAL])
 S(NS1924 {"ad32"}["list": List(List(String MIN 1 MAX 1) MAX 1) OPTIONAL])
 S(NS19245 {"ad32"}["list": List(List(String NULL MIN 0 MAX 1) NULL MAX 1) NULL OPTIONAL])
 S(NS19245 {"ad32"}["list": List(List(String NULL MIN 5 MAX 10) NULL MAX 5) NULL OPTIONAL])
 (dsc {"ad32"}["list": [["name55", "name3"], ["name11", "name2"]]])
+S(NS8 {"label"}["keyword": List(Struct("subkeyword": String))])
+(NS8 {"label"}["keyword": [{"subkeyword": "abc"}]])
+S(b43b)-({"bbb23b"}["bbbd32d": Bool, "value": Bool @<"dff": Integer, "ewf": Integer>])-(e)
+(b43b)-({"bbbb53b"}["bbbd32d": "false", "value": "null"@<"dff": "1", "ewf": "55">])-(e)+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
+S(NS8 {"label"}["keyword": List(Struct("subkeyword1": String)) @<"test": Integer>])
+(NS8 {"label"}["keyword": [{"subkeyword1": "abc"}] @<"test": "1">])
+S(NS8 {"label"}["keyword": List(Struct("subkeyword1": String MAX 1, "test2": Integer NULL))])
+(NS8 {"label"}["keyword": [{"subkeyword1": "abc", "test2": "15"}]])
+S(NS8 {"label"}["keyword": List(Struct("subkeyword1": String, "test2": Integer NULL)) OPTIONAL])
+(NS8 {"label"}[])
+
+(NS8 {"label"}["keyword": [{"subkeyword1": {"subkeyword1": ["abc"]}}, "test", [["abc"], "573"]] @<"test": "1">])
 
 S(NS20 {"ZYT"}["date": Date])
 S(NS21 {"ZYT2"}["time": Time])
@@ -167,8 +192,8 @@ S(asf323)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) NULL])-(wef3
 S(asf3233)-({"bbb23b"}["bbbd32d": Bool UNIQUE @<"dfwe": Integer NULL>, "value": List(String) NULL @<"efe": List(List(String))>])-(wef3234)
 S(asf3245)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL])-(wef3245)
 S(asf3245)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String MIN 4) OPTIONAL])-(wef3245)
-S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @<"psod": Struct(Integer) OPTIONAL>])-(wef3245)
-S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @<"psod": Struct(Integer MAX 3) OPTIONAL>])-(wef3245)
+S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @<"psod": Struct("dff": Integer, "ewf": Integer) OPTIONAL>])-(wef3245)
+S(asf3244)-({"bbb23b"}["bbbd32d": Bool UNIQUE, "value": List(String) OPTIONAL @<"psod": Struct("dff": Integer, "ewf": Integer MAX 3) OPTIONAL>])-(wef3245)
 (b43b)-({"bbbb53b"}["bbbd32d": "false", "value": "null"])-(e)+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
 (b43b)-({"bbbb53b"}["bbbd32d": "false", "value": "null"@<"psod": {"dff": "1", "ewf": "55"}>])-(e)+["foaf:maker": "Łukasz Szeremeta and Dominik Tomaszuk", "<http://xmlns.com/dc/0.5/zyz>": "Test annotation"]
 

@@ -144,15 +144,15 @@ complex_value
     ;
 
 set_value
-    : '{' (primitive_value | set_value) meta_prop? (',' (primitive_value | set_value) meta_prop?)* '}'
+    : '{' (primitive_value | complex_value) meta_prop? (',' (primitive_value | complex_value) meta_prop?)* '}'
     ;
 
 list_value
-    : '[' (primitive_value | list_value) meta_prop? (',' (primitive_value | list_value) meta_prop?)* ']'
+    : '[' (primitive_value | complex_value) meta_prop? (',' (primitive_value | complex_value) meta_prop?)* ']'
     ;
 
 struct_value
-    : '{' key ':' (primitive_value | struct_value) meta_prop? (',' key ':' (primitive_value | struct_value) meta_prop?)* '}'
+    : '{' key ':' (primitive_value | complex_value) meta_prop? (',' key ':' (primitive_value | complex_value) meta_prop?)* '}'
     ;
 
 node_schema
@@ -231,31 +231,8 @@ scale
     ;
 
 complex_value_schema
-    : multiset_schema
-    | set_schema
-    | list_schema
-    | dlist_schema
-    | struct_schema
-    ;
-
-multiset_schema
-    : MULTISET '(' (primitive_value_schema | multiset_schema) NULL? cardinality? ')' meta_prop_schema?
-    ;
-
-set_schema
-    : SET '(' (primitive_value_schema | set_schema) NULL? cardinality? ')' meta_prop_schema?
-    ;
-
-list_schema
-    : LIST '(' (primitive_value_schema | list_schema) NULL? cardinality? ')' meta_prop_schema?
-    ;
-
-dlist_schema
-    : DLIST '(' (primitive_value_schema | dlist_schema) NULL? cardinality? ')' meta_prop_schema?
-    ;
-
-struct_schema
-    : STRUCT '(' (primitive_value_schema | struct_schema) NULL? cardinality? ')' meta_prop_schema?
+    : (MULTISET | SET | LIST | DLIST) '(' (primitive_value_schema | complex_value_schema) NULL? cardinality? ')' meta_prop_schema?
+    | STRUCT '(' prop_schema NULL? cardinality? (',' prop_schema NULL? cardinality?)* ')' meta_prop_schema?
     ;
 
 edge_schema
