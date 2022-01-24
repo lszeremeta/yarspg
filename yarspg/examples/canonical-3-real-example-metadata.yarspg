@@ -1,14 +1,15 @@
-+["<http://xmlns.com/foaf/0.1/maker>":"Łukasz Szeremeta and Dominik Tomaszuk"]
-S(NS1{"Author"}["fname":String,"lname":String])
-S(NS2{"Entry","InProceedings"}["title":String,"numpages":Integer,"keyword":String])
-S(NS3{"Entry","Article"}["title":String,"numpages":Integer,"keyword":List(String)])
-S(NS4{"Proceedings"}["title":String,"year":Integer,"month":String])
++[":foaf":"<http://xmlns.com/foaf/0.1/>"]
++["foaf:maker":"Łukasz Szeremeta and Dominik Tomaszuk"]
+S(NS1{"Author"}["fname":String,"lname":String])+["created":"yesterday"]
+S(NS2{"Entry","InProceedings"}["title":String,"numpages":Integer,"keyword":String OPTIONAL])
+S(NS3{"Entry","Article"}["title":String,"numpages":Integer,"keyword":List(String MIN 1 MAX 5) OPTIONAL])
+S(NS4{"Proceedings"}["title":String,"year":Integer,"month":String OPTIONAL])
 S(NS5{"Journal"}["title":String,"year":Integer,"vol":Integer])
 S(NS2)-({"has_author"}["order":Integer])->(NS1)
 S(NS3)-({"cities"})->(NS2)
 S(NS2)-({"booktitle"}["pages":String])->(NS4)
 S(NS3)-({"published_in"}["pages":String])->(NS5)
-(Author01{"Author"}["fname":"John","lname":"Smith"])#Author01
+(Author01{"Author"}["fname":"John","lname":"Smith"]) #Author01
 (Author02{"Author"}["fname":"Alice","lname":"Brown"])
 (EI01{"Entry","InProceedings"}["title":"Serialization for...","numpages":"10","keyword":"Graph database"])
 (EA01{"Entry","Article"}["title":"Property Graph...","numpages":"10","keyword":["Query","Graph"]])
