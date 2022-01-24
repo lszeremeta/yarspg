@@ -9,7 +9,7 @@ S(NS2)-({"has_author"}["order":Integer])->(NS1)
 S(NS3)-({"cities"})->(NS2)
 S(NS2)-({"booktitle"}["pages":String])->(NS4)
 S(NS3)-({"published_in"}["pages":String])->(NS5)
-(Author01{"Author"}["fname":"John","lname":"Smith"]) #Author01
+(Author01{"Author"}["fname":"John","lname":"Smith"])
 (Author02{"Author"}["fname":"Alice","lname":"Brown"])
 (EI01{"Entry","InProceedings"}["title":"Serialization for...","numpages":"10","keyword":"Graph database"])
 (EA01{"Entry","Article"}["title":"Property Graph...","numpages":"10","keyword":["Query","Graph"]])
