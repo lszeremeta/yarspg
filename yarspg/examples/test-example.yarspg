@@ -229,3 +229,7 @@ S(f23)-({"label"}["bytes": Bytes(4)])->(f321)
 S(f23)-({"label"}["bytes": Bytes(2,4)])->(f321)
 S(f23)-({"label"}["bytes": Bytes(2, 4)])->(f321)
 S(f23)-({"label"}["duration": Duration])->(f321)
+
+(hiddenL2 {"Text-Proper"}["articleid": "HIDDEN", "articleext": ".art", "position": "17\\5", "notation": "m.1.2"])
+(hiddenL3 {"Text-Proper"}["articleid": "HIDDEN", "articleext": ".art", "position": "17\n5", "notation": "m.1.2"])
+(hiddenL3 {"Text-Proper"}["articleid": "HIDDEN", "articleext": ".art", "position": "17\n5\r", "notation": "m.1.2"])

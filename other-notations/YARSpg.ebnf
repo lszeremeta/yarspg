@@ -175,7 +175,7 @@ OPTIONAL ::= ( 'O' | 'o' ) ( 'P' | 'p' ) ( 'T' | 't' ) ( 'I' | 'i' ) ( 'O' | 'o'
 /* END CASE-INSENSITIVE NAMES */
 
 COMMENT  ::= '#' [^#xd#xa#xc]*
-STR      ::= '"' ( [^"\#xd#xa] | "'" | '\"' )* '"'
+STR      ::= '"' ( [^#x22#x5C#xd#xa] | '\' ('"' | '\' | 'r' | 'n'))* '"' /* #x22=" #x5C=\ #xD=carriage return #xA=new line */
 UNSIGNED_INT
          ::= [0-9]+
 ALNUMPLUS
