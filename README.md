@@ -1,6 +1,6 @@
 # YARS-PG grammar
 
-[![Build Status](https://travis-ci.com/lszeremeta/yarspg.svg?branch=main)](https://travis-ci.com/lszeremeta/yarspg)
+[![Test and pre-release](https://github.com/lszeremeta/yarspg/actions/workflows/pre-release.yml/badge.svg)](https://github.com/lszeremeta/yarspg/actions/workflows/pre-release.yml)
 [![DOI](https://zenodo.org/badge/161351716.svg)](https://zenodo.org/badge/latestdoi/161351716)
 
 The YARS-PG serialization is a special version of [YARS](https://github.com/lszeremeta/yars) for property graphs. This serialization is specially designed for property graphs:
