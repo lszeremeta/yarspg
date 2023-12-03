@@ -1,0 +1,114 @@
+name: Test and pre-release
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  test-grammar:
+    name: Test grammar
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: "maven" # caching Maven dependencies
+          cache-dependency-path: "pom.xml"
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+  create-java-parser:
+    name: Create Java parser
+    needs: test-grammar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: "maven" # caching Maven dependencies
+          cache-dependency-path: "parsers/java/pom.xml"
+      - name: Build Java parser
+        run: mvn -B package --file ${{ github.workspace }}/parsers/java/pom.xml && mv ${{ github.workspace }}/parsers/java/target/yarspg-java-parser*.jar ${{ github.workspace }}/parsers/java/target/yarspg-java-parser.jar
+      - name: Test Java parser
+        run: |
+          java -jar ${{ github.workspace }}/parsers/java/target/yarspg-java-parser.jar ${{ github.workspace }}/yarspg/examples/test-example.yarspg
+      - name: Archive Java parser
+        uses: actions/upload-artifact@v3
+        with:
+          name: yarspg-java-parser
+          path: ${{ github.workspace }}/parsers/java/target/yarspg-java-parser.jar
+
+  create-python-parser:
+    name: Create Python parser
+    needs: test-grammar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+          cache: "pip" # caching pip dependencies
+          cache-dependency-path: "parsers/python/requirements.txt"
+      - name: Install pip dependencies
+        run: python -m pip install -r ${{ github.workspace }}/parsers/python/requirements.txt
+      - name: Download the ANTRL4 Java binaries
+        run: curl -O https://www.antlr.org/download/antlr-4.13.1-complete.jar
+      - name: Generate the Python parser
+        run: |
+          java -jar antlr-4.13.1-complete.jar -Dlanguage=Python3 -o ${{ github.workspace }}/parsers/python ${{ github.workspace }}/yarspg/YARSpg.g4
+          zip -j ${{ github.workspace }}/parsers/python/yarspg-python-parser.zip ${{ github.workspace }}/parsers/python/*
+      - name: Test Python parser
+        run: python ${{ github.workspace }}/parsers/python/yarspg_python_parser.py ${{ github.workspace }}/yarspg/examples/test-example.yarspg
+      - name: Archive Python parser
+        uses: actions/upload-artifact@v3
+        with:
+          name: yarspg-python-parser
+          path: ${{ github.workspace }}/parsers/python/yarspg-python-parser.zip
+
+  pre-release:
+    name: Create pre-release
+    runs-on: ubuntu-latest
+    needs: [create-java-parser, create-python-parser]
+    steps:
+      - uses: actions/checkout@v4
+
+      # Download the Java parser artifact
+      - name: Download Java parser artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: yarspg-java-parser
+          path: .
+
+      # Download the Python parser artifact
+      - name: Download Python parser artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: yarspg-python-parser
+          path: .
+
+      - name: Wait for concurrent jobs
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create pre-release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Pre-release"
+          files: |
+            yarspg/YARSpg.g4
+            other-notations/*
+            yarspg-java-parser.jar
+            yarspg-python-parser.zip
