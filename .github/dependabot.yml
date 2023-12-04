@@ -9,8 +9,20 @@ updates:
     # Check the Maven registry for updates every day (weekdays)
     schedule:
       interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/yarspg"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/parsers/java"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pip"
+    directory: "/parsers/python"
+    schedule:
+      interval: "daily"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      # Check for updates to GitHub Actions every week
-      interval: "weekly"
+      # Check for updates to GitHub Actions every day (weekdays)
+      interval: "daily"
