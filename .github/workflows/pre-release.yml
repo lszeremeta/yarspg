@@ -83,14 +83,14 @@ jobs:
 
       # Download the Java parser artifact
       - name: Download Java parser artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: yarspg-java-parser.jar
           path: .
 
       # Download the Python parser artifact
       - name: Download Python parser artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: yarspg-python-parser.zip
           path: .
