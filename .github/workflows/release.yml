@@ -41,7 +41,7 @@ jobs:
         run: |
           java -jar ${{ github.workspace }}/parsers/java/target/yarspg-java-parser.jar ${{ github.workspace }}/yarspg/examples/test-example.yarspg
       - name: Archive Java parser
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: yarspg-java-parser.jar
           path: ${{ github.workspace }}/parsers/java/target/yarspg-java-parser.jar
@@ -69,7 +69,7 @@ jobs:
       - name: Test Python parser
         run: python ${{ github.workspace }}/parsers/python/yarspg_python_parser.py ${{ github.workspace }}/yarspg/examples/test-example.yarspg
       - name: Archive Python parser
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: yarspg-python-parser.zip
           path: ${{ github.workspace }}/parsers/python/yarspg-python-parser.zip
