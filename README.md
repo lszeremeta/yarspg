@@ -20,7 +20,7 @@ The YARS-PG parsers are available in the [parsers](https://github.com/lszeremeta
 
 If you want to help build YARS-PG parsers for other languages, please follow the [ANTLR4 documentation](https://github.com/antlr/antlr4/tree/dev/doc) and create a pull request.
 
-See the ``README.md`` file in each parser directory for more details. Ready to use parsers are also available in the [Releases](https://github.com/lszeremeta/yarspg/releases)'s assets.
+See the ``README.md`` file in each parser directory for more details. Ready to use parsers are also available in the Assets section in [Releases](https://github.com/lszeremeta/yarspg/releases).
 
 ## Testing grammar
 
