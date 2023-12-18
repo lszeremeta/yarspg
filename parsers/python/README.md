@@ -52,10 +52,3 @@ Python parser is much slower than the Java one because of the ANTLR's Python imp
 
 You may consider using the Java parser instead or try to build a C++ parser target and use it with Python (example: [amykyta3/speedy-antlr-tool](https://github.com/amykyta3/speedy-antlr-tool)).
 
-## Contribution
-
-Would you like to improve this project? Great! We are waiting for your help and suggestions. If you are new to open source contributions, read [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/).
-
-## License
-
-Distributed under [BSD 3-Clause License](https://github.com/lszeremeta/yarspg/blob/main/LICENSE).
