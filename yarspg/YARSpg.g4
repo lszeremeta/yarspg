@@ -3,6 +3,8 @@
  Copyright (c) 2018-2024, Łukasz Szeremeta (https://github.com/lszeremeta)
  All rights reserved.
 
+ See more at: https://github.com/lszeremeta/yarspg
+
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
