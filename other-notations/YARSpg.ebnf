@@ -3,18 +3,14 @@
  Based on YARS-PG grammar in ANTLR4
  
  See more at:
- https://github.com/lszeremeta/antlr-yarspg
+https://github.com/lszeremeta/yarspg
  
  [The "BSD licence"]
- Copyright (c) 2018-2024, Łukasz Szeremeta (@ University of Bialystok, https://github.com/lszeremeta)
+ Copyright (c) 2018-2024, Łukasz Szeremeta (https://github.com/lszeremeta)
  All rights reserved.
 
  Special thanks to Gregg Kellogg (greggkellogg.net) for valuable
- comments to our EBNF (#1 GitHub issue).
-
- Based on YARS grammar
- (https://github.com/lszeremeta/antlr-yars/blob/master/yars/YARS.g4)
- distributed under BSD licence.
+ comments to EBNF version (#1 GitHub issue).
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions

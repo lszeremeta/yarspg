@@ -1,6 +1,6 @@
 /*
  [The "BSD licence"]
- Copyright (c) 2018-2024, Łukasz Szeremeta (@ University of Bialystok, https://github.com/lszeremeta)
+ Copyright (c) 2018-2024, Łukasz Szeremeta (https://github.com/lszeremeta)
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
