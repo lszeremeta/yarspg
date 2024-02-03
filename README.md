@@ -7,7 +7,7 @@ The YARS-PG serialization is designed for property graphs (but not only):
 * YARS-PG provides a simple syntax with a reduced number of extra characters,
 * YARS-PG is inspired by the syntax used by popular graph query languages (e.g. Cypher and GQL) to encode the structure of a property graph (i.e. nodes, edges, and properties).
 
-The YARS-PG grammar is written in [ANTLR4](https://github.com/antlr/antlr4). If you prefer [Extended Backus-Naur Form (EBNF)](https://www.w3.org/TR/REC-xml/#sec-notation) notation, you can also see [YARS-PG grammar in EBNF](https://github.com/lszeremeta/antlr-yarspg/blob/main/other-notations/YARSpg.ebnf). You may also see YARS-PG [examples](https://github.com/lszeremeta/yarspg/tree/main/yarspg/examples).
+The YARS-PG grammar is written in [ANTLR4](https://github.com/antlr/antlr4). If you prefer [Extended Backus-Naur Form (EBNF)](https://www.w3.org/TR/REC-xml/#sec-notation) notation, you can also see [YARS-PG grammar in EBNF](https://github.com/lszeremeta/antlr-yarspg/blob/main/other-notations/YARSpg.ebnf). See [examples](https://github.com/lszeremeta/yarspg/tree/main/yarspg/examples) to get familiar with the YARS-PG syntax.
 
 ## Parsers
 
