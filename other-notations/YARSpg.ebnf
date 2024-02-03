@@ -1,14 +1,12 @@
 /*
  YARS-PG grammar in Extended Backus-Naur Form (EBNF) notation
- (preview version)
  Based on YARS-PG grammar in ANTLR4
  
  See more at:
  https://github.com/lszeremeta/antlr-yarspg
  
  [The "BSD licence"]
- Copyright (c) 2018-2021, Łukasz Szeremeta (@ University of Bialystok, https://github.com/lszeremeta)
- Copyright (c) 2018-2019, Dominik Tomaszuk (@ University of Bialystok, http://www.uwb.edu.pl/)
+ Copyright (c) 2018-2024, Łukasz Szeremeta (@ University of Bialystok, https://github.com/lszeremeta)
  All rights reserved.
 
  Special thanks to Gregg Kellogg (greggkellogg.net) for valuable

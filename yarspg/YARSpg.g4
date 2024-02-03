@@ -1,13 +1,7 @@
 /*
  [The "BSD licence"]
- Copyright (c) 2018-2021, Łukasz Szeremeta (@ University of Bialystok, https://github.com/lszeremeta)
- Copyright (c) 2018, Dominik Tomaszuk (@ University of Bialystok, http://www.uwb.edu.pl/)
- Copyright (c) 2018, Karol Litman (@ University of Bialystok, http://www.uwb.edu.pl/)
+ Copyright (c) 2018-2024, Łukasz Szeremeta (@ University of Bialystok, https://github.com/lszeremeta)
  All rights reserved.
-
- Based on YARS grammar
- (https://github.com/lszeremeta/antlr-yars/blob/master/yars/YARS.g4)
- distributed under BSD licence.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
