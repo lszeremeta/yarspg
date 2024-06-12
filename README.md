@@ -9,6 +9,8 @@ The YARS-PG serialization is designed for property graphs (but not only):
 * YARS-PG is inspired by the syntax used by popular graph query languages (e.g. Cypher and GQL) to encode the structure
   of a property graph (i.e. nodes, edges, and properties).
 
+[![YARS-PG overview](https://raw.githubusercontent.com/lszeremeta/yarspg/main/YARS-PG-overview.gif)](https://ieeexplore.ieee.org/document/10536116)
+
 Read more about the current version of YARS-PG in the following
 paper: [YARS-PG: Property Graphs Representation for Publication and Exchange](https://ieeexplore.ieee.org/document/10536116).
 
