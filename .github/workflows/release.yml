@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -27,7 +27,7 @@ jobs:
     needs: test-grammar
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -51,7 +51,7 @@ jobs:
     needs: test-grammar
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [create-test-java-parser, create-test-python-parser]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Download the Java parser artifact
       - name: Download Java parser artifact
